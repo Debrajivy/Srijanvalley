@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Srijan Valley School Design System - Modern Academic Excellence */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Academic Excellence */
+    --primary-orange: 21 87% 44%;      /* #d0510f - Primary brand */
+    --secondary-blue: 214 100% 34%;    /* #004aad - Secondary brand */
+    --gold-accent: 45 93% 58%;         /* #F4B942 - Achievement */
+    --forest-green: 142 76% 36%;       /* #15803D - Growth */
+    
+    /* Neutral Palette */
+    --pure-white: 0 0% 100%;
+    --warm-gray-50: 60 9% 98%;
+    --warm-gray-100: 60 5% 96%;
+    --warm-gray-200: 60 5% 91%;
+    --warm-gray-600: 60 2% 42%;
+    --warm-gray-800: 60 3% 25%;
+    --warm-gray-900: 60 6% 10%;
+    
+    /* Semantic Tokens */
+    --background: var(--pure-white);
+    --foreground: var(--warm-gray-900);
+    
+    --card: var(--pure-white);
+    --card-foreground: var(--warm-gray-900);
+    
+    --popover: var(--pure-white);
+    --popover-foreground: var(--warm-gray-900);
+    
+    --primary: var(--primary-orange);
+    --primary-foreground: var(--pure-white);
+    
+    --secondary: var(--warm-gray-100);
+    --secondary-foreground: var(--warm-gray-900);
+    
+    --muted: var(--warm-gray-100);
+    --muted-foreground: var(--warm-gray-600);
+    
+    --accent: var(--secondary-blue);
+    --accent-foreground: var(--pure-white);
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: var(--pure-white);
+    
+    --border: var(--warm-gray-200);
+    --input: var(--warm-gray-200);
+    --ring: var(--primary-orange);
+    
+    /* Academic-specific tokens */
+    --hero-background: hsl(var(--primary-orange));
+    --section-background: hsl(var(--warm-gray-50));
+    --achievement-background: hsl(var(--gold-accent));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* Academic specific shadows */
+    --shadow-academic: 0 8px 32px hsl(var(--primary-orange) / 0.12);
+    --shadow-card: 0 4px 16px hsl(var(--warm-gray-900) / 0.08);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: 'cv04', 'cv03', 'cv02', 'cv11';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold;
+  }
+}
+
+@layer components {
+  /* Academic Button Variants */
+  .btn-academic {
+    @apply inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300;
+    @apply bg-primary text-primary-foreground;
+    @apply hover:shadow-lg hover:scale-105 active:scale-95 hover:opacity-90;
+    box-shadow: var(--shadow-academic);
+  }
+  
+  .btn-secondary-academic {
+    @apply inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300;
+    @apply bg-background text-primary border-2 border-primary;
+    @apply hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:scale-105;
+  }
+  
+  /* Section Styling */
+  .section-container {
+    @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  }
+  
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+  
+  /* Academic Card */
+  .academic-card {
+    @apply bg-card rounded-2xl p-8 transition-all duration-300;
+    @apply hover:shadow-xl hover:-translate-y-2;
+    box-shadow: var(--shadow-card);
+  }
+  
+  /* Hero Overlay - Removed for transparent background */
+  .hero-overlay {
+    background: hsl(var(--primary-orange) / 0.85);
+  }
+  
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+}
