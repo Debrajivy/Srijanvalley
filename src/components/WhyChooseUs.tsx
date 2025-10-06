@@ -1,35 +1,37 @@
 import { BookOpen, Users, Building2, Star } from 'lucide-react';
+import FocusEducation from "../assets/FocusedEducation.webp";
+import PersonalAttention from "../assets/PersonalAttention.webp";
+import ModernInfrastructure from "../assets/ModernInfrastructure.webp";
 
 const WhyChooseUs = () => {
+  const PRIMARY_ORANGE_TEXT = 'text-orange-600';
+
   const features = [
     {
-      icon: BookOpen,
+      image: FocusEducation, 
       title: 'Focused Education',
       description: 'CBSE curriculum with exam prep orientation for JEE, NEET, and competitive exams.',
-      gradient: 'bg-blue-500'
     },
     {
-      icon: Users,
+      image: PersonalAttention,
       title: 'Personal Attention',
       description: '1:15 teacher-student ratio with dedicated 1:1 mentorship for every child.',
-      gradient: 'bg-accent'
     },
     {
-      icon: Building2,
+      image: ModernInfrastructure,
       title: 'Modern Infrastructure',
       description: 'Smart classrooms, well-equipped labs, extensive library, cricket ground, and safe play areas.',
-      gradient: 'bg-green-500'
     }
   ];
 
   return (
     <section id="why-us" className="section-padding bg-gradient-to-b from-muted/50 to-background">
-      <div className="section-container">
+      <div className="section-container" style={{ marginTop: -50 }}>
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
             Why Choose 
-            <span className="text-primary ml-3">
+            <span className={PRIMARY_ORANGE_TEXT + " ml-3"}> 
               Srijan Valley?
             </span>
           </h2>
@@ -43,36 +45,34 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="academic-card group"
+              className="rounded-3xl shadow-xl transition-all duration-500 transform hover:scale-[1.03] bg-white border border-gray-100 hover:shadow-2xl hover:border-orange-500 group overflow-hidden"
             >
-              {/* Icon */}
-              <div className={`w-16 h-16 rounded-2xl ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className="w-8 h-8 text-white" />
+              {/* 1. Image Container: Removed fixed height (h-40) and background color (bg-gray-50) */}
+              <div className="w-full h-auto flex items-center justify-center rounded-t-3xl overflow-hidden">
+                <img 
+                  // 2. FIX: Ensure compatibility with Next.js image imports
+                  src={feature.image}
+                  alt={feature.title + " illustration"}
+                  // 3. Image Styling: w-full and object-contain to display full image
+                  className="w-full h-auto object-contain" 
+                />
               </div>
               
-              {/* Content */}
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+              {/* Content: Retains padding and centering */}
+              <div className="p-6 text-center">
+                <h3 className={`text-2xl font-bold ${PRIMARY_ORANGE_TEXT} mb-4 transition-colors duration-300`}>
+                  {feature.title}
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+              
             </div>
           ))}
         </div>
 
-        {/* Leadership Callout */}
-        {/* <div className="academic-card bg-primary text-white max-w-4xl mx-auto text-center">
-          <div className="flex items-center justify-center mb-4">
-            <Star className="w-8 h-8 text-yellow-300 mr-3" />
-            <h3 className="text-2xl md:text-3xl font-bold">Distinguished Leadership</h3>
-            <Star className="w-8 h-8 text-yellow-300 ml-3" />
-          </div>
-          <p className="text-xl leading-relaxed">
-            Led by <strong>IAS Pramod Agrawal</strong> (Ex-Chairman, Coal India Ltd) and other 
-            distinguished IIT/IAS alumni - ensuring your child learns from the best.
-          </p>
-        </div> */}
+        {/* Leadership Callout is commented out */}
       </div>
     </section>
   );

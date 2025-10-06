@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react'; // Uses Menu (three-bar) icon
+
+// IMPORT THE LOGO IMAGE
+import LogoFinal from '../assets/LogoFinal.webp'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,11 +16,23 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // IMPORTANT: This controls body overflow to prevent background scrolling when the menu is open.
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
   const navItems = [
     { name: 'Why Us', href: '#why-us' },
     { name: 'Who It\'s For', href: '#who-its-for' },
     { name: 'Numbers', href: '#numbers' },
-    { name: 'Benefits', href: '#benefits' },
+    { name: 'Benefits', 'href': '#benefits' },
     { name: 'Team', href: '#team' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Contact', href: '#contact' },
@@ -32,40 +47,51 @@ const Header = () => {
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-300 ${
+        // Initial dark color, switches to light/blurry on scroll
+        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-[#293343] shadow-lg'
+        }`}
     >
-      <div className="section-container">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+
+          {/* Logo and School Name Section (Left Side) */}
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-              <span className="text-xl font-bold text-white">SV</span>
+            {/* LOGO SIZE INCREASE: Changed w-12 h-12 to w-14 h-14 */}
+            <div className="w-24 h-24 flex items-center justify-center flex-shrink-0">
+              <img 
+                src={LogoFinal}
+                alt="Srijan Valley School Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-foreground">Srijan Valley School</h1>
-              <p className="text-sm text-muted-foreground">CBSE • 100% English Medium</p>
+            
+            <div className="flex-col hidden sm:flex">
+              <h1 className={`text-lg font-bold ${isScrolled ? 'text-foreground' : 'text-white'}`}>Srijan Valley School</h1>
+              <p className={`text-xs ${isScrolled ? 'text-muted-foreground' : 'text-white/80'}`}>CBSE • 100% English Medium</p>
+            </div>
+            <div className="flex-col sm:hidden">
+              <h1 className={`text-lg font-bold ${isScrolled ? 'text-foreground' : 'text-white'}`}>Srijan Valley School</h1>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation (Hidden on Mobile) */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => handleNavClick(item.href)}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                className={`${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary transition-colors duration-300 font-medium text-sm`}
               >
                 {item.name}
               </button>
             ))}
           </nav>
 
-          {/* Apply Now Button */}
-          <div className="hidden lg:block">
-            <button 
+          {/* Desktop Apply Button */}
+          <div className="hidden lg:block flex-shrink-0">
+            <button
               onClick={() => handleNavClick('#contact')}
               className="btn-academic"
             >
@@ -73,40 +99,61 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button (FAR RIGHT) - Now uses the three-bar icon */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className={`lg:hidden p-2 ${isScrolled ? 'text-foreground' : 'text-white'} hover:text-primary transition-colors z-[100]`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-background border-t border-border shadow-lg">
-            <nav className="py-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left px-6 py-3 text-foreground hover:bg-muted hover:text-primary transition-colors duration-300"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <div className="px-6 pt-4">
-                <button 
-                  onClick={() => handleNavClick('#contact')}
-                  className="btn-academic w-full justify-center"
-                >
-                  Apply Now
-                </button>
-              </div>
-            </nav>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Navigation - Right Slide-in Menu (OVERLAY FIX) */}
+      <div
+        className={`lg:hidden fixed top-0 h-screen w-4/5 max-w-xs bg-background border-l border-border shadow-2xl transition-transform duration-300 z-[95] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          } right-0`}
+      >
+
+        {/* Menu Header with Orange Cross Button */}
+        <div className="flex justify-between items-center p-4 h-20 bg-background/95 border-b border-border shadow-sm">
+          <span className="text-xl font-bold text-foreground">Menu</span>
+          <button 
+            onClick={() => setIsMenuOpen(false)} 
+            className="text-orange-500 hover:text-orange-600 p-2"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <nav className="py-2 overflow-y-auto h-[calc(100vh-5rem)]">
+          {navItems.map((item) => (
+            <button
+              key={item.name}
+              onClick={() => handleNavClick(item.href)}
+              className="block w-full text-left px-6 py-4 text-foreground hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+            >
+              {item.name}
+            </button>
+          ))}
+          <div className="px-6 pt-6">
+            <button
+              onClick={() => handleNavClick('#contact')}
+              className="btn-academic w-full justify-center"
+            >
+              Apply Now
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Overlay to close menu */}
+      {isMenuOpen && (
+        <div
+          onClick={() => setIsMenuOpen(false)}
+          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[94] transition-opacity duration-300"
+        />
+      )}
     </header>
   );
 };

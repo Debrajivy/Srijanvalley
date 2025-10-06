@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, Users, UserCheck, Calendar } from 'lucide-react';
 
+// Define primary colors for consistency across the site
+const PRIMARY_ORANGE_BG = 'bg-orange-600';
+const PRIMARY_ORANGE_TEXT = 'text-orange-600';
+
 const NumbersSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef(null);
 
+  // Note: The 'color' property in stats is no longer used for icons/numbers,
+  // but is kept for the subtle background effect if desired.
   const stats = [
     {
       icon: MapPin,
@@ -12,7 +18,7 @@ const NumbersSection = () => {
       suffix: '+',
       label: 'Acres Campus',
       description: 'Spacious, green campus for holistic development',
-      color: 'bg-green-500'
+      color: 'bg-green-500' // Used for background flair only
     },
     {
       icon: Users,
@@ -20,7 +26,7 @@ const NumbersSection = () => {
       prefix: '1:',
       label: 'Teacher-Student Ratio',
       description: 'Ensuring personalized attention for every child',
-      color: 'bg-blue-500'
+      color: 'bg-blue-500' // Used for background flair only
     },
     {
       icon: UserCheck,
@@ -28,14 +34,14 @@ const NumbersSection = () => {
       prefix: '1:',
       label: 'Personal Mentorship',
       description: 'Dedicated mentorship for every student',
-      color: 'bg-accent'
+      color: 'bg-accent' // Used for background flair only
     },
     {
       icon: Calendar,
       number: 10,
       label: 'Minutes from Kanke Road',
       description: 'Convenient location in Pithoriya, Ranchi',
-      color: 'bg-purple-500'
+      color: 'bg-purple-500' // Used for background flair only
     }
   ];
 
@@ -56,7 +62,8 @@ const NumbersSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const AnimatedNumber = ({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) => {
+  // Updated AnimatedNumber component definition to handle potential TypeScript context (if applicable)
+  const AnimatedNumber = ({ value, prefix = '', suffix = '' }) => {
     const [displayValue, setDisplayValue] = useState(0);
 
     useEffect(() => {
@@ -89,12 +96,13 @@ const NumbersSection = () => {
 
   return (
     <section id="numbers" ref={sectionRef} className="section-padding bg-gradient-to-b from-muted/30 to-background">
-      <div className="section-container">
+      <div style={{ marginTop: -90 }} className="section-container">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
             Srijan Valley in
-            <span className="text-primary ml-3">
+            {/* CHANGED: Text color to primary orange */}
+            <span className={PRIMARY_ORANGE_TEXT + " ml-3"}> 
               Numbers
             </span>
           </h2>
@@ -110,18 +118,19 @@ const NumbersSection = () => {
               key={index}
               className="academic-card text-center group relative overflow-hidden"
             >
-              {/* Background Effect */}
+              {/* Background Effect (Uses original mixed color for subtle flair) */}
               <div className={`absolute inset-0 ${stat.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`} />
               
               {/* Content */}
               <div className="relative z-10">
-                {/* Icon */}
-                <div className={`w-16 h-16 mx-auto rounded-2xl ${stat.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                {/* Icon: CHANGED background to PRIMARY_ORANGE_BG */}
+                <div className={`w-16 h-16 mx-auto rounded-2xl ${PRIMARY_ORANGE_BG} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  {/* Icon is now WHITE text-white */}
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
                 
-                {/* Number */}
-                <div className="text-primary mb-4">
+                {/* Number: CHANGED text color to PRIMARY_ORANGE_TEXT */}
+                <div className={PRIMARY_ORANGE_TEXT + " mb-4"}>
                   <AnimatedNumber 
                     value={stat.number} 
                     prefix={stat.prefix}

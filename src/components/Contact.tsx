@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, ExternalLink } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -64,7 +63,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding bg-gradient-to-b from-muted/30 to-background">
-      <div className="section-container">
+      <div style={{marginTop:-90}} className="section-container">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
@@ -82,7 +81,7 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="academic-card bg-primary text-white">
-              <h3 className="text-2xl font-bold mb-4">🎯 Admissions Closing Soon!</h3>
+              <h3 className="text-2xl font-bold mb-4"> Admissions Closing Soon!</h3>
               <p className="text-lg mb-4">
                 Don't miss this opportunity to give your child the best education. 
                 Our limited seats are filling up fast for the upcoming academic year.

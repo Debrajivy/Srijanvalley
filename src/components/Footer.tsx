@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, GraduationCap } from 'lucide-react';
+import LogoFinal from '../assets/LogoFinal.webp';
 
 const Footer = () => {
   const quickLinks = [
@@ -24,16 +25,20 @@ const Footer = () => {
           {/* School Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground">Srijan Valley School</h3>
+
+              <div className="inline-block">
+                <img
+                  src={LogoFinal}
+                  alt="Srijan Valley School Logo"
+                  className="w-40 h-auto"
+                />
+
+                <h3 style={{marginTop:-30}} className="text-xl font-bold text-foreground">Srijan Valley School</h3>
                 <p className="text-sm text-muted-foreground">CBSE • 100% English Medium</p>
               </div>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Committed to providing excellence in education with a personal touch. 
+              Committed to providing excellence in education with a personal touch.
               Led by IAS/IIT alumni, we prepare students for competitive success and holistic development.
             </p>
             <div className="space-y-3">
@@ -82,7 +87,7 @@ const Footer = () => {
                 <p className="text-sm text-muted-foreground mb-3">
                   Limited seats available for the new academic session
                 </p>
-                <button 
+                <button
                   onClick={() => handleLinkClick('#contact')}
                   className="text-sm bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
                 >
@@ -101,13 +106,13 @@ const Footer = () => {
             </p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
               <span className="text-sm text-muted-foreground">
-                🏆 IAS/IIT Alumni Led Institution
+                 IAS/IIT Alumni Led Institution
               </span>
               <span className="text-sm text-muted-foreground">
-                📚 CBSE Affiliated
+                 CBSE Affiliated
               </span>
               <span className="text-sm text-muted-foreground">
-                🌟 100% English Medium
+                 100% English Medium
               </span>
             </div>
           </div>
