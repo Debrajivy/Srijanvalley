@@ -30,7 +30,7 @@ const Benefits = () => {
     // Additional Features Data
     const additionalFeatures = [
         { icon: Clock, title: 'Extended Learning', description: 'After-school tutoring and doubt-clearing sessions' },
-        { icon: Award, title: 'Competitive Edge', description: 'Special coaching for JEE, NEET, and olympiads' },
+        { icon: Award, title: 'Competitive Edge', description: 'Special coaching for olympiads' },
         { icon: Heart, title: 'Holistic Care', description: 'Focus on emotional and social development' }
     ];
 

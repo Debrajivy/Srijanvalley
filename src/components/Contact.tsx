@@ -38,7 +38,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Our Location',
-      details: ['Pithoriya, Ranchi', 'Jharkhand, India', '10 minutes from Kanke Road'],
+      details: ['Pithoria, Ranchi', 'Jharkhand, India', '10 minutes from Kanke Road'],
       action: { text: 'See on Map', link: '#' }
     },
     {
@@ -67,7 +67,7 @@ const Contact = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            Apply Now &
+         
             <span className="text-primary ml-3">
               Contact Us
             </span>

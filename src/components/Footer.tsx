@@ -38,7 +38,7 @@ const Footer = () => {
                 />
 
                 <h3 style={{ marginTop: -30 }} className="text-xl font-bold text-foreground">Srijan Valley School</h3>
-                <p className="text-sm text-muted-foreground">CBSE • 100% English Medium</p>
+                <p className="text-sm text-muted-foreground">CBSE • English Medium</p>
               </div>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
@@ -50,7 +50,7 @@ const Footer = () => {
                 <MapPin className="w-4 h-4 mr-3 mt-1 text-primary flex-shrink-0" />
                 <div className="flex flex-col">
                   {/* Address Detail */}
-                  <span>Pithoriya, 10 minutes from Kanke Road, Ranchi, Jharkhand, India</span>
+                  <span>Pithoria, 10 minutes from Kanke Road, Ranchi, Jharkhand, India</span>
                   {/* VIEW ON MAP HYPERLINK */}
                   <a
                     href={mapsUrl}
@@ -129,7 +129,7 @@ const Footer = () => {
                 CBSE Affiliated
               </span>
               <span className="text-sm text-muted-foreground">
-                100% English Medium
+                English Medium
               </span>
             </div>
           </div>

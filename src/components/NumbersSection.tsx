@@ -40,7 +40,7 @@ const NumbersSection = () => {
       icon: Calendar,
       number: 10,
       label: 'Minutes from Kanke Road',
-      description: 'Convenient location in Pithoriya, Ranchi',
+      description: 'Convenient location in Pithoria, Ranchi',
       color: 'bg-purple-500' // Used for background flair only
     }
   ];

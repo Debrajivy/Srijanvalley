@@ -11,7 +11,7 @@ const WhoItsFor = () => {
         {
             icon: Trophy,
             title: 'Academic Aspirant',
-            description: 'Rigorous academics with focused preparation for JEE, NEET, and other competitive examinations.',
+            description: 'Rigorous academics with focused preparation for competitive examinations.',
             features: ['Advanced CBSE curriculum', 'Competition-oriented coaching', 'Regular mock tests', 'Performance tracking'],
             color: 'bg-yellow-500' // Kept for the subtle background gradient/opacity
         },

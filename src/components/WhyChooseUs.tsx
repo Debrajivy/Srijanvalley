@@ -10,7 +10,7 @@ const WhyChooseUs = () => {
     {
       image: FocusEducation, 
       title: 'Focused Education',
-      description: 'CBSE curriculum with exam prep orientation for JEE, NEET, and competitive exams.',
+      description: 'CBSE curriculum with exam prep orientation for competitive exams.',
     },
     {
       image: PersonalAttention,
