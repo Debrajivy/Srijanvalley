@@ -199,7 +199,7 @@ const Hero: React.FC = () => {
 
               <div className="space-y-2 text-white max-w-3xl mx-auto">
                 <p className="text-lg sm:text-xl md:text-2xl font-medium">
-                  CBSE Affiliated • English Medium School
+                    English Medium School
                 </p>
                 <p className="text-base sm:text-lg text-gray-200">Pithoria, Ranchi</p>
               </div>

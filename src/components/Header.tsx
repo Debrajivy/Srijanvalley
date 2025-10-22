@@ -26,14 +26,23 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  // const navItems = [
+  //   { name: 'Why Us', href: '#why-us' },
+  //   { name: "Who It's For", href: '#who-its-for' },
+  //   { name: 'Numbers', href: '#numbers' },
+  //   { name: 'Benefits', href: '#benefits' },
+  //   { name: 'Team', href: '#team' },
+  //   { name: 'Gallery', href: '#gallery' },
+  //   { name: 'Contact', href: '#contact' },
+  // ];
   const navItems = [
-    { name: 'Why Us', href: '#why-us' },
-    { name: "Who It's For", href: '#who-its-for' },
-    { name: 'Numbers', href: '#numbers' },
-    { name: 'Benefits', href: '#benefits' },
-    { name: 'Team', href: '#team' },
+    { name: 'About us', href: '#why-us' },
+    { name: "Our Visionary", href: '#who-its-for' },
+    { name: 'Academics', href: '#numbers' },
+    { name: 'Curriculum & Activities', href: '#benefits' },
+    { name: 'Events ', href: '#team' },
     { name: 'Gallery', href: '#gallery' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact Us', href: '#contact' },
   ];
 
   const handleNavClick = (href) => {

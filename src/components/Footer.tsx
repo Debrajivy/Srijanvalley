@@ -126,7 +126,7 @@ const Footer = () => {
                 IAS/IIT Alumni Led Institution
               </span>
               <span className="text-sm text-muted-foreground">
-                CBSE Affiliated
+                {/* CBSE Affiliated */}
               </span>
               <span className="text-sm text-muted-foreground">
                 English Medium
