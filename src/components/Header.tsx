@@ -36,11 +36,12 @@ const Header = () => {
   //   { name: 'Contact', href: '#contact' },
   // ];
   const navItems = [
-    { name: 'About us', href: '#why-us' },
-    { name: "Our Visionary", href: '#who-its-for' },
-    { name: 'Academics', href: '#numbers' },
-    { name: 'Curriculum & Activities', href: '#benefits' },
-    { name: 'Events ', href: '#team' },
+    { name: 'About us', href: '#about-us' },
+    { name: "Our Visionary", href: '#mission-vision' },
+    { name: 'Benefits', href: '#benefits' },
+    // { name: 'Curriculum & Activities', href: '#curriculum-activities' },
+    { name: 'Our Team', href: '#team' },
+    // { name: 'Events ', href: '#events' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Contact Us', href: '#contact' },
   ];
@@ -74,10 +75,10 @@ const Header = () => {
             <div className="flex-col hidden sm:flex">
               {/* CHANGE 2: Set permanent black/gray text colors. */}
               <h1 className="text-lg font-bold text-gray-900">Srijan Valley School</h1>
-              <p className="text-xs text-gray-600">CBSE • English Medium</p>
+              <p className="text-xs text-gray-600"> English Medium</p>
             </div>
             <div className="flex-col sm:hidden">
-               <h1 className="text-lg font-bold text-gray-900">Srijan Valley School</h1>
+              <h1 className="text-lg font-bold text-gray-900">Srijan Valley School</h1>
             </div>
           </div>
 
@@ -118,9 +119,8 @@ const Header = () => {
 
       {/* Mobile Navigation Menu (No changes needed here as it already has a light theme) */}
       <div
-        className={`lg:hidden fixed top-0 h-screen w-4/5 max-w-xs bg-background border-l border-border shadow-2xl transition-transform duration-300 z-[95] ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        } right-0`}
+        className={`lg:hidden fixed top-0 h-screen w-4/5 max-w-xs bg-background border-l border-border shadow-2xl transition-transform duration-300 z-[95] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          } right-0`}
       >
         <div className="flex justify-between items-center p-4 h-20 bg-background/95 border-b border-border shadow-sm">
           <span className="text-xl font-bold text-foreground">Menu</span>
@@ -151,7 +151,7 @@ const Header = () => {
           </div>
         </nav>
       </div>
-      
+
       {isMenuOpen && (
         <div
           onClick={() => setIsMenuOpen(false)}
