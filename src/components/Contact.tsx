@@ -44,8 +44,8 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+91 7079904000', 'Admissions Hotline', 'Monday to Saturday'],
-      action: { text: 'Call Now', link: 'tel:+917079904000' }
+      details: ['+91 7044406882', 'Admissions Hotline', 'Monday to Saturday'],
+      action: { text: 'Call Now', link: 'tel:+917044406882' }
     },
     {
       icon: Mail,
@@ -56,7 +56,7 @@ const Contact = () => {
     {
       icon: Clock,
       title: 'Office Hours',
-      details: ['Monday - Friday: 9 AM - 5 PM', 'Saturday: 9 AM - 2 PM', 'Sunday: Closed'],
+      details: ['Monday - Saturday: 8 :30 AM to 2:30 PM'],
       action: null
     }
   ];
@@ -81,7 +81,7 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="academic-card bg-primary text-white">
-              <h3 className="text-2xl font-bold mb-4"> Admissions Closing Soon!</h3>
+              {/* <h3 className="text-2xl font-bold mb-4"> Admissions Closing Soon!</h3> */}
               <p className="text-lg mb-4">
                 Don't miss this opportunity to give your child the best education. 
                 Our limited seats are filling up fast for the upcoming academic year.
@@ -214,11 +214,11 @@ const Contact = () => {
                 Prefer to call? Our admissions team is ready to help
               </p>
               <a 
-                href="tel:+917079904000"
+                href="tel:+917044406882"
                 className="btn-secondary-academic"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                Call 7079904000
+                Call 7044406882
               </a>
             </div>
           </div>

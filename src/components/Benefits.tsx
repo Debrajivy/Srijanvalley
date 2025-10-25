@@ -116,10 +116,10 @@ const Benefits = () => {
                                 // ADDED w-full for full-width on mobile
                                 className={`w-full sm:w-auto bg-white ${PRIMARY_ORANGE_TEXT} px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300`}
                             >
-                                Apply Now - Admissions Closing Soon!
+                                Apply Now
                             </button>
                             <a 
-                                href="tel:+917079904000"
+                                href="tel:+917044406882"
                                 // ADDED w-full for full-width on mobile
                                 className={`w-full sm:w-auto border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:${PRIMARY_ORANGE_TEXT} transition-colors duration-300`}
                             >
