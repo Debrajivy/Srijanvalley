@@ -41,6 +41,7 @@ const Header = () => {
     { name: 'Benefits', href: '#benefits' },
     // { name: 'Curriculum & Activities', href: '#curriculum-activities' },
     { name: 'Our Team', href: '#team' },
+    { name: 'Events', href: '#events' },
     // { name: 'Events ', href: '#events' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Contact Us', href: '#contact' },

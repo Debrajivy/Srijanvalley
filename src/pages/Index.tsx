@@ -9,7 +9,7 @@ import Team from '@/components/Team';
 import Gallery from '@/components/Gallery';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-
+import Events from '@/components/Events';
 // Assuming AdmissionTicker is located at '@/components/AdmissionTicker'
 
 
@@ -27,6 +27,7 @@ const Index = () => {
         <MissionVision />
         <WhoItsFor />
         <NumbersSection />
+        <Events />
         <Benefits />
         <Team />
         <Gallery />

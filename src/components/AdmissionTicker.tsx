@@ -17,7 +17,7 @@ const marqueeStyle: React.CSSProperties = {
 const AdmissionTicker: React.FC = () => {
     
     // The admission text content
-    const admissionText = "Admissions will start soon! | Get ready to apply for the 2026-27 session | PRE-NURSERY (3 YRS) | NURSERY (4 YRS) | KG (5 YRS) | STD I - VII";
+    const admissionText = "Admissions are open for the session 2026–27 : | For classes - pre-nursery, nursery, KG and Standard 1-7";
     
     return (
         // 🎯 FINAL FIX: Using 'w-full' ensures it takes up all available space, 

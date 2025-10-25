@@ -13,10 +13,10 @@ const AdmissionHeaderImage: React.FC = () => (
   <div className="bg-orange-600 text-white p-3 text-center rounded-t-xl" >
     {/* Heading is split into lines for proper wrapping on small screens */}
     <h2 className="text-xl sm:text-xl md:text-xl font-bold mb-1 leading-tight">
-      <span className="block">Admissions will start soon!</span>
-      <span className="block">Get ready to apply for the 2026-27 session</span> 
+      <span className="block">Admissions are open for the session 2026–27 :</span>
+      {/* <span className="block">For classes - pre-nursery, nursery, KG and Standard 1-7</span>  */}
     </h2>
-    <p className="text-sm sm:text-base font-medium mt-2">For classes Pre-Nursery, Nursery, KG and Std I to VII</p>
+    <p className="text-sm sm:text-base font-medium mt-2">For classes - pre-nursery, nursery, KG and Standard 1-7</p>
   </div>
 );
 // The core logic of the simplified, single-section form
