@@ -37,14 +37,15 @@ const Header = () => {
   // ];
   const navItems = [
     { name: 'About us', href: '#about-us' },
-    { name: "Our Visionary", href: '#mission-vision' },
+    { name: "Our Visionary", href: '#team' },
     { name: 'Benefits', href: '#benefits' },
     // { name: 'Curriculum & Activities', href: '#curriculum-activities' },
     { name: 'Our Team', href: '#team' },
     { name: 'Events', href: '#events' },
     // { name: 'Events ', href: '#events' },
     { name: 'Gallery', href: '#gallery' },
-    { name: 'Contact Us', href: '#contact' },
+    { name: 'Media', href: '#media' },
+    // { name: 'Contact Us', href: '#contact' },
   ];
 
   const handleNavClick = (href) => {

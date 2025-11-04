@@ -10,8 +10,9 @@ import Gallery from '@/components/Gallery';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Events from '@/components/Events';
+import Media from '@/components/Media';
 // Assuming AdmissionTicker is located at '@/components/AdmissionTicker'
-
+import Results from '@/components/Results';
 
 const Index = () => {
   return (
@@ -29,9 +30,11 @@ const Index = () => {
         <NumbersSection />
         <Events />
         <Benefits />
+        <Media />
         <Team />
         <Gallery />
         <Contact />
+        {/* <Results /> */}
         <Footer />
       </main>
     </div>

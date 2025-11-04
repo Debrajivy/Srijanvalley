@@ -96,7 +96,7 @@ const Benefits = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className="text-center">
+                {/* <div className="text-center">
                     <div className={`${PRIMARY_ORANGE_BG} text-white academic-card max-w-4xl mx-auto`}>
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">
                             Ready to Give Your Child the Best?
@@ -106,28 +106,20 @@ const Benefits = () => {
                             Limited seats available - secure your child's spot today!
                         </p>
                         
-                        {/* CRITICAL FIX: Added w-full to buttons and their container */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <button 
                                 onClick={() => {
                                     const element = document.querySelector('#contact');
                                     if (element) element.scrollIntoView({ behavior: 'smooth' });
                                 }}
-                                // ADDED w-full for full-width on mobile
                                 className={`w-full sm:w-auto bg-white ${PRIMARY_ORANGE_TEXT} px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300`}
                             >
                                 Apply Now
                             </button>
-                            <a 
-                                href="tel:+917044406882"
-                                // ADDED w-full for full-width on mobile
-                                className={`w-full sm:w-auto border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:${PRIMARY_ORANGE_TEXT} transition-colors duration-300`}
-                            >
-                                Book a School Tour
-                            </a>
+                            
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </section>
     );

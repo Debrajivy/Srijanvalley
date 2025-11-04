@@ -1,11 +1,12 @@
+
 "use client";
 import React, { useState } from "react";
-import { Maximize, X } from "lucide-react";
+// Added ChevronLeft, ChevronRight for the new multiple-image lightbox
+import { Maximize, X, ChevronLeft, ChevronRight } from "lucide-react";
 
-// --- 1. Asset Imports (Existing) ---
-// Note: In a real Next.js/React project, if these are static files, 
-// you might need to adjust how they are imported or referenced.
-// We keep the existing structure for completion.
+// --- 1. Asset Imports (Existing and NEW) ---
+// Note: In a real Next.js/React project, you MUST ensure these files exist
+// at the specified paths relative to the component or adjust the import.
 import ScienceExhibition from "../assets/ScienceExhibition.webp";
 import ScienceExhibition2 from "../assets/ScienceExhibition2.webp";
 import IndependenceDay1 from "../assets/IndependenceDay1.webp";
@@ -17,6 +18,19 @@ import StudentEnvironment from "../assets/StudentEnvironment.webp";
 import Carrom1 from "../assets/Carrom1.webp";
 import Carrom2 from "../assets/Carrom2.webp";
 
+// --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
+import Rangoli1 from "../assets/Rangoli1.webp";
+import Rangoli3 from "../assets/Rangoli3.webp";
+import Rangoli4 from "../assets/Rangoli4.webp";
+import Rangoli5 from "../assets/Rangoli5.webp";
+import Rangoli6 from "../assets/Rangoli6.webp";
+import Rangoli7 from "../assets/Rangoli7.webp";
+import Rangoli8 from "../assets/Rangoli8.webp";
+import Rangoli9 from "../assets/Rangoli9.webp";
+import Rangoli10 from "../assets/Rangoli10.webp";
+import Rangoli11 from "../assets/Rangoli11.webp";
+import Rangoli12 from "../assets/Rangoli12.webp";
+
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -24,11 +38,13 @@ const COLOR_BLACK = "text-black";
 const COLOR_GRAY = "text-gray-700";
 const COLOR_LIGHTGRAY_BG = "#f5f5f5";
 
-// --- 2. Event Data Structure (Existing) ---
+// --- 2. Event Data Structure (Updated Photo Interface) ---
 interface Photo {
     id: number;
     url: string;
     description: string;
+    // Added optional caption for more detailed lightboxes
+    caption?: string;
 }
 
 interface Event {
@@ -40,7 +56,7 @@ interface Event {
     photos: Photo[];
 }
 
-// --- 3. Actual Event Data ---
+// --- 3. Actual Event Data (New Rangoli Section Added) ---
 const EVENTS: Event[] = [
     // --- INDEPENDENCE DAY (4 Events) ---
     {
@@ -116,6 +132,99 @@ const EVENTS: Event[] = [
         ],
     },
 
+    // --- INTER HOUSE RANGOLI COMPETITION (11 Individual Events) ---
+    {
+        id: 11,
+        category: "Inter House Rangoli Competition",
+        title: "Team One - Floral Rangoli",
+        previewPhoto: Rangoli1,
+        description: "Team one working on their floral-themed Rangoli.",
+        photos: [{ id: 1101, url: Rangoli1, description: "Team one working on their floral-themed Rangoli." }],
+    },
+    {
+        id: 12,
+        category: "Inter House Rangoli Competition",
+        title: "Judging the Designs",
+        previewPhoto: Rangoli3,
+        description: "Judges assessing the complexity of the design.",
+        photos: [{ id: 1102, url: Rangoli3, description: "Judges assessing the complexity of the design." }],
+    },
+    {
+        id: 13,
+        category: "Inter House Rangoli Competition",
+        title: "Adding Final Touches",
+        previewPhoto: Rangoli4,
+        description: "Students carefully adding finishing touches to their artwork.",
+        photos: [{ id: 1103, url: Rangoli4, description: "Students carefully adding finishing touches to their artwork." }],
+    },
+    {
+        id: 14,
+        category: "Inter House Rangoli Competition",
+        title: "Geometric Design Showcase",
+        previewPhoto: Rangoli5,
+        description: "A bird's-eye view of a completed geometric Rangoli.",
+        photos: [{ id: 1104, url: Rangoli5, description: "A bird's-eye view of a completed geometric Rangoli." }],
+    },
+    {
+        id: 15,
+        category: "Inter House Rangoli Competition",
+        title: "Proud House Team",
+        previewPhoto: Rangoli6,
+        description: "Another team proudly standing next to their creation.",
+        photos: [{ id: 1105, url: Rangoli6, description: "Another team proudly standing next to their creation." }],
+    },
+    {
+        id: 16,
+        category: "Inter House Rangoli Competition",
+        title: "Traditional Motif Rangoli",
+        previewPhoto: Rangoli7,
+        description: "A traditional Indian motif beautifully executed with colored powder.",
+        photos: [{ id: 1106, url: Rangoli7, description: "A traditional Indian motif beautifully executed with colored powder." }],
+    },
+    {
+        id: 17,
+        category: "Inter House Rangoli Competition",
+        title: "Focused Creativity",
+        previewPhoto: Rangoli8,
+        description: "The concentration and focus of a student during the competition.",
+        photos: [{ id: 1107, url: Rangoli8, description: "The concentration and focus of a student during the competition." }],
+    },
+    {
+        id: 18,
+        category: "Inter House Rangoli Competition",
+        title: "Detailed Shading Work",
+        previewPhoto: Rangoli9,
+        description: "A section of the design featuring intricate shading.",
+        photos: [{ id: 1108, url: Rangoli9, description: "A section of the design featuring intricate shading." }],
+    },
+    {
+        id: 19,
+        category: "Inter House Rangoli Competition",
+        title: "Final Rangoli Presentation",
+        previewPhoto: Rangoli10,
+        description: "Final presentation of the house Rangoli entries.",
+        photos: [{ id: 1109, url: Rangoli10, description: "Final presentation of the house Rangoli entries." }],
+    },
+    {
+        id: 20,
+        category: "Inter House Rangoli Competition",
+        title: "Decorative Diyas in Rangoli",
+        previewPhoto: Rangoli11,
+        description: "Creative use of diyas and other decorations.",
+        photos: [{ id: 1110, url: Rangoli11, description: "Creative use of diyas and other decorations." }],
+    },
+    {
+        id: 21,
+        category: "Inter House Rangoli Competition",
+        title: "Modern Abstract Rangoli",
+        previewPhoto: Rangoli12,
+        description: "An abstract design showcasing modern Rangoli art.",
+        photos: [{ id: 1111, url: Rangoli12, description: "An abstract design showcasing modern Rangoli art." }],
+    },
+
+    // --- END NEW SECTION ---
+
+
     // --- INDOOR GAMES (2 Events) ---
     {
         id: 8,
@@ -151,7 +260,7 @@ const EVENTS: Event[] = [
     },
 ];
 
-// --- 4. Lightbox (Modal) Component ---
+// --- 4. Lightbox (Modal) Component (UPDATED for multiple photos) ---
 
 interface LightboxProps {
     event: Event | null;
@@ -159,22 +268,43 @@ interface LightboxProps {
 }
 
 const EventLightbox: React.FC<LightboxProps> = ({ event, onClose }) => {
+    // State to manage the currently displayed photo index
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
     if (!event || event.photos.length === 0) return null;
 
-    // Handles the single image per event
-    const currentPhotoUrl = (event.photos[0].url as any)?.src || event.photos[0].url;
+    const photos = event.photos;
+    const currentPhoto = photos[currentPhotoIndex];
+
+    // Logic to handle next/previous
+    const hasMultiplePhotos = photos.length > 1;
+    const isFirstPhoto = currentPhotoIndex === 0;
+    const isLastPhoto = currentPhotoIndex === photos.length - 1;
+
+    const goToNext = () => {
+        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    };
+
+    const goToPrev = () => {
+        setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    };
+
+    // Helper to extract the image URL correctly from the imported object
+    const currentPhotoUrl = (currentPhoto.url as any)?.src || currentPhoto.url;
+
     // Use the photo's description, which is more detailed, for the lightbox footer
-    const currentDescription = event.photos[0].description;
+    const currentDescription = currentPhoto.description;
 
     return (
         <div
-            // Ensure the modal covers the whole screen and has a high z-index
+            // Reset index when opening a new event
+            key={event.id}
             className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 bg-black bg-opacity-95 backdrop-blur-sm"
             onClick={onClose} // Close on backdrop click
         >
             {/* The modal body */}
             <div
-                className="relative w-full h-full sm:h-[90vh] sm:max-w-2xl bg-white rounded-none sm:rounded-lg shadow-2xl overflow-hidden flex flex-col"
+                className="relative w-full h-full sm:h-[90vh] sm:max-w-4xl bg-white rounded-none sm:rounded-lg shadow-2xl overflow-hidden flex flex-col"
                 onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
             >
                 {/* Header - Ensures X icon is visible */}
@@ -192,6 +322,29 @@ const EventLightbox: React.FC<LightboxProps> = ({ event, onClose }) => {
                         alt={event.title}
                         className="max-h-full max-w-full object-contain"
                     />
+
+                    {/* Navigation Buttons (visible only if multiple photos exist) */}
+                    {hasMultiplePhotos && (
+                        <>
+                            {/* Previous Button */}
+                            <button
+                                onClick={goToPrev}
+                                disabled={isFirstPhoto}
+                                className={`absolute left-0 top-1/2 -translate-y-1/2 p-2 mx-2 bg-black/50 hover:bg-black/70 rounded-full transition-opacity ${isFirstPhoto ? 'opacity-30 cursor-not-allowed' : 'opacity-100'}`}
+                            >
+                                <ChevronLeft className="w-8 h-8 text-white" />
+                            </button>
+
+                            {/* Next Button */}
+                            <button
+                                onClick={goToNext}
+                                disabled={isLastPhoto}
+                                className={`absolute right-0 top-1/2 -translate-y-1/2 p-2 mx-2 bg-black/50 hover:bg-black/70 rounded-full transition-opacity ${isLastPhoto ? 'opacity-30 cursor-not-allowed' : 'opacity-100'}`}
+                            >
+                                <ChevronRight className="w-8 h-8 text-white" />
+                            </button>
+                        </>
+                    )}
                 </div>
 
                 {/* Description Area (Simplified) */}
@@ -199,6 +352,11 @@ const EventLightbox: React.FC<LightboxProps> = ({ event, onClose }) => {
                     <p className="text-sm font-medium text-gray-700">
                         {currentDescription}
                     </p>
+                    {hasMultiplePhotos && (
+                        <p className="text-xs text-gray-500 mt-1 text-right">
+                            Photo {currentPhotoIndex + 1} of {photos.length}
+                        </p>
+                    )}
                 </div>
             </div>
         </div>
@@ -206,10 +364,10 @@ const EventLightbox: React.FC<LightboxProps> = ({ event, onClose }) => {
 };
 
 
-// --- 5. Main Events Page Component ---
+// --- 5. Main Events Page Component (No Changes Needed Here) ---
 
 const Events: React.FC = () => {
-    // Dynamically get categories 
+    // Dynamically get categories (will now include the new category)
     const categories = ["All", ...Array.from(new Set(EVENTS.map(e => e.category)))];
     const [activeCategory, setActiveCategory] = useState("All");
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
