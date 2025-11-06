@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, ExternalLink } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -10,6 +11,9 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Web App URL for Google Apps Script
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyDRf50wy5XO6epr1fOcZnVjGHVI39TC6FqLY0kI--NxuV5bMKFWmhDRbAtK0j1A9i1/exec';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -23,15 +27,38 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Application Submitted Successfully!",
-        description: "We'll contact you within 24 hours to discuss admission details.",
+    try {
+      const response = await fetch(WEB_APP_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(formData as any).toString()
       });
-      setFormData({ parentName: '', email: '', phone: '', message: '' });
+
+      const result = await response.json();
+
+      if (result.result === 'success') {
+        toast({
+          title: "Application Submitted Successfully!",
+          description: "We'll contact you soon.",
+                  className: "bg-green-50 text-green-800 border-green-200",
+
+        });
+        setFormData({ parentName: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast({
+        title: "Submission Failed",
+        description: "Please try again or contact us directly at 7044406882",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const contactInfo = [
@@ -63,11 +90,10 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding bg-gradient-to-b from-muted/30 to-background">
-      <div style={{marginTop:-90}} className="section-container">
+      <div style={{ marginTop: -90 }} className="section-container">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-         
             <span className="text-primary ml-3">
               Contact Us
             </span>
@@ -81,9 +107,8 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="academic-card bg-primary text-white">
-              {/* <h3 className="text-2xl font-bold mb-4"> Admissions Closing Soon!</h3> */}
               <p className="text-lg mb-4">
-                Don't miss this opportunity to give your child the best education. 
+                Don't miss this opportunity to give your child the best education.
                 Our limited seats are filling up fast for the upcoming academic year.
               </p>
               <div className="flex items-center text-yellow-200">
@@ -104,8 +129,8 @@ const Contact = () => {
                   </div>
                   <div className="space-y-1 mb-4">
                     {info.details.map((detail, detailIndex) => (
-                      <p 
-                        key={detailIndex} 
+                      <p
+                        key={detailIndex}
                         className={`${detailIndex === 0 ? 'text-foreground font-semibold' : 'text-muted-foreground'} text-sm`}
                       >
                         {detail}
@@ -113,7 +138,7 @@ const Contact = () => {
                     ))}
                   </div>
                   {info.action && (
-                    <a 
+                    <a
                       href={info.action.link}
                       className="inline-flex items-center text-primary hover:text-accent transition-colors text-sm font-medium"
                     >
@@ -196,10 +221,13 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-academic w-full group disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-academic w-full group disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isSubmitting ? (
-                  <span>Submitting Application...</span>
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Submitting Application...
+                  </>
                 ) : (
                   <>
                     <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
@@ -213,7 +241,7 @@ const Contact = () => {
               <p className="text-muted-foreground text-sm mb-4">
                 Prefer to call? Our admissions team is ready to help
               </p>
-              <a 
+              <a
                 href="tel:+917044406882"
                 className="btn-secondary-academic"
               >

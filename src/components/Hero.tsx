@@ -7,32 +7,90 @@ import React, { useState, useEffect, useRef } from 'react';
 // 1. Admission Form Components (Minimal & Single Section)
 // ===============================================
 
-// The admission banner content (UPDATED for mobile responsiveness)
+// Web App URL for Google Apps Script
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzdihIB3IfKSr5SQg11ct79ycrnLv9QjqDVitMMlUxykN0fo0AVcIlIAFWKxz13Oscu/exec';
+
+// The admission banner content
 const AdmissionHeaderImage: React.FC = () => (
-  // Adjusted padding and font sizes for mobile
-  <div className="bg-orange-600 text-white p-3 text-center rounded-t-xl" >
-    {/* Heading is split into lines for proper wrapping on small screens */}
+  <div className="bg-orange-600 text-white p-3 text-center rounded-t-xl">
     <h2 className="text-xl sm:text-xl md:text-xl font-bold mb-1 leading-tight">
       <span className="block">Admissions are open for the session 2026–27 :</span>
-      {/* <span className="block">For classes - pre-nursery, nursery, KG and Standard 1-7</span>  */}
     </h2>
     <p className="text-sm sm:text-base font-medium mt-2">For classes - pre-nursery, nursery, KG and Standard 1-7</p>
   </div>
 );
+
 // The core logic of the simplified, single-section form
 const AdmissionFormContent: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder submission logic
-    alert('Admission Inquiry Submitted! We will contact you shortly.');
-    (e.target as HTMLFormElement).reset();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setMessage('');
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    // Prepare data for Google Apps Script
+    const submissionData = {
+      StudentName: formData.get('student_name'),
+      ClassApplyingFor: formData.get('apply_class'),
+      DateOfBirth: formData.get('dob'),
+      GuardianName: formData.get('guardian_name'),
+      Gender: formData.get('gender'),
+      CurrentSchool: formData.get('current_school'),
+      MobileNumber: formData.get('mobile'),
+      Locality: formData.get('locality'),
+      Email: formData.get('email')
+    };
+
+    try {
+      const response = await fetch(WEB_APP_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(submissionData as any).toString()
+      });
+
+      const result = await response.json();
+
+      if (result.result === 'success') {
+        setSubmitStatus('success');
+        setMessage('Admission Inquiry Submitted Successfully! We will contact you shortly.');
+        form.reset();
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus('error');
+      setMessage('Failed to submit form. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div style={{marginTop:-70}} className="p-4 sm:p-6">
-      {/* Updated text to reflect 9 fields for accuracy */}
       <p className="mb-6 text-sm text-gray-600 text-center">Please provide the following <strong>9 essential details</strong> to register your interest.</p>
+
+      {/* Status Messages */}
+      {submitStatus === 'success' && (
+        <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg text-center">
+          {message}
+        </div>
+      )}
+      
+      {submitStatus === 'error' && (
+        <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg text-center">
+          {message}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
 
@@ -42,13 +100,13 @@ const AdmissionFormContent: React.FC = () => {
 
           {/* Row 1: Student Name & Class */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <InputBox label="Student’s Full Name" name="student_name" type="text" required />
+            <InputBox label="Student's Full Name" name="student_name" type="text" required />
             <SelectBox label="Class Applying For" name="apply_class" required options={["Pre-Nursery", "Nursery", "KG", "Std I", "Std II", "Std III", "Std IV", "Std V", "Std VI", "Std VII"]} />
           </div>
 
           {/* Row 2: DOB & Guardian Name (Required) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <InputBox label="Date of Birth (dd-mm-yyyy)" name="dob" type="date" required />
+            <InputBox label="Date of Birth" name="dob" type="date" required />
             <InputBox label="Guardian/Father's Name" name="guardian_name" type="text" required />
           </div>
 
@@ -67,15 +125,29 @@ const AdmissionFormContent: React.FC = () => {
           {/* Row 5: Email (Final Field) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <InputBox label="Email Address" name="email" type="email" />
-            {/* Empty div for layout symmetry on desktop */}
             <div className="hidden md:block"></div>
           </div>
 
         </section>
 
         <div className="flex justify-center pt-4">
-          <button type="submit" className="w-full max-w-xs bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-3 rounded-lg transition duration-150 shadow-md">
-            Submit Inquiry
+          <button 
+            type="submit" 
+            disabled={isSubmitting}
+            className={`w-full max-w-xs font-semibold px-8 py-3 rounded-lg transition duration-150 shadow-md flex items-center justify-center gap-2 ${
+              isSubmitting 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-orange-600 hover:bg-orange-700 transform hover:scale-105'
+            } text-white`}
+          >
+            {isSubmitting ? (
+              <>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Submitting...
+              </>
+            ) : (
+              'Submit Inquiry'
+            )}
           </button>
         </div>
       </form>
@@ -118,8 +190,7 @@ const SelectBox: React.FC<SelectProps> = ({ label, name, required, options }) =>
   </div>
 );
 
-
-// 2. Main Popup Component (Optimized for Responsiveness and Centering)
+// 2. Main Popup Component
 interface AdmissionPopupProps { isOpen: boolean; onClose: () => void; }
 const AdmissionPopup: React.FC<AdmissionPopupProps> = ({ isOpen, onClose }) => {
   const popupRef = useRef<HTMLDivElement>(null);
@@ -134,19 +205,16 @@ const AdmissionPopup: React.FC<AdmissionPopupProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      // FIXED: Class updated to reliably center the modal on all screen sizes
       className="fixed inset-0 z-[60] overflow-y-auto bg-black bg-opacity-70 flex justify-center items-center p-4"
       onClick={onClose}
     >
       <div
         ref={popupRef}
-        // Max width set to lg for desktop, full width on small screens
         className="relative w-full max-w-lg mx-4 bg-white rounded-xl shadow-2xl transform transition-all duration-300"
         onClick={e => e.stopPropagation()}
       >
         <AdmissionHeaderImage />
 
-        {/* FIXED: Close button styled for better visibility and reliable position */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-white hover:text-gray-200 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors z-20"
@@ -155,7 +223,6 @@ const AdmissionPopup: React.FC<AdmissionPopupProps> = ({ isOpen, onClose }) => {
           <X className="w-6 h-6" />
         </button>
 
-        {/* Vertical scroll only inside the content area if needed */}
         <div className="p-0 max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
           <AdmissionFormContent />
         </div>
@@ -192,7 +259,7 @@ const Hero: React.FC = () => {
               <div className="inline-block">
                 <div style={{ marginTop: 30 }} className="flex items-center justify-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
                   <Award className="w-4 h-4" />
-                  <span >IAS / IIT Alumni Promoted</span>
+                  <span>IAS / IIT Alumni Promoted</span>
                 </div>
               </div>
 
