@@ -115,7 +115,6 @@ const Team = () => {
             <div style={{ marginTop: -90 }} className="section-container">
                 
                 {/* 1. PRINCIPAL'S MESSAGE SECTION */}
-                <PrincipalMessage member={PRINCIPAL_MESSAGE} PRIMARY_ORANGE_TEXT={PRIMARY_ORANGE_TEXT} />
 
                 {/* 2. MAIN LEADERSHIP SECTION HEADER */}
                 <div className="text-center mb-16 pt-8">
@@ -129,6 +128,7 @@ const Team = () => {
                         Meet the accomplished professionals who are committed to shaping your child's future through excellence in education
                     </p>
                 </div>
+                
 
                 {/* 3. TEAM GRID */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
@@ -178,6 +178,7 @@ const Team = () => {
                         </div>
                     ))}
                 </div>
+                <PrincipalMessage member={PRINCIPAL_MESSAGE} PRIMARY_ORANGE_TEXT={PRIMARY_ORANGE_TEXT} />
 
                 {/* 4. Leadership Values Callout */}
                 <div className="academic-card bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/20 max-w-4xl mx-auto text-center p-8 rounded-2xl">
