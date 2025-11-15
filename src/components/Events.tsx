@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 // Added ChevronLeft, ChevronRight for the new multiple-image lightbox
@@ -31,6 +30,23 @@ import Rangoli10 from "../assets/Rangoli10.webp";
 import Rangoli11 from "../assets/Rangoli11.webp";
 import Rangoli12 from "../assets/Rangoli12.webp";
 
+// --- NEW CATEGORY ASSETS ---
+import cd1 from "../assets/cd1.webp";
+import cd2 from "../assets/cd2.webp";
+import cd3 from "../assets/cd3.webp";
+import cd4 from "../assets/cd4.webp";
+import cd5 from "../assets/cd5.webp";
+import cd6 from "../assets/cd6.webp";
+import fd1 from "../assets/fd1.webp";
+import fd2 from "../assets/fd2.webp";
+import fd3 from "../assets/fd3.webp";
+import fd4 from "../assets/fd4.webp";
+import pd1 from "../assets/pd1.webp";
+import pd2 from "../assets/pd2.webp";
+import pd3 from "../assets/pd3.webp";
+import pd4 from "../assets/pd4.webp";
+import pd5 from "../assets/pd5.webp";
+import pd6 from "../assets/pd6.webp";
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -56,7 +72,7 @@ interface Event {
     photos: Photo[];
 }
 
-// --- 3. Actual Event Data (New Rangoli Section Added) ---
+// --- 3. Actual Event Data (New Categories Added) ---
 const EVENTS: Event[] = [
     // --- INDEPENDENCE DAY (4 Events) ---
     {
@@ -146,8 +162,8 @@ const EVENTS: Event[] = [
         category: "Inter House Rangoli Competition",
         title: "Judging the Designs",
         previewPhoto: Rangoli3,
-        description: "Judges assessing the complexity of the design.",
-        photos: [{ id: 1102, url: Rangoli3, description: "Judges assessing the complexity of the design." }],
+        description: "Doctors assessing the complexity of the design.",
+        photos: [{ id: 1102, url: Rangoli3, description: "Doctors assessing the complexity of the design." }],
     },
     {
         id: 13,
@@ -222,8 +238,139 @@ const EVENTS: Event[] = [
         photos: [{ id: 1111, url: Rangoli12, description: "An abstract design showcasing modern Rangoli art." }],
     },
 
-    // --- END NEW SECTION ---
+    // --- PRIZE DISTRIBUTION CEREMONY (6 Events) ---
+    {
+        id: 22,
+        category: "Prize Distribution Ceremony",
+        title: "Academic Excellence Awards",
+        previewPhoto: pd1,
+        description: "Students receiving awards for outstanding academic performance.",
+        photos: [{ id: 2201, url: pd1, description: "Top academic performers receiving their certificates and trophies." }],
+    },
+    {
+        id: 23,
+        category: "Prize Distribution Ceremony",
+        title: "Sports Achievement Recognition",
+        previewPhoto: pd2,
+        description: "Celebrating the achievements of our young athletes.",
+        photos: [{ id: 2202, url: pd2, description: "Sports champions receiving medals and certificates." }],
+    },
+    {
+        id: 24,
+        category: "Prize Distribution Ceremony",
+        title: "Cultural Event Winners",
+        previewPhoto: pd3,
+        description: "Awarding participants who excelled in cultural activities.",
+        photos: [{ id: 2203, url: pd3, description: "Winners of various cultural competitions receiving their prizes." }],
+    },
+    {
+        id: 25,
+        category: "Prize Distribution Ceremony",
+        title: "Special Guest Presenting Awards",
+        previewPhoto: pd4,
+        description: "Distinguished guests honoring our students' achievements.",
+        photos: [{ id: 2204, url: pd4, description: "Special guest presenting awards to deserving students." }],
+    },
+    {
+        id: 26,
+        category: "Prize Distribution Ceremony",
+        title: "Group Photo with Award Winners",
+        previewPhoto: pd5,
+        description: "Memorable group photograph of all the award recipients.",
+        photos: [{ id: 2205, url: pd5, description: "All award winners posing for a group photograph." }],
+    },
+    {
+        id: 27,
+        category: "Prize Distribution Ceremony",
+        title: "Principal's Address to Winners",
+        previewPhoto: pd6,
+        description: "Principal addressing and congratulating the award winners.",
+        photos: [{ id: 2206, url: pd6, description: "Principal delivering an inspirational speech to the winners." }],
+    },
 
+    // --- FANCY DRESS COMPETITION (4 Events) ---
+    {
+        id: 28,
+        category: "Fancy Dress Competition at International Library and Cultural Centre",
+        title: "Traditional Costume Presentations",
+        previewPhoto: fd1,
+        description: "Students showcasing traditional attire from different cultures.",
+        photos: [{ id: 2801, url: fd1, description: "Young students in beautiful traditional costumes on stage." }],
+    },
+    {
+        id: 29,
+        category: "Fancy Dress Competition at International Library and Cultural Centre",
+        title: "Creative Character Portrayals",
+        previewPhoto: fd2,
+        description: "Innovative and creative character representations by students.",
+        photos: [{ id: 2802, url: fd2, description: "Students portraying various historical and fictional characters." }],
+    },
+    {
+        id: 30,
+        category: "Fancy Dress Competition at International Library and Cultural Centre",
+        title: "Doctors Evaluating Performances",
+        previewPhoto: fd3,
+        description: "Expert judges assessing the participants' presentations.",
+        photos: [{ id: 2803, url: fd3, description: "Doctors carefully evaluating each participant's performance." }],
+    },
+    {
+        id: 31,
+        category: "Fancy Dress Competition at International Library and Cultural Centre",
+        title: "Confident Stage Performances",
+        previewPhoto: fd4,
+        description: "Students demonstrating confidence and poise on stage.",
+        photos: [{ id: 2804, url: fd4, description: "Young participants confidently performing on the grand stage." }],
+    },
+
+    // --- CHILDREN'S DAY CELEBRATION (6 Events) ---
+    {
+        id: 32,
+        category: "Children's Day Celebration",
+        title: "Special Assembly Program",
+        previewPhoto: cd1,
+        description: "Teachers organizing special activities for students.",
+        photos: [{ id: 3201, url: cd1, description: "Teachers performing for students during Children's Day assembly." }],
+    },
+    {
+        id: 33,
+        category: "Children's Day Celebration",
+        title: "Cultural Performances by Teachers",
+        previewPhoto: cd2,
+        description: "Teachers entertaining students with various performances.",
+        photos: [{ id: 3202, url: cd2, description: "Faculty members presenting cultural programs for students." }],
+    },
+    {
+        id: 34,
+        category: "Children's Day Celebration",
+        title: "Fun Games and Activities",
+        previewPhoto: cd3,
+        description: "Students participating in exciting games and competitions.",
+        photos: [{ id: 3203, url: cd3, description: "Students enjoying fun games organized by teachers." }],
+    },
+    {
+        id: 35,
+        category: "Children's Day Celebration",
+        title: "Pandit Nehru Memorial Performance",
+        previewPhoto: cd4,
+        description: "Showcasing the pandit Nehru memorial performance.",
+        photos: [{ id: 3204, url: cd4, description: "Students performing their special talents on stage." }],
+    },
+    {
+        id: 36,
+        category: "Children's Day Celebration",
+        title: "Distribution of Treats and Gifts",
+        previewPhoto: cd5,
+        description: "Students receiving special treats and gifts.",
+        photos: [{ id: 3205, url: cd5, description: "Distribution of sweets and gifts to all students." }],
+    },
+    {
+        id: 37,
+        category: "Children's Day Celebration",
+        title: "Group Celebrations and Photos",
+        previewPhoto: cd6,
+        description: "Memorable moments from the celebrations.",
+        photos: [{ id: 3206, url: cd6, description: "Students celebrating together and posing for photographs." }],
+    },
 
     // --- INDOOR GAMES (2 Events) ---
     {
@@ -367,7 +514,7 @@ const EventLightbox: React.FC<LightboxProps> = ({ event, onClose }) => {
 // --- 5. Main Events Page Component (No Changes Needed Here) ---
 
 const Events: React.FC = () => {
-    // Dynamically get categories (will now include the new category)
+    // Dynamically get categories (will now include the new categories)
     const categories = ["All", ...Array.from(new Set(EVENTS.map(e => e.category)))];
     const [activeCategory, setActiveCategory] = useState("All");
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);

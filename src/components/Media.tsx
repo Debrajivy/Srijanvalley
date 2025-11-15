@@ -2,8 +2,12 @@
 import React from 'react';
 import { Newspaper, Video, Globe, Image as ImageIcon } from 'lucide-react';
 
-// Import your two media assets
+// Import your media assets
 import pressImage from '../assets/media.webp';
+import m1 from '../assets/m1.webp';
+import m2 from '../assets/m2.webp';
+import m3 from '../assets/m3.webp';
+import m4 from '../assets/m4.webp';
 
 const PRIMARY_COLOR = '#d2530f';
 
@@ -36,9 +40,67 @@ const Media = () => {
         },
     ];
 
-    // --- Data for Featured Events (from image_8dce46.png) ---
+    // --- Data for Press Coverage Images ---
+    const pressCoverageImages = [
+        {
+            id: 1,
+            image: pressImage,
+            title: 'Dainik Bhaskar Feature',
+            description: 'Award ceremony coverage in leading newspaper',
+        },
+        {
+            id: 2,
+            image: m1,
+            title: 'School Infrastructure Feature',
+            description: 'Showcasing our modern campus facilities',
+        },
+        {
+            id: 3,
+            image: m2,
+            title: 'Academic Excellence Recognition',
+            description: 'Highlighting student achievements and programs',
+        },
+        {
+            id: 4,
+            image: m3,
+            title: 'Co-curricular Activities Coverage',
+            description: 'Media coverage of extracurricular programs',
+        },
+        {
+            id: 5,
+            image: m4,
+            title: 'Community Engagement Events',
+            description: 'School events and community outreach programs',
+        },
+    ];
 
-
+    // --- Data for Featured Media Gallery ---
+    const mediaGallery = [
+        {
+            id: 1,
+            image: m1,
+            title: 'School Infrastructure Feature',
+            description: 'Showcasing our modern campus facilities and learning environment',
+        },
+        {
+            id: 2,
+            image: m2,
+            title: 'Academic Excellence Recognition',
+            description: 'Highlighting student achievements and academic programs',
+        },
+        {
+            id: 3,
+            image: m3,
+            title: 'Co-curricular Activities Coverage',
+            description: 'Media coverage of our diverse extracurricular programs',
+        },
+        {
+            id: 4,
+            image: m4,
+            title: 'Community Engagement Events',
+            description: 'School events and community outreach programs featured in press',
+        },
+    ];
 
     return (
         <section id="media" style={{marginTop:-50}} className="py-6 sm:py-6 bg-gray-50">
@@ -46,7 +108,6 @@ const Media = () => {
 
                 {/* --- 1. Main Header --- */}
                 <div className="text-center mb-12 sm:mb-16">
-                    {/* Font size increased to text-2xl on mobile and text-3xl on desktop for prominence */}
                     <p className="text-2xl sm:text-3xl font-extrabold uppercase tracking-widest" style={{ color: PRIMARY_COLOR }}>
                         SRIJAN VALLEY
                     </p>
@@ -61,103 +122,34 @@ const Media = () => {
                     </p>
                 </div>
 
-                {/* --- 2. Featured Press Clipping (media.webp) --- */}
+                {/* --- 2. Press Coverage Section with All Images --- */}
                 <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center" style={{ color: PRIMARY_COLOR }}>
                     Press Coverage
                 </h3>
-                <div className="flex justify-center mb-16">
-                    <div className="w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden border-4" style={{ borderColor: PRIMARY_COLOR }}>
-
-                        {/* 🎯 FIX APPLIED HERE: Using a standard div to contain the image */}
-                        <div className="relative w-full p-4 sm:p-8 flex justify-center items-center bg-gray-100">
-                            <img
-                                src={pressImage as unknown as string}
-                                alt="Dainik Bhaskar Newspaper Clipping on Srijan Valley School Awards"
-                                // 🎯 Change: Remove h-xx classes. Use object-contain and set a max-height.
-                                className="w-full h-auto max-h-[80vh] object-contain transition-transform duration-500 hover:scale-[1.01]"
-                                style={{ maxWidth: '100%', maxHeight: '500px' }} // Explicit styling for control
-                            />
+                
+                {/* Grid layout for all press coverage images */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                    {pressCoverageImages.map((item) => (
+                        <div
+                            key={item.id}
+                            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-gray-200 group"
+                        >
+                            <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                                <img
+                                    src={item.image as unknown as string}
+                                    alt={item.title}
+                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                                />
+                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
+                            </div>
+                            <div className="p-4 bg-white">
+                                <h4 className="text-lg font-bold text-gray-900 mb-2 text-center">{item.title}</h4>
+                                <p className="text-sm text-gray-600 text-center">{item.description}</p>
+                            </div>
                         </div>
-
-                        <div className="p-4 sm:p-6 bg-gray-900 text-white">
-                            <p className="text-sm sm:text-base font-medium">
-                                {/* **Featured Article:** Students awarded for excellence in various competitions, as featured in Dainik Bhaskar. */}
-                            </p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
-                {/* --- 3. Full List of Press Clips --- */}
-                {/* <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mb-24">
-                    {mediaClips.map((clip, index) => (
-                        <div
-                            key={index}
-                            className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4"
-                            style={{ borderTopColor: PRIMARY_COLOR }}
-                        >
-                            <div className="flex items-center space-x-4 mb-4">
-                                {clip.icon}
-                                <span className="text-base font-medium uppercase text-gray-600">{clip.type}</span>
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                {clip.title}
-                            </h3>
-                            <p className="text-gray-700 mb-4 text-sm line-clamp-3">
-                                {clip.snippet}
-                            </p>
-                            <a
-                                href={clip.link}
-                                className="inline-flex items-center font-semibold transition-colors"
-                                style={{ color: PRIMARY_COLOR }}
-                            >
-                                View Details
-                                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </a>
-                        </div>
-                    ))}
-                </div> */}
-
-                {/* --- 4. School Event Highlight (image_8dce46.png) --- */}
-                {/* <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center" style={{ color: PRIMARY_COLOR }}>
-                    School Activity Highlights
-                </h3> */}
-
-                {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {featuredEvents.map((event, index) => (
-                         <div 
-                            key={index} 
-                            className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
-                            style={{ borderTop: `4px solid ${PRIMARY_COLOR}` }}
-                        >
-                            <img
-                                src={event.image as unknown as string} 
-                                alt={event.title}
-                                className="w-full h-56 object-cover"
-                            />
-                            <div className="p-5">
-                                <p className="text-xs font-semibold uppercase mb-2" style={{ color: PRIMARY_COLOR }}>
-                                    {event.type}
-                                </p>
-                                <h4 className="text-xl font-bold text-gray-900 mb-2">
-                                    {event.title}
-                                </h4>
-                                <p className="text-gray-700 mb-4 text-sm line-clamp-2">
-                                    {event.snippet}
-                                </p>
-                                <a 
-                                    href={event.link}
-                                    className="text-sm font-semibold transition-colors"
-                                    style={{ color: PRIMARY_COLOR }}
-                                >
-                                    See Gallery
-                                </a>
-                            </div>
-                        </div>
-                    ))}
-                    <div className="p-6 flex items-center justify-center bg-gray-200 rounded-xl shadow-inner text-gray-700">
-                        <p className="text-center font-medium">More event highlights coming soon!</p>
-                    </div>
-                </div> */}
 
             </div>
         </section>
