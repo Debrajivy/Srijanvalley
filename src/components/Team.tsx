@@ -5,8 +5,8 @@ import { GraduationCap, Award, Building2, Lightbulb } from 'lucide-react';
 import Promad from "../assets/Pramod.webp";
 import Renu from "../assets/Renu.webp";
 import Prateek from "../assets/Prateek.webp";
-import Eeshani from "../assets/Eeshani.webp"; 
-import Seema from "../assets/Seema.jpeg"; // Assuming the Principal's image is named Seema.webp
+import Eeshani from "../assets/Eeshani.webp";
+import Seema from "../assets/Seema.jpeg";
 
 const PRINCIPAL_MESSAGE = {
     name: 'Seema Chitlangia',
@@ -32,7 +32,9 @@ const teamMembers = [
         message: [
             "Srijan Valley School is a place where we believe that every child is full of potential and deserves an environment that nurtures curiosity, creativity, and confidence.",
             "At Srijan Valley, we are committed to providing holistic education that balances academics with values, discipline with freedom, and learning with joy. Our dedicated team of educators works passionately to create a safe, stimulating, and inclusive atmosphere where children not only excel in studies but also grow as compassionate and responsible individuals.",
-            "We believe that education is a partnership between the school, the child, and the parents. With the trust and support of the parents , we strive every day to shape a brighter future for our students , empowering them to think critically, communicate effectively, and lead with integrity."
+            "We believe that education is a partnership between the school, the child, and the parents. With the trust and support of the parents , we strive every day to shape a brighter future for our students , empowering them to think critically, communicate effectively, and lead with integrity.",
+            "As the world around us evolves, so must education. We at Srijan Valley continue to adopt innovative teaching methods and modern learning tools, while staying rooted in our cultural values and traditions. Let us build a strong foundation for our children — the leaders of tomorrow. A child’s early experiences shape their values, confidence, and future potential. By nurturing their curiosity, creativity, and character, we empower them to grow into a responsible citizen. Education is not just about academics, it is about building resilience, empathy, and vision. With guidance, encouragement and the right environment, our children can achieve a remarkable position in society. We are not preparing them for school only, we are preparing them to contribute in building a strong nation."
+
         ]
     },
     {
@@ -45,30 +47,37 @@ const teamMembers = [
         message: [
             "Education is the most powerful tool for personal growth and societal transformation. As a Trustee of Srijan Valley School, I feel honored to be part of an institution that is committed to providing not just literacy, but true education that shapes minds, hearts, and futures.",
             "In today’s fast-changing world, knowledge alone is not enough. Children need to develop the ability to think critically, communicate effectively, adapt to challenges, and most important , act with empathy and integrity. True education goes beyond textbooks . It teaches us , how to live with purpose and responsibility.",
-            "At Srijan Valley, we believe in nurturing the child intellectually, emotionally, socially, and morally. Our aim is to provide an environment where students are inspired to dream big, work hard, and grow into responsible global citizens who contribute meaningfully to the society."
+            "At Srijan Valley, we believe in nurturing the child intellectually, emotionally, socially, and morally. Our aim is to provide an environment where students are inspired to dream big, work hard, and grow into responsible global citizens who contribute meaningfully to the society.",
+            "I firmly believe that parents, teachers, and the school community must work together to ensure that each child receives the best opportunities to thrive. When we invest in education , we invest in a better future , not just for our children, but for the world , they will shape .",
+            "We all need to work hand in hand to build a generation that is educated, empowered, and enlightened."
+
+
         ]
     },
     {
         name: 'Prateek Agrawal',
         role: 'Trustee', // Role updated to match message context
-        credentials: 'Data & AI Entrepreneur, MS Texas (USA), Computer Engineer', 
+        credentials: 'Data & AI Entrepreneur, MS Texas (USA), Computer Engineer',
         description: 'Integrating cutting-edge technology and modern teaching methodologies to enhance learning experiences.',
         image: Prateek,
         gradient: 'bg-green-600',
         message: [
             "Srijan Valley School is a place where education is not limited to the pages of textbooks, but is a journey of discovery, growth, and transformation.",
             "In today’s competitive and fast-changing world, the role of education has expanded far beyond academics. At Srijan Valley, we believe that a truly successful education is one that builds strong character, cultivates confidence, and empowers children with the life skills they need to face challenges with courage and resilience.",
-            "Our mission is to help each child grow into a well-rounded individual — someone who is academically capable, emotionally intelligent, socially responsible, and morally grounded. We understand that every child is unique, and so we strive to create a learning environment that nurtures each student’s personality, talents, and potential."
+            "Our mission is to help each child grow into a well-rounded individual — someone who is academically capable, emotionally intelligent, socially responsible, and morally grounded. We understand that every child is unique, and so we strive to create a learning environment that nurtures each student’s personality, talents, and potential.",
+            "To achieve this, we have brought together a passionate team of educators, a child-centric curriculum, and modern learning tools that make education both meaningful and enjoyable. Alongside academics, we place strong emphasis on communication skills, creative thinking, leadership, discipline, and empathy , these qualities are essential in shaping future-ready citizens.",
+            "As a trustee and a firm believer in the power of holistic education, I assure all the parents that the children will be getting a space where they are not only taught, but truly understood and inspired.",
+            "We value the trust , placed by the parents in us and look forward to partner with them in shaping the child’s journey toward a bright and fulfilling future."
         ]
     },
     {
         name: 'Eeshani Agrawal',
         role: 'Student Development Head',
-        credentials: 'Data & AI Entrepreneur, MS Texas (USA), Civil Engineer', 
+        credentials: 'Data & AI Entrepreneur, MS Texas (USA), Civil Engineer',
         description: 'Focusing on holistic student development, career guidance, and preparing students for global opportunities.',
         image: Eeshani,
         gradient: 'bg-cyan-600',
-        message: null // As requested, no message for Eeshani Agrawal
+        message: null // No message for Eeshani Agrawal
     }
 ];
 
@@ -79,12 +88,12 @@ const PrincipalMessage = ({ member, PRIMARY_ORANGE_TEXT }) => (
             From the Principal’s Desk
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            
+
             {/* Image & Signature Block */}
             <div className="lg:col-span-1 flex flex-col items-center text-center p-4">
                 <div className="w-48 h-48 mb-4 border-4 border-orange-200 shadow-lg rounded-xl overflow-hidden">
                     <img
-                        src={member.image.src || member.image}
+                        src={member.image}
                         alt={member.name}
                         className="w-full h-full object-cover"
                     />
@@ -113,8 +122,10 @@ const Team = () => {
     return (
         <section id="team" className="section-padding bg-gradient-to-b from-muted/30 to-background">
             <div style={{ marginTop: -90 }} className="section-container">
-                
+
                 {/* 1. PRINCIPAL'S MESSAGE SECTION */}
+                <PrincipalMessage member={PRINCIPAL_MESSAGE} PRIMARY_ORANGE_TEXT={PRIMARY_ORANGE_TEXT} />
+
 
                 {/* 2. MAIN LEADERSHIP SECTION HEADER */}
                 <div className="text-center mb-16 pt-8">
@@ -128,7 +139,8 @@ const Team = () => {
                         Meet the accomplished professionals who are committed to shaping your child's future through excellence in education
                     </p>
                 </div>
-                
+
+
 
                 {/* 3. TEAM GRID */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
@@ -139,12 +151,12 @@ const Team = () => {
                         >
                             {/* Background Pattern */}
                             <div className={`absolute inset-0 ${member.gradient} opacity-5 rounded-xl group-hover:opacity-10 transition-opacity duration-300`} />
-                            
+
                             <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-start">
                                 {/* Image Container */}
                                 <div className="w-40 h-40 flex-shrink-0 mb-6 sm:mb-0 sm:mr-8 p-1 bg-white shadow-xl border-2 border-gray-100 group-hover:border-orange-500 transition-all duration-300 rounded-lg">
                                     <img
-                                        src={member.image.src || member.image}
+                                        src={member.image}
                                         alt={member.name}
                                         className="w-full h-full object-contain rounded-lg"
                                     />
@@ -159,12 +171,13 @@ const Team = () => {
                                     <p className={PRIMARY_ORANGE_TEXT + " font-semibold mb-4 text-base"}>
                                         {member.credentials}
                                     </p>
-                                    
+
                                     {/* Displaying Message or Description */}
                                     {member.message ? (
                                         <div className="space-y-3 mt-4 text-gray-700 text-sm leading-relaxed border-l-2 border-orange-300 pl-3">
                                             {member.message.map((paragraph, pIdx) => (
-                                                <p key={pIdx} className="italic">{paragraph.length > 150 ? paragraph.substring(0, 150) + '...' : paragraph}</p>
+                                                <p key={pIdx} className="italic">{paragraph}</p>
+                                                // **FIXED: TRUNCATION LOGIC REMOVED HERE**
                                             ))}
                                             <p className="font-semibold text-right pt-2">— {member.name}</p>
                                         </div>
@@ -178,7 +191,6 @@ const Team = () => {
                         </div>
                     ))}
                 </div>
-                <PrincipalMessage member={PRINCIPAL_MESSAGE} PRIMARY_ORANGE_TEXT={PRIMARY_ORANGE_TEXT} />
 
                 {/* 4. Leadership Values Callout */}
                 <div className="academic-card bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/20 max-w-4xl mx-auto text-center p-8 rounded-2xl">
