@@ -409,35 +409,35 @@ const EVENTS: Event[] = [
         ],
     },
     {
-        id: 11,
-        category: "Medical Health Camp",
-        title: "Medical & Health Camp",
-        previewPhoto: mhc1,
-        description: "",
-        photos: [
-            { id: 1002, url: mhc1, description: "" },
-        ],
-    },
-    {
-        id: 12,
-        category: "Health Screening School Children",
-        title: "Health Screening School Children",
-        previewPhoto: mhc2,
-        description: "",
-        photos: [
-            { id: 1003, url: mhc2, description: "" },
-        ],
-    },
-    {
-        id: 13,
-        category: "Medical Health Test",
-        title: "Medical Health Test",
-        previewPhoto: mhc3,
-        description: "",
-        photos: [
-            { id: 1004, url: mhc3, description: "" },
-        ],
-    },
+    id: 38, // Changed from 11 to 38
+    category: "Medical Health Camp",
+    title: "Medical & Health Camp",
+    previewPhoto: mhc1,
+    description: "",
+    photos: [
+        { id: 3801, url: mhc1, description: "" },
+    ],
+},
+{
+    id: 39, // Changed from 12 to 39
+    category: "Health Screening School Children",
+    title: "Health Screening School Children",
+    previewPhoto: mhc2,
+    description: "",
+    photos: [
+        { id: 3901, url: mhc2, description: "" },
+    ],
+},
+{
+    id: 40, // Changed from 13 to 40
+    category: "Medical Health Test",
+    title: "Medical Health Test",
+    previewPhoto: mhc3,
+    description: "",
+    photos: [
+        { id: 4001, url: mhc3, description: "" },
+    ],
+},
 ];
 
 // --- 4. Lightbox (Modal) Component (UPDATED for multiple photos) ---
