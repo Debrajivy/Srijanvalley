@@ -8,6 +8,9 @@ import m1 from '../assets/m1.webp';
 import m2 from '../assets/m2.webp';
 import m3 from '../assets/m3.webp';
 import m4 from '../assets/m4.webp';
+import new1 from "../assets/new1.jpeg";
+import new2 from "../assets/new2.jpeg";
+import new3 from "../assets/new3.jpeg";
 
 const PRIMARY_COLOR = '#d2530f';
 
@@ -71,6 +74,24 @@ const Media = () => {
             image: m4,
             title: 'Community Engagement Events',
             description: 'School events and community outreach programs',
+        },
+        {
+            id: 6,
+            image: new1,
+            title: 'Dainik Jagran',
+            description: '',
+        },
+        {
+            id: 7,
+            image: new2,
+            title: 'Prabhat Khabar',
+            description: '',
+        },
+        {
+            id: 8,
+            image: new3,
+            title: 'Dainik Bhaskar',
+            description: '',
         },
     ];
 

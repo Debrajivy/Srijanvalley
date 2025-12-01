@@ -16,6 +16,9 @@ import SciencePresentation1 from "../assets/SciencePresentation1.webp";
 import StudentEnvironment from "../assets/StudentEnvironment.webp";
 import Carrom1 from "../assets/Carrom1.webp";
 import Carrom2 from "../assets/Carrom2.webp";
+import mhc1 from "../assets/mhc1.jpeg";
+import mhc2 from "../assets/mch2.jpeg";
+import mhc3 from "../assets/mch3.jpeg";
 
 // --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
 import Rangoli1 from "../assets/Rangoli1.webp";
@@ -403,6 +406,36 @@ const EVENTS: Event[] = [
         description: "Students presented on sustainability, conservation, and climate action.",
         photos: [
             { id: 1001, url: StudentEnvironment, description: "Student presenters focusing on conservation strategies." },
+        ],
+    },
+    {
+        id: 11,
+        category: "Medical Health Camp",
+        title: "Medical & Health Camp",
+        previewPhoto: mhc1,
+        description: "",
+        photos: [
+            { id: 1002, url: mhc1, description: "" },
+        ],
+    },
+    {
+        id: 12,
+        category: "Health Screening School Children",
+        title: "Health Screening School Children",
+        previewPhoto: mhc2,
+        description: "",
+        photos: [
+            { id: 1003, url: mhc2, description: "" },
+        ],
+    },
+    {
+        id: 13,
+        category: "Medical Health Test",
+        title: "Medical Health Test",
+        previewPhoto: mhc3,
+        description: "",
+        photos: [
+            { id: 1004, url: mhc3, description: "" },
         ],
     },
 ];
