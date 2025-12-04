@@ -19,6 +19,14 @@ import Carrom2 from "../assets/Carrom2.webp";
 import mhc1 from "../assets/mhc1.jpeg";
 import mhc2 from "../assets/mch2.jpeg";
 import mhc3 from "../assets/mch3.jpeg";
+import Db from "../assets/Db.jpeg";
+import Dj from "../assets/Dj.jpeg"; 
+import Hindusthan from "../assets/Hindusthan.jpeg";
+import Hsc1 from "../assets/Hsc1.jpeg";
+import Hsc2 from "../assets/Hsc2.jpeg";
+import Hsc3 from "../assets/Hsc3.jpeg";
+import Hsc4 from "../assets/Hsc4.jpeg";
+import Hsc5 from "../assets/Hsc5.jpeg";
 
 // --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
 import Rangoli1 from "../assets/Rangoli1.webp";
@@ -428,16 +436,64 @@ const EVENTS: Event[] = [
         { id: 3901, url: mhc2, description: "" },
     ],
 },
+// --- HINDI SPEECH COMPETITION (6 Events) ---
 {
-    id: 40, // Changed from 13 to 40
-    category: "Medical Health Test",
-    title: "Medical Health Test",
-    previewPhoto: mhc3,
-    description: "",
+    id: 41,
+    category: "Hindi Speech Competition",
+    title: "Confident Oratory Skills",
+    previewPhoto: Hsc1,
+    description: "The aim of the Hindi speech competition is to develop students' confidence in speaking the language.",
     photos: [
-        { id: 4001, url: mhc3, description: "" },
+        { id: 4101, url: Hsc1, description: "Student demonstrating confident oratory skills on stage." },
     ],
 },
+{
+    id: 42,
+    category: "Hindi Speech Competition",
+    title: "Creative Expression",
+    previewPhoto: Hsc2,
+    description: "It encourages them to express their thoughts clearly and creatively.",
+    photos: [
+        { id: 4201, url: Hsc2, description: "Student creatively expressing thoughts during the speech competition." },
+    ],
+},
+{
+    id: 43,
+    category: "Hindi Speech Competition",
+    title: "Pronunciation Practice",
+    previewPhoto: Hsc3,
+    description: "Helps in improving their pronunciation and vocabulary.",
+    photos: [
+        { id: 4301, url: Hsc3, description: "Student focusing on proper pronunciation during the speech." },
+    ],
+},
+{
+    id: 44,
+    category: "Hindi Speech Competition",
+    title: "Communication Skills Development",
+    previewPhoto: Hsc4,
+    description: "Enhances overall communication skills in Hindi.",
+    photos: [
+        { id: 4401, url: Hsc4, description: "Student developing communication skills through speech delivery." },
+    ],
+},
+{
+    id: 45,
+    category: "Hindi Speech Competition",
+    title: "Thoughtful Content Delivery",
+    previewPhoto: Hsc5,
+    description: "Students expressing their thoughts clearly in Hindi.",
+    photos: [
+        { id: 4501, url: Hsc5, description: "Student delivering thoughtful content to the audience." },
+    ],
+},
+
+
+// --- UNUSED ASSETS - You may want to categorize these separately ---
+// These imports haven't been used in your events array yet:
+// import Db from "../assets/Db.jpeg";
+// import Dj from "../assets/Dj.jpeg"; 
+// import Hindusthan from "../assets/Hindusthan.jpeg";
 ];
 
 // --- 4. Lightbox (Modal) Component (UPDATED for multiple photos) ---

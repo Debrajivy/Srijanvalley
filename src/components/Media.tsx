@@ -11,6 +11,10 @@ import m4 from '../assets/m4.webp';
 import new1 from "../assets/new1.jpeg";
 import new2 from "../assets/new2.jpeg";
 import new3 from "../assets/new3.jpeg";
+import Db from "../assets/Db.jpeg";
+import Dj from "../assets/Dj.jpeg"; 
+import Hindusthan from "../assets/Hindusthan.jpeg";
+
 
 const PRIMARY_COLOR = '#d2530f';
 
@@ -91,6 +95,24 @@ const Media = () => {
             id: 8,
             image: new3,
             title: 'Dainik Bhaskar',
+            description: '',
+        },
+        {
+            id: 9,
+            image: Db,
+            title: 'Dainik Bhaskar',
+            description: '',
+        },
+        {
+            id: 10,
+            image: Dj,
+            title: 'Dainik Jagran',
+            description: '',
+        },
+        {
+            id: 11,
+            image: Hindusthan,
+            title: 'Hindusthan',
             description: '',
         },
     ];
