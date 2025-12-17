@@ -20,7 +20,7 @@ import mhc1 from "../assets/mhc1.jpeg";
 import mhc2 from "../assets/mch2.jpeg";
 import mhc3 from "../assets/mch3.jpeg";
 import Db from "../assets/Db.jpeg";
-import Dj from "../assets/Dj.jpeg"; 
+import Dj from "../assets/Dj.jpeg";
 import Hindusthan from "../assets/Hindusthan.jpeg";
 import Hsc1 from "../assets/Hsc1.jpeg";
 import Hsc2 from "../assets/Hsc2.jpeg";
@@ -58,6 +58,14 @@ import pd3 from "../assets/pd3.webp";
 import pd4 from "../assets/pd4.webp";
 import pd5 from "../assets/pd5.webp";
 import pd6 from "../assets/pd6.webp";
+import fancy1 from "../assets/fancy1.jpeg";
+import fancy2 from "../assets/fancy2.jpeg";
+import fancy3 from "../assets/fancy3.jpeg";
+import fancy4 from "../assets/fancy4.jpeg";
+import fancy5 from "../assets/fancy5.jpeg";
+import fancy6 from "../assets/fancy6.jpeg";
+import fancy7 from "../assets/fancy7.jpeg";
+import fancy8 from "../assets/fancy8.jpeg";
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -417,83 +425,128 @@ const EVENTS: Event[] = [
         ],
     },
     {
-    id: 38, // Changed from 11 to 38
-    category: "Medical Health Camp",
-    title: "Medical & Health Camp",
-    previewPhoto: mhc1,
-    description: "",
-    photos: [
-        { id: 3801, url: mhc1, description: "" },
-    ],
-},
-{
-    id: 39, // Changed from 12 to 39
-    category: "Health Screening School Children",
-    title: "Health Screening School Children",
-    previewPhoto: mhc2,
-    description: "",
-    photos: [
-        { id: 3901, url: mhc2, description: "" },
-    ],
-},
-// --- HINDI SPEECH COMPETITION (6 Events) ---
-{
-    id: 41,
-    category: "Hindi Speech Competition",
-    title: "Confident Oratory Skills",
-    previewPhoto: Hsc1,
-    description: "The aim of the Hindi speech competition is to develop students' confidence in speaking the language.",
-    photos: [
-        { id: 4101, url: Hsc1, description: "Student demonstrating confident oratory skills on stage." },
-    ],
-},
-{
-    id: 42,
-    category: "Hindi Speech Competition",
-    title: "Creative Expression",
-    previewPhoto: Hsc2,
-    description: "It encourages them to express their thoughts clearly and creatively.",
-    photos: [
-        { id: 4201, url: Hsc2, description: "Student creatively expressing thoughts during the speech competition." },
-    ],
-},
-{
-    id: 43,
-    category: "Hindi Speech Competition",
-    title: "Pronunciation Practice",
-    previewPhoto: Hsc3,
-    description: "Helps in improving their pronunciation and vocabulary.",
-    photos: [
-        { id: 4301, url: Hsc3, description: "Student focusing on proper pronunciation during the speech." },
-    ],
-},
-{
-    id: 44,
-    category: "Hindi Speech Competition",
-    title: "Communication Skills Development",
-    previewPhoto: Hsc4,
-    description: "Enhances overall communication skills in Hindi.",
-    photos: [
-        { id: 4401, url: Hsc4, description: "Student developing communication skills through speech delivery." },
-    ],
-},
-{
-    id: 45,
-    category: "Hindi Speech Competition",
-    title: "Thoughtful Content Delivery",
-    previewPhoto: Hsc5,
-    description: "Students expressing their thoughts clearly in Hindi.",
-    photos: [
-        { id: 4501, url: Hsc5, description: "Student delivering thoughtful content to the audience." },
-    ],
-},
+        id: 38, // Changed from 11 to 38
+        category: "Medical Health Camp",
+        title: "Medical & Health Camp",
+        previewPhoto: mhc1,
+        description: "",
+        photos: [
+            { id: 3801, url: mhc1, description: "" },
+        ],
+    },
+    {
+        id: 39, // Changed from 12 to 39
+        category: "Health Screening School Children",
+        title: "Health Screening School Children",
+        previewPhoto: mhc2,
+        description: "",
+        photos: [
+            { id: 3901, url: mhc2, description: "" },
+        ],
+    },
+    // --- HINDI SPEECH COMPETITION (6 Events) ---
+    {
+        id: 41,
+        category: "Hindi Speech Competition",
+        title: "Confident Oratory Skills",
+        previewPhoto: Hsc1,
+        description: "The aim of the Hindi speech competition is to develop students' confidence in speaking the language.",
+        photos: [
+            { id: 4101, url: Hsc1, description: "Student demonstrating confident oratory skills on stage." },
+        ],
+    },
+    {
+        id: 42,
+        category: "Hindi Speech Competition",
+        title: "Creative Expression",
+        previewPhoto: Hsc2,
+        description: "It encourages them to express their thoughts clearly and creatively.",
+        photos: [
+            { id: 4201, url: Hsc2, description: "Student creatively expressing thoughts during the speech competition." },
+        ],
+    },
+    {
+        id: 43,
+        category: "Hindi Speech Competition",
+        title: "Pronunciation Practice",
+        previewPhoto: Hsc3,
+        description: "Helps in improving their pronunciation and vocabulary.",
+        photos: [
+            { id: 4301, url: Hsc3, description: "Student focusing on proper pronunciation during the speech." },
+        ],
+    },
+    {
+        id: 44,
+        category: "Hindi Speech Competition",
+        title: "Communication Skills Development",
+        previewPhoto: Hsc4,
+        description: "Enhances overall communication skills in Hindi.",
+        photos: [
+            { id: 4401, url: Hsc4, description: "Student developing communication skills through speech delivery." },
+        ],
+    },
+    {
+        id: 45,
+        category: "Hindi Speech Competition",
+        title: "Thoughtful Content Delivery",
+        previewPhoto: Hsc5,
+        description: "Students expressing their thoughts clearly in Hindi.",
+        photos: [
+            { id: 4501, url: Hsc5, description: "Student delivering thoughtful content to the audience." },
+        ],
+        
+    },
+    {
+        id: 46,
+        category: "A Fancy Dress Competition",
+        title: "A Fancy Dress Competition",
+        previewPhoto: fancy1,
+        description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme.",
+        photos: [
+            { id: 4601, url: fancy1, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
+        ],
+        
+    },
+    {
+        id: 47,
+        category: "A Fancy Dress Competition",
+        title: "A Fancy Dress Competition",
+        previewPhoto: fancy3,
+        description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme.",
+        photos: [
+            { id: 4601, url: fancy3, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
+        ],
+        
+    },
+    {
+        id: 48,
+        category: "A Fancy Dress Competition",
+        title: "A Fancy Dress Competition",
+        previewPhoto: fancy7,
+        description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme.",
+        photos: [
+            { id: 4601, url: fancy7, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
+        ],
+        
+    },
+    {
+        id: 49,
+        category: "A Fancy Dress Competition",
+        title: "A Fancy Dress Competition",
+        previewPhoto: fancy6,
+        description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme.",
+        photos: [
+            { id: 4601, url: fancy6, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
+        ],
+        
+    },
 
 
-// --- UNUSED ASSETS - You may want to categorize these separately ---
-// These imports haven't been used in your events array yet:
-// import Db from "../assets/Db.jpeg";
-// import Dj from "../assets/Dj.jpeg"; 
-// import Hindusthan from "../assets/Hindusthan.jpeg";
+    // --- UNUSED ASSETS - You may want to categorize these separately ---
+    // These imports haven't been used in your events array yet:
+    // import Db from "../assets/Db.jpeg";
+    // import Dj from "../assets/Dj.jpeg"; 
+    // import Hindusthan from "../assets/Hindusthan.jpeg";
 ];
 
 // --- 4. Lightbox (Modal) Component (UPDATED for multiple photos) ---
