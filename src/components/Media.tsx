@@ -14,6 +14,8 @@ import new3 from "../assets/new3.jpeg";
 import Db from "../assets/Db.jpeg";
 import Dj from "../assets/Dj.jpeg"; 
 import Hindusthan from "../assets/Hindusthan.jpeg";
+import Db1 from "../assets/Dv1.jpeg";
+import Dj1 from "../assets/Dj1.jpeg";
 
 
 const PRIMARY_COLOR = '#d2530f';
@@ -113,6 +115,18 @@ const Media = () => {
             id: 11,
             image: Hindusthan,
             title: 'Hindusthan',
+            description: '',
+        },
+        {
+            id: 12,
+            image: Db1,
+            title: 'Dainik Bhaskar',
+            description: '',
+        },
+        {
+            id: 13,
+            image: Dj1,
+            title: 'Dainik Jagran',
             description: '',
         },
     ];
