@@ -58,7 +58,7 @@ const SchoolFees = () => {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 max-w-6xl mx-auto">
                         {/* NEW STUDENTS CARD */}
                         <div className="border border-slate-200 rounded-2xl p-8 flex flex-col h-full bg-white shadow-sm border-t-4 border-t-orange-600">
                             <div className="mb-8">
@@ -94,40 +94,7 @@ const SchoolFees = () => {
                             </div>
                         </div>
 
-                        {/* OLD STUDENTS CARD */}
-                        <div className="border border-slate-200 rounded-2xl p-8 flex flex-col h-full bg-slate-50/30 border-t-4 border-t-slate-400">
-                            <div className="mb-8">
-                                <div className="w-12 h-12 rounded-xl bg-slate-600 flex items-center justify-center mb-4">
-                                    <RefreshCw className="text-white w-6 h-6" />
-                                </div>
-                                <h3 className="text-3xl font-bold text-foreground">Returning Student (For Old Students)</h3>
-                                <p className="text-muted-foreground text-sm">Annual session renewal charges</p>
-                            </div>
-
-                            <div className="mb-8 p-4 bg-slate-100 rounded-xl">
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl font-bold text-foreground">₹1,800</span>
-                                    <span className="text-muted-foreground font-medium">/ month</span>
-                                </div>
-                                <p className="text-xs font-bold uppercase mt-1 text-slate-600">Monthly Tuition Fee</p>
-                            </div>
-
-                            <div className="space-y-4 flex-grow">
-                                {oldStudentFees.map((item, i) => (
-                                    <div key={i} className="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                                        <span className="text-muted-foreground flex items-center gap-2">
-                                            <CheckCircle2 className="w-4 h-4 text-slate-400" />
-                                            {item.label}
-                                        </span>
-                                        <span className="font-semibold text-foreground">₹{item.amount}/-</span>
-                                    </div>
-                                ))}
-                                <div className="pt-4 mt-4 border-t-2 border-dashed flex justify-between items-center">
-                                    <span className="font-bold text-foreground">Total Annual Fee</span>
-                                    <span className="text-2xl font-bold text-slate-700">₹700/-</span>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
 
                     {/* Footer Info inside the capture area */}
