@@ -2,7 +2,7 @@
 import React from 'react';
 import { Newspaper, Video, Globe, Image as ImageIcon } from 'lucide-react';
 
-// Import your media assets
+// Existing media assets
 import pressImage from '../assets/media.webp';
 import m1 from '../assets/m1.webp';
 import m2 from '../assets/m2.webp';
@@ -17,6 +17,10 @@ import Hindusthan from "../assets/Hindusthan.jpeg";
 import Db1 from "../assets/Dv1.jpeg";
 import Dj1 from "../assets/Dj1.jpeg";
 
+// New media assets
+import aaj from "../assets/aajj.jpeg";
+import djj from "../assets/djj.jpeg";
+import pk from "../assets/pk.jpeg";
 
 const PRIMARY_COLOR = '#d2530f';
 
@@ -129,33 +133,24 @@ const Media = () => {
             title: 'Dainik Jagran',
             description: '',
         },
-    ];
-
-    // --- Data for Featured Media Gallery ---
-    const mediaGallery = [
+        // --- Added New Assets Below ---
         {
-            id: 1,
-            image: m1,
-            title: 'School Infrastructure Feature',
-            description: 'Showcasing our modern campus facilities and learning environment',
+            id: 14,
+            image: aaj,
+            title: 'AAj News',
+            description: '',
         },
         {
-            id: 2,
-            image: m2,
-            title: 'Academic Excellence Recognition',
-            description: 'Highlighting student achievements and academic programs',
+            id: 15,
+            image: djj,
+            title: 'Dainik Jagran',
+            description: '',
         },
         {
-            id: 3,
-            image: m3,
-            title: 'Co-curricular Activities Coverage',
-            description: 'Media coverage of our diverse extracurricular programs',
-        },
-        {
-            id: 4,
-            image: m4,
-            title: 'Community Engagement Events',
-            description: 'School events and community outreach programs featured in press',
+            id: 16,
+            image: pk,
+            title: 'Prabhat Khabar',
+            description: '',
         },
     ];
 
@@ -206,7 +201,6 @@ const Media = () => {
                         </div>
                     ))}
                 </div>
-
 
             </div>
         </section>
