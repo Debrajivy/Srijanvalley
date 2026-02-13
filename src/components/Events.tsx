@@ -66,6 +66,12 @@ import fancy5 from "../assets/fancy5.jpeg";
 import fancy6 from "../assets/fancy6.jpeg";
 import fancy7 from "../assets/fancy7.jpeg";
 import fancy8 from "../assets/fancy8.jpeg";
+import sow1 from "../assets/sow1.jpeg";
+import sow2 from "../assets/sow2.jpeg";
+import sow3 from "../assets/sow3.jpeg";
+import sow4 from "../assets/sow4.jpeg";
+import sow5 from "../assets/sow5.jpeg";
+import sow6 from "../assets/sow6.jpeg";
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -494,7 +500,7 @@ const EVENTS: Event[] = [
         photos: [
             { id: 4501, url: Hsc5, description: "Student delivering thoughtful content to the audience." },
         ],
-        
+
     },
     {
         id: 46,
@@ -505,7 +511,7 @@ const EVENTS: Event[] = [
         photos: [
             { id: 4601, url: fancy1, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
         ],
-        
+
     },
     {
         id: 47,
@@ -516,7 +522,7 @@ const EVENTS: Event[] = [
         photos: [
             { id: 4601, url: fancy3, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
         ],
-        
+
     },
     {
         id: 48,
@@ -527,7 +533,7 @@ const EVENTS: Event[] = [
         photos: [
             { id: 4601, url: fancy7, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
         ],
-        
+
     },
     {
         id: 49,
@@ -538,8 +544,91 @@ const EVENTS: Event[] = [
         photos: [
             { id: 4601, url: fancy6, description: "A Fancy Dress Competition was organized today at Srijan Valley School for students of Nursery, KG, Class I and II. The children participated with great enthusiasm and confidence. Parents of students also enjoyed the programme." },
         ],
-        
     },
+    {
+        id: 50,
+        category: "Educational Visit",
+        title: "Visit to Space on Wheels",
+        previewPhoto: sow1,
+        description: "Students of Classes IV, V, and VI at Srijan Valley School visited the 'Space on Wheels' bus today, embarking on an exciting journey through space science and technology.",
+        photos: [
+            {
+                "id": 4602,
+                "url": sow1,
+                "description": "Students of Srijan Valley School arriving at the 'Space on Wheels' mobile exhibition bus."
+            }
+        ]
+    },
+    {
+        id: 51,
+        category: "Educational Visit",
+        title: "Visit to Space on Wheels",
+        previewPhoto: sow2,
+        description: "The exhibition provided a practical learning experience, allowing children to explore detailed models of various planets and our solar system.",
+        photos: [
+            {
+                "id": 4603,
+                "url": sow2,
+                "description": "Young learners exploring detailed models and displays related to the planets."
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "category": "Educational Visit",
+        "title": "Visit to Space on Wheels",
+        "previewPhoto": sow3,
+        "description": "Curiosity was at an all-time high as students studied satellite technology and the mechanics of space exploration during their visit.",
+        "photos": [
+            {
+                "id": 4604,
+                "url": sow3,
+                "description": "Students showing great interest in the satellite models and space science displays."
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "category": "Educational Visit",
+        "title": "Visit to Space on Wheels",
+        "previewPhoto": sow4,
+        "description": "The 'Space on Wheels' initiative brought complex astronomical concepts to life, making science both accessible and enjoyable for Classes IV to VI.",
+        "photos": [
+            {
+                "id": 4605,
+                "url": sow4,
+                "description": "An informative session where students learned about the history of space missions."
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "category": "Educational Visit",
+        "title": "Visit to Space on Wheels",
+        "previewPhoto": sow5,
+        "description": "Students actively participated in the interactive displays, asking insightful questions about life in space and modern satellite communication.",
+        "photos": [
+            {
+                "id": 4606,
+                "url": sow5,
+                "description": "Students participating and asking questions during the interactive learning experience."
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "category": "Educational Visit",
+        "title": "Visit to Space on Wheels",
+        "previewPhoto": sow6,
+        "description": "This memorable visit to the mobile space lab enhanced the students' knowledge and sparked a newfound interest in celestial science.",
+        "photos": [
+            {
+                "id": 4607,
+                "url": sow6,
+                "description": "The visit concluded as a truly memorable and educational experience for all Srijan Valley students."
+            }
+        ]
+    }
 
 
     // --- UNUSED ASSETS - You may want to categorize these separately ---
