@@ -72,6 +72,17 @@ import sow3 from "../assets/sow3.jpeg";
 import sow4 from "../assets/sow4.jpeg";
 import sow5 from "../assets/sow5.jpeg";
 import sow6 from "../assets/sow6.jpeg";
+import ifc1 from "../assets/ifc1.jpeg";
+import ifc2 from "../assets/ifc2.jpeg";
+import ifc3 from "../assets/ifc3.jpeg";
+import ifc4 from "../assets/ifc4.jpeg";
+import ifc5 from "../assets/ifc5.jpeg";
+import ifc6 from "../assets/ifc6.jpeg";
+import ifc7 from "../assets/ifc7.jpeg";
+import ifc8 from "../assets/ifc8.jpeg";
+import ifc9 from "../assets/ifc9.jpeg";
+import ifc10 from "../assets/ifc10.jpeg";
+
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -628,7 +639,149 @@ const EVENTS: Event[] = [
                 "description": "The visit concluded as a truly memorable and educational experience for all Srijan Valley students."
             }
         ]
+    },
+
+    {
+        "id": 101,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Grand Opening Ceremony",
+        "previewPhoto": ifc1,
+        "description": "The academic year commenced with a prestigious lamp-lighting ceremony, marking a new chapter of excellence and growth.",
+        "photos": [
+            {
+                "id": 5001,
+                "url": ifc1,
+                "description": "Dignitaries and faculty members lighting the ceremonial lamp to signify the beginning of the journey."
+            }
+        ]
+    },
+    {
+        "id": 102,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Annual Excellence Awards",
+        "previewPhoto": ifc2,
+        "description": "A proud moment for Srijan Valley as we honored our top achievers for their outstanding academic and co-curricular performance.",
+        "photos": [
+            {
+                "id": 5002,
+                "url": ifc2,
+                "description": "Students receiving gold medals and certificates of merit during the facilitation segment."
+            }
+        ]
+    },
+    {
+        "id": 103,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Investiture Ceremony",
+        "previewPhoto": ifc3,
+        "description": "The newly elected student council took their oaths, promising to lead with integrity and uphold the school's values.",
+        "photos": [
+            {
+                "id": 5003,
+                "url": ifc3,
+                "description": "The Head Boy and Head Girl being pinned with their badges of office."
+            }
+        ]
+    },
+    {
+        "id": 104,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Science Wing Inauguration",
+        "previewPhoto": ifc4,
+        "description": "Cutting the ribbon for our state-of-the-art laboratory, designed to foster innovation and hands-on learning for future scientists.",
+        "photos": [
+            {
+                "id": 5004,
+                "url": ifc4,
+                "description": "Chief guest officially opening the new Science and Technology block."
+            }
+        ]
+    },
+    {
+        "id": 105,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Teacher Appreciation Gala",
+        "previewPhoto": ifc5,
+        "description": "A heart-warming ceremony dedicated to facilitating our educators for their tireless commitment and dedication to student success.",
+        "photos": [
+            {
+                "id": 5005,
+                "url": ifc5,
+                "description": "Senior faculty members being felicitated with mementos for their years of service."
+            }
+        ]
+    },
+    {
+        "id": 106,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Sports Complex Dedication",
+        "previewPhoto": ifc6,
+        "description": "Celebrating the launch of our indoor sports arena, providing students with world-class facilities for physical development.",
+        "photos": [
+            {
+                "id": 5006,
+                "url": ifc6,
+                "description": "The inaugural match played by the school team to celebrate the new facility."
+            }
+        ]
+    },
+    {
+        "id": 107,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Alumni Recognition Meet",
+        "previewPhoto": ifc7,
+        "description": "Distinguished alumni returned to their alma mater to be facilitated for their remarkable professional achievements.",
+        "photos": [
+            {
+                "id": 5007,
+                "url": ifc7,
+                "description": "Former students sharing their success stories during the facilitation session."
+            }
+        ]
+    },
+    {
+        "id": 108,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Cultural Fest Inauguration",
+        "previewPhoto": ifc8,
+        "description": "The annual cultural extravaganza was kicked off with a vibrant display of traditional music and dance.",
+        "photos": [
+            {
+                "id": 5008,
+                "url": ifc8,
+                "description": "Performers showcasing a welcome dance at the start of the ceremony."
+            }
+        ]
+    },
+    {
+        "id": 109,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Literary Club Launch",
+        "previewPhoto": ifc9,
+        "description": "Inaugurating a new platform for budding writers and orators to express their creativity and sharpen their linguistic skills.",
+        "photos": [
+            {
+                "id": 5009,
+                "url": ifc9,
+                "description": "Students presenting their first anthology during the club's inauguration."
+            }
+        ]
+    },
+    {
+        "id": 110,
+        "category": "Inaugural and facilitation ceremony",
+        "title": "Community Service Awards",
+        "previewPhoto": ifc10,
+        "description": "Recognizing the selfless efforts of students who contributed significantly to social causes and community welfare.",
+        "photos": [
+            {
+                "id": 5010,
+                "url": ifc10,
+                "description": "Volunteers receiving certificates of appreciation for their social impact work."
+            }
+        ]
     }
+
 
 
     // --- UNUSED ASSETS - You may want to categorize these separately ---
