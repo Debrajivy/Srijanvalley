@@ -27,6 +27,11 @@ import Hsc2 from "../assets/Hsc2.jpeg";
 import Hsc3 from "../assets/Hsc3.jpeg";
 import Hsc4 from "../assets/Hsc4.jpeg";
 import Hsc5 from "../assets/Hsc5.jpeg";
+import ksc1 from "../assets/ksc1.jpeg";
+import ksc2 from "../assets/ksc2.jpeg";
+import ksc3 from "../assets/ksc3.jpeg";
+import ksc4 from "../assets/ksc4.jpeg";
+import ksc5 from "../assets/ksc5.jpeg";
 
 // --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
 import Rangoli1 from "../assets/Rangoli1.webp";
@@ -780,7 +785,49 @@ const EVENTS: Event[] = [
                 "description": "Volunteers receiving certificates of appreciation for their social impact work."
             }
         ]
-    }
+    },
+
+    // --- KIDS SUMMER CAMP (5 Events) ---
+    {
+        id: 111,
+        category: "Kids Summer Camp",
+        title: "Summer Camp Opening Day",
+        previewPhoto: ksc1,
+        description: "An exciting start to the Kids Summer Camp with enthusiastic young participants ready for a fun-filled experience.",
+        photos: [{ id: 6101, url: ksc1, description: "Students gathered on the opening day of the Kids Summer Camp." }],
+    },
+    {
+        id: 112,
+        category: "Kids Summer Camp",
+        title: "Creative Activities & Crafts",
+        previewPhoto: ksc2,
+        description: "Children exploring their creativity through arts, crafts, and hands-on activities during the summer camp.",
+        photos: [{ id: 6102, url: ksc2, description: "Kids engaging in creative crafts and art activities at the summer camp." }],
+    },
+    {
+        id: 113,
+        category: "Kids Summer Camp",
+        title: "Outdoor Games & Sports",
+        previewPhoto: ksc3,
+        description: "Students enjoying outdoor games and sports activities, building teamwork and physical fitness.",
+        photos: [{ id: 6103, url: ksc3, description: "Children participating in outdoor games and sports during the summer camp." }],
+    },
+    {
+        id: 114,
+        category: "Kids Summer Camp",
+        title: "Fun Learning Sessions",
+        previewPhoto: ksc4,
+        description: "Engaging learning sessions that made education enjoyable and interactive for all camp participants.",
+        photos: [{ id: 6104, url: ksc4, description: "Students taking part in fun and interactive learning activities at the camp." }],
+    },
+    {
+        id: 115,
+        category: "Kids Summer Camp",
+        title: "Closing Ceremony & Celebrations",
+        previewPhoto: ksc5,
+        description: "A joyful closing ceremony celebrating the achievements and memories made during the Kids Summer Camp.",
+        photos: [{ id: 6105, url: ksc5, description: "Children and staff celebrating at the closing ceremony of the Kids Summer Camp." }],
+    },
 
 
 
