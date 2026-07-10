@@ -1159,7 +1159,7 @@ const JulyActivitySchedule: React.FC = () => (
 );
 
 const ReadingCompetitionFeature: React.FC = () => {
-    const videoId = "Wj3W31pBjlQ";
+    const videoId = "s1EHo8zu7mk";
 
     return (
         <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
