@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 // Added ChevronLeft, ChevronRight for the new multiple-image lightbox
-import { Award, Maximize, X, ChevronLeft, ChevronRight, BookOpenCheck, CalendarDays, Medal, Trophy } from "lucide-react";
+import { Award, CalendarRange, Maximize, X, ChevronLeft, ChevronRight, BookOpenCheck, CalendarDays, Medal, Trophy } from "lucide-react";
 
 // --- 1. Asset Imports (Existing and NEW) ---
 // Note: In a real Next.js/React project, you MUST ensure these files exist
@@ -133,6 +133,42 @@ const SPELLATHON_RESULTS = [
     { className: "VI", first: "Shrishti Kumari", second: "Aradhya Kumari Sahu", third: "Aradhya Kumari" },
     { className: "VII", first: "Aditya Raj", second: "Ananya Thakur", third: "Umme Ruman" },
     { className: "VII", first: "—", second: "Rishabh Kumar", third: "—" },
+];
+
+type ScheduleType = "regular" | "test" | "holiday" | "activity";
+
+const JULY_2026_SCHEDULE: Array<{ date: string; day: string; event: string; type: ScheduleType }> = [
+    { date: "01 July", day: "Wed", event: "Regular Classes", type: "regular" },
+    { date: "02 July", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "03 July", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "04 July", day: "Sat", event: "Regular Classes & Unit Test (Std I–VII)", type: "test" },
+    { date: "05 July", day: "Sun", event: "Sunday", type: "holiday" },
+    { date: "06 July", day: "Mon", event: "Regular Classes & Unit Test (Std I–VII)", type: "test" },
+    { date: "07 July", day: "Tue", event: "Regular Classes & Unit Test (Std I–VII)", type: "test" },
+    { date: "08 July", day: "Wed", event: "Regular Classes & Unit Test (Std I–VII)", type: "test" },
+    { date: "09 July", day: "Thu", event: "Regular Classes & Unit Test (Std VI & VII)", type: "test" },
+    { date: "10 July", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "11 July", day: "Sat", event: "2nd Saturday (Holiday)", type: "holiday" },
+    { date: "12 July", day: "Sun", event: "Sunday", type: "holiday" },
+    { date: "13 July", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "14 July", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "15 July", day: "Wed", event: "Regular Classes & Spell-O-Thon Competition (Std I & II)", type: "activity" },
+    { date: "16 July", day: "Thu", event: "Holiday (Rath Yatra)", type: "holiday" },
+    { date: "17 July", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "18 July", day: "Sat", event: "English Essay Writing Competition (Std III–VII) & कविता गुंजन (Pre-Primary Classes)", type: "activity" },
+    { date: "19 July", day: "Sun", event: "Sunday", type: "holiday" },
+    { date: "20 July", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "21 July", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "22 July", day: "Wed", event: "Regular Classes", type: "regular" },
+    { date: "23 July", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "24 July", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "25 July", day: "Sat", event: "कविता गुंजन (Std I–II)", type: "activity" },
+    { date: "26 July", day: "Sun", event: "Sunday", type: "holiday" },
+    { date: "27 July", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "28 July", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "29 July", day: "Wed", event: "Regular Classes", type: "regular" },
+    { date: "30 July", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "31 July", day: "Fri", event: "Regular Classes", type: "regular" },
 ];
 
 // --- 3. Actual Event Data (New Categories Added) ---
@@ -1048,6 +1084,80 @@ const SpellathonCompetitionResult: React.FC = () => (
     </section>
 );
 
+const SCHEDULE_TYPE_STYLES: Record<ScheduleType, { label: string; className: string }> = {
+    regular: { label: "Classes", className: "bg-emerald-50 text-emerald-700 ring-emerald-200" },
+    test: { label: "Unit Test", className: "bg-blue-50 text-blue-700 ring-blue-200" },
+    holiday: { label: "Holiday", className: "bg-gray-100 text-gray-600 ring-gray-200" },
+    activity: { label: "Activity", className: "bg-orange-50 text-[#c84e10] ring-orange-200" },
+};
+
+const JulyActivitySchedule: React.FC = () => (
+    <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#c84e10] via-[#df5b15] to-[#f07a27] px-5 py-8 text-white sm:px-8 md:px-10 md:py-10">
+            <div className="absolute -right-12 -top-16 h-48 w-48 rounded-full bg-white/10" aria-hidden="true" />
+            <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] backdrop-blur-sm">
+                        <CalendarRange className="h-4 w-4" />
+                        Monthly Planner
+                    </div>
+                    <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">
+                        Activity Schedule for July 2026
+                    </h2>
+                    <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50 sm:text-base">
+                        Classes, unit tests, holidays, competitions, and student activities planned for the month.
+                    </p>
+                </div>
+                <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl border border-white/25 bg-white/15 backdrop-blur-sm">
+                    <span className="text-xs font-bold uppercase tracking-widest text-orange-100">July</span>
+                    <span className="text-2xl font-extrabold">2026</span>
+                </div>
+            </div>
+        </div>
+
+        <div className="p-4 sm:p-7 md:p-9">
+            <div className="mb-5 flex flex-wrap gap-2" aria-label="Schedule categories">
+                {(Object.keys(SCHEDULE_TYPE_STYLES) as ScheduleType[]).map((type) => (
+                    <span key={type} className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ring-inset ${SCHEDULE_TYPE_STYLES[type].className}`}>
+                        {SCHEDULE_TYPE_STYLES[type].label}
+                    </span>
+                ))}
+            </div>
+
+            <div className="overflow-hidden rounded-xl border border-gray-200">
+                <div className="hidden grid-cols-[110px_80px_1fr_100px] bg-gray-900 px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white sm:grid">
+                    <span>Date</span>
+                    <span>Day</span>
+                    <span>Event</span>
+                    <span>Type</span>
+                </div>
+                <div className="divide-y divide-gray-100">
+                    {JULY_2026_SCHEDULE.map((item) => (
+                        <div
+                            key={item.date}
+                            className={`grid grid-cols-[76px_1fr] items-center gap-x-3 gap-y-2 px-4 py-3 sm:grid-cols-[110px_80px_1fr_100px] sm:px-5 ${item.type === "holiday" ? "bg-gray-50/80" : "hover:bg-orange-50/50"}`}
+                        >
+                            <span className="text-sm font-bold text-gray-900">{item.date}</span>
+                            <span className="hidden text-sm font-medium text-gray-500 sm:block">{item.day}</span>
+                            <div className="min-w-0">
+                                <span className="mr-2 text-xs font-medium text-gray-400 sm:hidden">{item.day}</span>
+                                <span className={`text-sm font-medium leading-6 ${item.type === "holiday" ? "text-gray-500" : "text-gray-700"}`}>{item.event}</span>
+                            </div>
+                            <span className={`col-start-2 w-fit rounded-full px-2.5 py-1 text-[11px] font-bold ring-1 ring-inset sm:col-start-4 ${SCHEDULE_TYPE_STYLES[item.type].className}`}>
+                                {SCHEDULE_TYPE_STYLES[item.type].label}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <p className="mt-4 text-center text-xs leading-5 text-gray-500">
+                Schedule updates, examinations, activities, and published results will be shared on the website as they become available.
+            </p>
+        </div>
+    </section>
+);
+
 const ReadingCompetitionFeature: React.FC = () => {
     const videoId = "Wj3W31pBjlQ";
 
@@ -1229,6 +1339,8 @@ const Events: React.FC = () => {
 
             {/* section-container implementation: max-w-6xl retained for the 3-column grid */}
             <div className="px-4 mx-auto max-w-7xl md:max-w-4xl lg:max-w-6xl">
+
+                <JulyActivitySchedule />
 
                 <ReadingCompetitionFeature />
 
