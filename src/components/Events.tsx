@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 // Added ChevronLeft, ChevronRight for the new multiple-image lightbox
-import { Maximize, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Award, Maximize, X, ChevronLeft, ChevronRight, BookOpenCheck, CalendarDays, Medal, Trophy } from "lucide-react";
 
 // --- 1. Asset Imports (Existing and NEW) ---
 // Note: In a real Next.js/React project, you MUST ensure these files exist
@@ -32,6 +32,7 @@ import ksc2 from "../assets/ksc2.jpeg";
 import ksc3 from "../assets/ksc3.jpeg";
 import ksc4 from "../assets/ksc4.jpeg";
 import ksc5 from "../assets/ksc5.jpeg";
+import svrc from "../assets/svrc.jpeg";
 
 // --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
 import Rangoli1 from "../assets/Rangoli1.webp";
@@ -113,8 +114,45 @@ interface Event {
     photos: Photo[];
 }
 
+const HANDWRITING_WINNERS = [
+    { className: "One", student: "Srikant Yadav", rank: 1 },
+    { className: "Two", student: "Nayrya Anam", rank: 1 },
+    { className: "Three", student: "Priyanshu Thakur", rank: 1 },
+    { className: "Four", student: "Akshay Keshri", rank: 1 },
+    { className: "Five", student: "Yas Raj Keshri", rank: 1 },
+    { className: "Six", student: "Pari Kumari", rank: 1 },
+    { className: "Seven", student: "Yog Maya Mishra", rank: 1 },
+];
+
+const SPELLATHON_RESULTS = [
+    { className: "III", first: "Yash Keshri", second: "Ananya Kumari", third: "Krishna Kumar" },
+    { className: "IV", first: "Praveen Kr. Mahto", second: "Akash Kr. Gope", third: "Anshika Priya" },
+    { className: "V", first: "Yash Keshri", second: "—", third: "—" },
+    { className: "V", first: "Niraj Kumar", second: "—", third: "—" },
+    { className: "V", first: "Khyati Singh", second: "—", third: "—" },
+    { className: "VI", first: "Shrishti Kumari", second: "Aradhya Kumari Sahu", third: "Aradhya Kumari" },
+    { className: "VII", first: "Aditya Raj", second: "Ananya Thakur", third: "Umme Ruman" },
+    { className: "VII", first: "—", second: "Rishabh Kumar", third: "—" },
+];
+
 // --- 3. Actual Event Data (New Categories Added) ---
 const EVENTS: Event[] = [
+    // --- INTER-SCHOOL READING COMPETITION ---
+    {
+        id: 116,
+        category: "Inter-School Reading Competition",
+        title: "Khyati Singh Shines at Inter-School Reading Competition",
+        previewPhoto: svrc,
+        description: "Khyati Singh of Class V impressed the audience with her clear pronunciation, voice modulation, fluency, and confident presentation.",
+        photos: [
+            {
+                id: 6201,
+                url: svrc,
+                description: "Khyati Singh of Class V representing Srijan Valley School at the Inter-School Reading Competition organised by the International Library and Cultural Centre on 8 July 2026.",
+            },
+        ],
+    },
+
     // --- INDEPENDENCE DAY (4 Events) ---
     {
         id: 1,
@@ -838,6 +876,232 @@ const EVENTS: Event[] = [
     // import Hindusthan from "../assets/Hindusthan.jpeg";
 ];
 
+const HandwritingCompetitionResult: React.FC = () => (
+    <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#c84e10] via-[#df5b15] to-[#f07a27] px-5 py-8 text-white sm:px-8 md:px-10 md:py-10">
+            <div className="absolute -right-12 -top-16 h-48 w-48 rounded-full bg-white/10" aria-hidden="true" />
+            <div className="absolute -bottom-20 right-24 h-40 w-40 rounded-full border-[28px] border-white/10" aria-hidden="true" />
+            <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-3xl">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] backdrop-blur-sm">
+                        <Trophy className="h-4 w-4" />
+                        Competition Result
+                    </div>
+                    <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">
+                        English Handwriting Competition
+                    </h2>
+                    <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50 sm:text-base">
+                        Srijan Valley School successfully organised the competition for students of Classes I to VII to encourage neat handwriting and strengthen their writing skills.
+                    </p>
+                </div>
+                <div className="flex shrink-0 items-center gap-3 self-start rounded-xl border border-white/25 bg-white/15 px-4 py-3 backdrop-blur-sm md:self-center">
+                    <CalendarDays className="h-5 w-5" />
+                    <div>
+                        <p className="text-[11px] font-medium uppercase tracking-wider text-orange-100">Held on</p>
+                        <p className="font-bold">18 May 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div className="p-4 sm:p-7 md:p-9">
+            <div className="mb-5 flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-[#d0510f]">
+                    <Medal className="h-5 w-5" />
+                </span>
+                <div>
+                    <h3 className="text-lg font-bold text-gray-900 sm:text-xl">Our Class Champions</h3>
+                    <p className="text-sm text-gray-500">First-place winners from each class</p>
+                </div>
+            </div>
+
+            <div className="overflow-hidden rounded-xl border border-gray-200">
+                <div className="hidden grid-cols-[80px_1fr_2fr_100px] bg-gray-900 px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white sm:grid">
+                    <span>Sl. No.</span>
+                    <span>Class</span>
+                    <span>Student Name</span>
+                    <span className="text-center">Rank</span>
+                </div>
+                <div className="divide-y divide-gray-100">
+                    {HANDWRITING_WINNERS.map((winner, index) => (
+                        <div
+                            key={winner.student}
+                            className="grid grid-cols-[42px_1fr_auto] items-center gap-3 px-4 py-4 transition-colors hover:bg-orange-50/60 sm:grid-cols-[80px_1fr_2fr_100px] sm:px-5"
+                        >
+                            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-gray-600 sm:block sm:h-auto sm:w-auto sm:bg-transparent sm:text-sm">
+                                {index + 1}
+                            </span>
+                            <div>
+                                <span className="text-xs font-medium uppercase tracking-wide text-gray-400 sm:hidden">Class </span>
+                                <span className="text-sm font-semibold text-gray-700">{winner.className}</span>
+                            </div>
+                            <div className="col-start-2 row-start-2 sm:col-start-3 sm:row-start-1">
+                                <span className="text-sm font-bold text-gray-900 sm:text-base">{winner.student}</span>
+                            </div>
+                            <span className="col-start-3 row-span-2 row-start-1 inline-flex items-center justify-center gap-1.5 rounded-full bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700 ring-1 ring-inset ring-amber-200 sm:col-start-4 sm:row-span-1">
+                                <Trophy className="h-3.5 w-3.5" /> {winner.rank}st
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="mt-6 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4 text-center">
+                <p className="font-semibold text-gray-800">
+                    Heartiest congratulations to all the winners for their excellent performance!
+                </p>
+                <p className="mt-1 text-sm leading-6 text-gray-600">
+                    We also appreciate the enthusiastic participation of all our students.
+                </p>
+            </div>
+        </div>
+    </section>
+);
+
+const SpellathonCompetitionResult: React.FC = () => (
+    <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#c84e10] via-[#df5b15] to-[#f07a27] px-5 py-8 text-white sm:px-8 md:px-10 md:py-10">
+            <div className="absolute -right-12 -top-16 h-48 w-48 rounded-full bg-white/10" aria-hidden="true" />
+            <div className="absolute -bottom-20 right-24 h-40 w-40 rounded-full border-[28px] border-white/10" aria-hidden="true" />
+            <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-3xl">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] backdrop-blur-sm">
+                        <BookOpenCheck className="h-4 w-4" />
+                        Competition Result
+                    </div>
+                    <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">
+                        Spell-O-Thon Competition
+                    </h2>
+                    <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50 sm:text-base">
+                        Srijan Valley School successfully organised English Spelling and English Dictation activities to help students improve their vocabulary, spelling accuracy, and listening skills.
+                    </p>
+                </div>
+                <div className="flex shrink-0 items-center gap-3 self-start rounded-xl border border-white/25 bg-white/15 px-4 py-3 backdrop-blur-sm md:self-center">
+                    <CalendarDays className="h-5 w-5" />
+                    <div>
+                        <p className="text-[11px] font-medium uppercase tracking-wider text-orange-100">Held on</p>
+                        <p className="font-bold">20 June 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div className="p-4 sm:p-7 md:p-9">
+            <div className="mb-5 flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-[#d0510f]">
+                    <Medal className="h-5 w-5" />
+                </span>
+                <div>
+                    <h3 className="text-lg font-bold text-gray-900 sm:text-xl">Spell-O-Thon Champions</h3>
+                    <p className="text-sm text-gray-500">First, second and third-place winners</p>
+                </div>
+            </div>
+
+            <div className="overflow-hidden rounded-xl border border-gray-200">
+                <div className="hidden grid-cols-[90px_repeat(3,1fr)] bg-gray-900 px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white sm:grid">
+                    <span>Class</span>
+                    <span>First</span>
+                    <span>Second</span>
+                    <span>Third</span>
+                </div>
+                <div className="divide-y divide-gray-100">
+                    {SPELLATHON_RESULTS.map((result, index) => {
+                        const showClass = index === 0 || SPELLATHON_RESULTS[index - 1].className !== result.className;
+                        return (
+                            <div
+                                key={`${result.className}-${index}`}
+                                className="grid grid-cols-[52px_1fr] gap-x-3 gap-y-2 px-4 py-4 transition-colors hover:bg-orange-50/60 sm:grid-cols-[90px_repeat(3,1fr)] sm:items-center sm:px-5"
+                            >
+                                <span className="row-span-3 flex h-9 w-9 items-center justify-center self-center rounded-lg bg-orange-50 text-sm font-bold text-[#d0510f] sm:row-span-1 sm:h-auto sm:w-auto sm:justify-start sm:bg-transparent sm:text-gray-800">
+                                    {showClass ? result.className : (
+                                        <>
+                                            <span className="sm:hidden">{result.className}</span>
+                                            <span className="hidden sm:inline">—</span>
+                                        </>
+                                    )}
+                                </span>
+                                {[
+                                    { label: "First", value: result.first, color: "text-amber-700" },
+                                    { label: "Second", value: result.second, color: "text-slate-600" },
+                                    { label: "Third", value: result.third, color: "text-orange-700" },
+                                ].map((place) => (
+                                    <div key={place.label} className="flex min-w-0 items-baseline gap-2 sm:block">
+                                        <span className={`w-14 shrink-0 text-[11px] font-bold uppercase tracking-wide sm:hidden ${place.color}`}>{place.label}</span>
+                                        <span className={`text-sm font-semibold ${place.value === "—" ? "text-gray-300" : "text-gray-800"}`}>{place.value}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
+            <div className="mt-6 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4 text-center">
+                <p className="font-semibold text-gray-800">
+                    Congratulations to all the winners!
+                </p>
+                <p className="mt-1 text-sm leading-6 text-gray-600">
+                    We appreciate every participant for their enthusiastic involvement.
+                </p>
+            </div>
+        </div>
+    </section>
+);
+
+const ReadingCompetitionFeature: React.FC = () => {
+    const videoId = "Wj3W31pBjlQ";
+
+    return (
+        <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+            <div className="grid lg:grid-cols-[minmax(300px,0.72fr)_1.28fr]">
+                <div className="relative flex min-h-[560px] items-center justify-center overflow-hidden bg-gray-950 sm:min-h-[650px] lg:min-h-[620px]">
+                    <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&playsinline=1&controls=1&rel=0`}
+                        title="Khyati Singh at the Inter-School Reading Competition"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                    />
+                </div>
+
+                <div className="relative flex flex-col justify-center overflow-hidden px-5 py-9 sm:px-8 md:px-10 lg:py-12">
+                    <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-orange-50" aria-hidden="true" />
+                    <div className="relative">
+                        <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#d0510f] ring-1 ring-inset ring-orange-100">
+                            <Award className="h-4 w-4" />
+                            Student Achievement
+                        </div>
+                        <h2 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl">
+                            Srijan Valley School Shines at the <span className="text-[#d0510f]">Inter-School Reading Competition</span>
+                        </h2>
+
+                        <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gray-600">
+                            <CalendarDays className="h-4 w-4 text-[#d0510f]" />
+                            8 July 2026
+                        </div>
+
+                        <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600 sm:text-base">
+                            <p>
+                                We are delighted to share that <strong className="font-bold text-gray-900">Khyati Singh of Class V</strong>, Srijan Valley School, participated in the Inter-School Reading Competition organised by the International Library and Cultural Centre.
+                            </p>
+                            <p>
+                                Khyati displayed excellent reading skills through clear pronunciation, proper voice modulation, fluency, and confidence. Her expressive reading and impressive presentation captivated the audience and earned appreciation from everyone present.
+                            </p>
+                        </div>
+
+                        <div className="mt-7 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4">
+                            <p className="font-semibold leading-6 text-gray-800">
+                                We are proud of her commendable performance and wish Khyati the very best for all her future endeavours. May she continue to bring laurels to the school!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
 // --- 4. Lightbox (Modal) Component (UPDATED for multiple photos) ---
 
 interface LightboxProps {
@@ -868,7 +1132,7 @@ const EventLightbox: React.FC<LightboxProps> = ({ event, onClose }) => {
     };
 
     // Helper to extract the image URL correctly from the imported object
-    const currentPhotoUrl = (currentPhoto.url as any)?.src || currentPhoto.url;
+    const currentPhotoUrl = currentPhoto.url;
 
     // Use the photo's description, which is more detailed, for the lightbox footer
     const currentDescription = currentPhoto.description;
@@ -966,6 +1230,12 @@ const Events: React.FC = () => {
             {/* section-container implementation: max-w-6xl retained for the 3-column grid */}
             <div className="px-4 mx-auto max-w-7xl md:max-w-4xl lg:max-w-6xl">
 
+                <ReadingCompetitionFeature />
+
+                <HandwritingCompetitionResult />
+
+                <SpellathonCompetitionResult />
+
                 {/* Header Section */}
                 <header className="text-center mb-10 md:mb-16">
                     <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold ${COLOR_BLACK} mb-3`}>
@@ -1008,7 +1278,7 @@ const Events: React.FC = () => {
                             {/* Image Area */}
                             <div className="relative w-full aspect-video overflow-hidden">
                                 <img
-                                    src={(event.previewPhoto as any)?.src || event.previewPhoto}
+                                    src={event.previewPhoto}
                                     alt={event.title}
                                     className="w-full h-full object-contain bg-gray-100 group-hover:scale-[1.03] transition-transform duration-500"
                                 />
