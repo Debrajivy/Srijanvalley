@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, Sparkles, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import LogoFinal from '../assets/LogoFinal.webp';
 
 const Header = () => {
@@ -100,12 +101,12 @@ const Header = () => {
 
           {/* Desktop Apply Button */}
           <div className="hidden lg:block flex-shrink-0">
-            <button
-              onClick={() => handleNavClick('#contact')}
-              className="btn-academic"
-            >
-              Contact Us
-            </button>
+            <div className="flex items-center gap-2">
+              {/* <Link to="/ai-tutor" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#004aad] px-5 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#003b8a]">
+                <Sparkles className="h-4 w-4" /> AI Tutor
+              </Link> */}
+              <button onClick={() => handleNavClick('#contact')} className="btn-academic !px-5 !py-3 !text-sm">Contact Us</button>
+            </div>
           </div>
 
           {/* Mobile Menu Button (FAR RIGHT) */}
@@ -144,6 +145,9 @@ const Header = () => {
             </button>
           ))}
           <div className="px-6 pt-6">
+            <Link to="/ai-tutor" onClick={() => setIsMenuOpen(false)} className="mb-3 flex w-full items-center justify-center gap-2 rounded-xl bg-[#004aad] px-5 py-3 font-bold text-white">
+              <Sparkles className="h-4 w-4" /> Open AI Tutor
+            </Link>
             <button
               onClick={() => handleNavClick('#contact')}
               className="btn-academic w-full justify-center"

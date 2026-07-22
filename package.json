@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node server.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "node server.mjs --production",
+    "start": "node server.mjs --production"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

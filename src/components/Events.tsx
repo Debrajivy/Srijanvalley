@@ -33,6 +33,14 @@ import ksc3 from "../assets/ksc3.jpeg";
 import ksc4 from "../assets/ksc4.jpeg";
 import ksc5 from "../assets/ksc5.jpeg";
 import svrc from "../assets/svrc.jpeg";
+import ptm1 from "../assets/ptm1.jpeg";
+import ptm2 from "../assets/ptm2.jpeg";
+import ptm3 from "../assets/ptm3.jpeg";
+import ptm4 from "../assets/ptm4.jpeg";
+import ptm5 from "../assets/ptm5.jpeg";
+import ptm6 from "../assets/ptm6.jpeg";
+import ptm7 from "../assets/ptm7.jpeg";
+import ptm8 from "../assets/ptm8.jpeg";
 
 // --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
 import Rangoli1 from "../assets/Rangoli1.webp";
@@ -112,6 +120,8 @@ interface Event {
     previewPhoto: string;
     description: string;
     photos: Photo[];
+    dateLocation?: string;
+    details?: string[];
 }
 
 const HANDWRITING_WINNERS = [
@@ -173,6 +183,38 @@ const JULY_2026_SCHEDULE: Array<{ date: string; day: string; event: string; type
 
 // --- 3. Actual Event Data (New Categories Added) ---
 const EVENTS: Event[] = [
+    // --- PARENT-TEACHER MEETING & ART EXHIBITION ---
+    ...[ptm1, ptm2, ptm3, ptm4, ptm5, ptm6, ptm7, ptm8].map((photo, index): Event => ({
+        id: 117 + index,
+        category: "Parent-Teacher Meeting & Art Exhibition",
+        title: "Parent-Teacher Meeting & Art & Craft Exhibition",
+        previewPhoto: photo,
+        description: "Parents met teachers to review academic progress while celebrating the creativity and talent displayed in the student Art & Craft Exhibition.",
+        dateLocation: "22 July 2026 | Srijan Valley School, Amba Toli, Pithoria, Ranchi",
+        details: [
+            "Srijan Valley School successfully conducted the Parent-Teacher Meeting (PTM) for the First Unit Test on 22nd July 2026. Parents interacted with teachers, reviewed their children’s answer scripts, and discussed their academic progress.",
+            "A major highlight of the event was the Art & Craft Exhibition, featuring creative artworks and innovative projects prepared by the students. The exhibition was inaugurated by Mrs. Munni Devi, Mukhiya of Pithoria Panchayat, and was widely appreciated by the parents for showcasing the students’ creativity and talent.",
+            "Mrs. Renu Agrawal, Academic Director, emphasized that such co-curricular activities play a vital role in nurturing creativity, confidence, and the overall personality development of children.",
+            "The programme was a great success and reflected the school’s commitment to academic excellence and holistic education through the active partnership of parents and teachers.",
+        ],
+        photos: [
+            {
+                id: 6301 + index,
+                url: photo,
+                description: [
+                    "Parent-Teacher Meeting and Art & Craft Exhibition at Srijan Valley School.",
+                    "Parents interacting with teachers and reviewing their children’s academic progress.",
+                    "Students’ creative artwork and craft projects displayed at the exhibition.",
+                    "Mrs. Munni Devi, Mukhiya of Pithoria Panchayat, inaugurating the exhibition.",
+                    "Parents appreciating the creativity and talent showcased by the students.",
+                    "Innovative projects prepared by students for the Art & Craft Exhibition.",
+                    "Moments from the successful Parent-Teacher Meeting and exhibition.",
+                    "Celebrating academic excellence, creativity, and the partnership between parents and teachers.",
+                ][index],
+            },
+        ],
+    })),
+
     // --- INTER-SCHOOL READING COMPETITION ---
     {
         id: 116,
@@ -1300,10 +1342,20 @@ const EventLightbox: React.FC<LightboxProps> = ({ event, onClose }) => {
                 </div>
 
                 {/* Description Area (Simplified) */}
-                <div className="p-3 bg-gray-50 border-t border-gray-200">
+                <div className="max-h-[38vh] overflow-y-auto p-3 bg-gray-50 border-t border-gray-200">
+                    {event.dateLocation && (
+                        <p className="mb-2 text-sm font-bold text-[#d0510f]">{event.dateLocation}</p>
+                    )}
                     <p className="text-sm font-medium text-gray-700">
                         {currentDescription}
                     </p>
+                    {event.details && (
+                        <div className="mt-3 space-y-2 border-t border-gray-200 pt-3 text-sm leading-6 text-gray-600">
+                            {event.details.map((paragraph, index) => (
+                                <p key={index}>{paragraph}</p>
+                            ))}
+                        </div>
+                    )}
                     {hasMultiplePhotos && (
                         <p className="text-xs text-gray-500 mt-1 text-right">
                             Photo {currentPhotoIndex + 1} of {photos.length}

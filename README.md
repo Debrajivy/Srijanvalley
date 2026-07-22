@@ -1,4 +1,14 @@
-# Welcome to your Lovable project
+# Srijan Valley School Website
+
+## AI Tutor setup
+
+The `/ai-tutor` route provides CBSE Class 6–12 subject tutoring, browser-based voice input/output, a clearly labelled simulated audio-call experience, and fictional tutor avatar generation.
+
+1. Revoke any API key that has been pasted into chat, source code, or screenshots.
+2. Copy `.env.example` to `.env.local` and add the newly rotated `OPENAI_API_KEY`.
+3. Run `npm run dev` and open `http://localhost:8080/ai-tutor`.
+
+The custom Node server keeps the standard OpenAI key on the server. Do not rename it to a `VITE_*` variable, because Vite exposes those values to browser bundles.
 
 ## Project info
 
