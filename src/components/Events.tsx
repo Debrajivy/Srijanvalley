@@ -135,14 +135,16 @@ const HANDWRITING_WINNERS = [
 ];
 
 const SPELLATHON_RESULTS = [
-    { className: "III", first: "Yash Keshri", second: "Ananya Kumari", third: "Krishna Kumar" },
-    { className: "IV", first: "Praveen Kr. Mahto", second: "Akash Kr. Gope", third: "Anshika Priya" },
-    { className: "V", first: "Yash Keshri", second: "—", third: "—" },
-    { className: "V", first: "Niraj Kumar", second: "—", third: "—" },
-    { className: "V", first: "Khyati Singh", second: "—", third: "—" },
-    { className: "VI", first: "Shrishti Kumari", second: "Aradhya Kumari Sahu", third: "Aradhya Kumari" },
-    { className: "VII", first: "Aditya Raj", second: "Ananya Thakur", third: "Umme Ruman" },
-    { className: "VII", first: "—", second: "Rishabh Kumar", third: "—" },
+    { className: "I", first: "Saanvi Kumari", second: "Pihu Kumari", third: "Shivansh" },
+    { className: "II", first: "Nayra Anam", second: "Arnav Singh", third: "Simran Kachhap" },
+];
+
+const UNIT_TEST_II_ROUTINE = [
+    { date: "01/08", subjects: ["Maths", "Hindi", "EVS", "EVS", "Hindi", "Maths", "English"] },
+    { date: "03/08", subjects: ["English", "Maths", "English", "Hindi", "English", "Science", "Maths"] },
+    { date: "04/08", subjects: ["EVS", "English", "Hindi", "English", "Maths", "SST", "Science"] },
+    { date: "05/08", subjects: ["Hindi", "EVS", "Maths", "Maths", "EVS", "English", "Hindi"] },
+    { date: "06/08", subjects: ["—", "—", "—", "—", "—", "Hindi", "SST"] },
 ];
 
 type ScheduleType = "regular" | "test" | "holiday" | "activity";
@@ -1036,6 +1038,56 @@ const HandwritingCompetitionResult: React.FC = () => (
     </section>
 );
 
+const UnitTestIIRoutine: React.FC = () => (
+    <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+        <div className="bg-gradient-to-br from-[#c84e10] via-[#df5b15] to-[#f07a27] px-5 py-8 text-white sm:px-8 md:px-10">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em]">
+                        <CalendarRange className="h-4 w-4" />
+                        Examination Schedule
+                    </div>
+                    <h2 className="text-2xl font-extrabold sm:text-3xl md:text-4xl">Routine for Unit Test-II</h2>
+                    <p className="mt-3 text-sm text-orange-50 sm:text-base">Classes I to VII</p>
+                </div>
+                <div className="rounded-xl border border-white/25 bg-white/15 px-4 py-3">
+                    <p className="text-xs uppercase tracking-wider text-orange-100">Issued on</p>
+                    <p className="font-bold">20 July 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div className="p-4 sm:p-7 md:p-9">
+            <div className="overflow-x-auto rounded-xl border border-gray-200">
+                <table className="w-full min-w-[720px] border-collapse text-left">
+                    <thead className="bg-gray-900 text-white">
+                        <tr>
+                            <th className="px-4 py-3 text-sm">Date</th>
+                            {["I", "II", "III", "IV", "V", "VI", "VII"].map((className) => (
+                                <th key={className} className="px-4 py-3 text-sm">Class {className}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                        {UNIT_TEST_II_ROUTINE.map((row) => (
+                            <tr key={row.date} className="hover:bg-orange-50/60">
+                                <td className="whitespace-nowrap px-4 py-4 font-bold text-[#d0510f]">{row.date}</td>
+                                {row.subjects.map((subject, index) => (
+                                    <td key={`${row.date}-${index}`} className={`px-4 py-4 text-sm font-medium ${subject === "—" ? "text-gray-300" : "text-gray-800"}`}>{subject}</td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="mt-5 rounded-xl bg-orange-50 px-5 py-4 text-sm leading-6 text-gray-700">
+                <p>• The test will be conducted in the zero period for 50 minutes.</p>
+                <p>• Regular classes will be conducted after the test.</p>
+            </div>
+        </div>
+    </section>
+);
+
 const SpellathonCompetitionResult: React.FC = () => (
     <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
         <div className="relative overflow-hidden bg-gradient-to-br from-[#c84e10] via-[#df5b15] to-[#f07a27] px-5 py-8 text-white sm:px-8 md:px-10 md:py-10">
@@ -1051,14 +1103,14 @@ const SpellathonCompetitionResult: React.FC = () => (
                         Spell-O-Thon Competition
                     </h2>
                     <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50 sm:text-base">
-                        Srijan Valley School successfully organised English Spelling and English Dictation activities to help students improve their vocabulary, spelling accuracy, and listening skills.
+                        Celebrating the Class I and II winners for their excellent performance in the Spell-O-Thon competition.
                     </p>
                 </div>
                 <div className="flex shrink-0 items-center gap-3 self-start rounded-xl border border-white/25 bg-white/15 px-4 py-3 backdrop-blur-sm md:self-center">
                     <CalendarDays className="h-5 w-5" />
                     <div>
                         <p className="text-[11px] font-medium uppercase tracking-wider text-orange-100">Held on</p>
-                        <p className="font-bold">20 June 2026</p>
+                        <p className="font-bold">15 July 2026</p>
                     </div>
                 </div>
             </div>
@@ -1393,6 +1445,8 @@ const Events: React.FC = () => {
             <div className="px-4 mx-auto max-w-7xl md:max-w-4xl lg:max-w-6xl">
 
                 <JulyActivitySchedule />
+
+                <UnitTestIIRoutine />
 
                 <ReadingCompetitionFeature />
 
