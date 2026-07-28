@@ -41,6 +41,13 @@ import ptm5 from "../assets/ptm5.jpeg";
 import ptm6 from "../assets/ptm6.jpeg";
 import ptm7 from "../assets/ptm7.jpeg";
 import ptm8 from "../assets/ptm8.jpeg";
+import indc1 from "../assets/indc1.jpeg";
+import indc2 from "../assets/indc2.jpeg";
+import indc3 from "../assets/indc3.jpeg";
+import indc4 from "../assets/indc4.jpeg";
+import indc5 from "../assets/indc5.jpeg";
+import indc6 from "../assets/indc6.jpeg";
+import indc7 from "../assets/indc7.jpeg";
 
 // --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
 import Rangoli1 from "../assets/Rangoli1.webp";
@@ -185,6 +192,37 @@ const JULY_2026_SCHEDULE: Array<{ date: string; day: string; event: string; type
 
 // --- 3. Actual Event Data (New Categories Added) ---
 const EVENTS: Event[] = [
+    // --- INTER-HOUSE DEBATE COMPETITION & PRIZE DISTRIBUTION CEREMONY ---
+    ...[indc1, indc2, indc3, indc4, indc5, indc6, indc7].map((photo, index): Event => ({
+        id: 125 + index,
+        category: "Inter-House Debate & Prize Distribution",
+        title: "Inter-House Debate Competition & Prize Distribution Ceremony",
+        previewPhoto: photo,
+        description: "Celebrating confident debate performances and the achievements of the English Handwriting and Spell-o-Thon competition winners.",
+        dateLocation: "25 July 2026 | Srijan Valley School",
+        details: [
+            "Srijan Valley School successfully organized an Inter-House Debate Competition on 25th July 2026 on the topic, “Examinations are Necessary for Students.” Students from all houses participated with remarkable enthusiasm, confidence, and well-prepared arguments, making the event highly engaging and thought-provoking.",
+            "Rose House emerged as the Winner (For the Motion), while Jasmine House secured the Winner (Against the Motion) title with their outstanding performances.",
+            "The day also witnessed the Prize Distribution Ceremony for the winners of the English Handwriting Competition and Spell-o-Thon Competition. The prizes were presented to the students by Director Sri Pramod Agrawal and Academic Director Mrs. Renu Agrawal, who congratulated the winners and encouraged all students to continue striving for excellence.",
+            "The event concluded on a joyful note, celebrating confidence, communication skills, and academic excellence.",
+        ],
+        photos: [
+            {
+                id: 6401 + index,
+                url: photo,
+                description: [
+                    "Students presenting their arguments during the Inter-House Debate Competition.",
+                    "Young speakers participating with confidence and well-prepared arguments.",
+                    "Rose House celebrating its winning performance for the motion.",
+                    "Jasmine House being recognized for its winning performance against the motion.",
+                    "Winners receiving prizes during the Prize Distribution Ceremony.",
+                    "Director Sri Pramod Agrawal and Academic Director Mrs. Renu Agrawal congratulating the students.",
+                    "Celebrating confidence, communication skills, and academic excellence at Srijan Valley School.",
+                ][index],
+            },
+        ],
+    })),
+
     // --- PARENT-TEACHER MEETING & ART EXHIBITION ---
     ...[ptm1, ptm2, ptm3, ptm4, ptm5, ptm6, ptm7, ptm8].map((photo, index): Event => ({
         id: 117 + index,

@@ -22,6 +22,7 @@ import news3 from "../assets/news3.jpeg";
 import news4 from "../assets/news4.jpeg";
 import news5 from "../assets/news5.jpeg";
 import news6 from "../assets/news6.jpeg";
+import prabhatKhabar from "../assets/prabhatkhabar.jpeg";
 
 const pressCoverage = [
     { image: pressImage, publication: "Dainik Bhaskar Feature" },
@@ -46,6 +47,7 @@ const pressCoverage = [
     { image: news4, publication: "Loktantra Samvad Data" },
     { image: news5, publication: "Aaj" },
     { image: news6, publication: "Divya Dinkar News" },
+    { image: prabhatKhabar, publication: "Prabhat Khabar" },
 ];
 
 const Media = () => {
