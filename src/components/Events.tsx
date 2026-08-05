@@ -190,6 +190,40 @@ const JULY_2026_SCHEDULE: Array<{ date: string; day: string; event: string; type
     { date: "31 July", day: "Fri", event: "Regular Classes", type: "regular" },
 ];
 
+const AUGUST_2026_SCHEDULE: Array<{ date: string; day: string; event: string; type: ScheduleType }> = [
+    { date: "01 August", day: "Sat", event: "Regular Classes, Hindi Handwriting Competition (Std I–VII) & Unit Test (Classes I–VII)", type: "test" },
+    { date: "02 August", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "03 August", day: "Mon", event: "Regular Classes & Unit Test (Classes I–VII)", type: "test" },
+    { date: "04 August", day: "Tue", event: "Regular Classes & Unit Test (Classes I–VII)", type: "test" },
+    { date: "05 August", day: "Wed", event: "Regular Classes & Unit Test (Classes I–VII)", type: "test" },
+    { date: "06 August", day: "Thu", event: "Regular Classes & Unit Test (Classes VI–VII)", type: "test" },
+    { date: "07 August", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "08 August", day: "Sat", event: "Holiday (2nd Saturday)", type: "holiday" },
+    { date: "09 August", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "10 August", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "11 August", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "12 August", day: "Wed", event: "Regular Classes", type: "regular" },
+    { date: "13 August", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "14 August", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "15 August", day: "Sat", event: "Independence Day Celebration", type: "activity" },
+    { date: "16 August", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "17 August", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "18 August", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "19 August", day: "Wed", event: "Spell-O-Thon (Nursery–K.G.) & Hindi Elocution Competition (Std I–III)", type: "activity" },
+    { date: "20 August", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "21 August", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "22 August", day: "Sat", event: "Inter House Debate Competition — Hindi & English (Std IV–V)", type: "activity" },
+    { date: "23 August", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "24 August", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "25 August", day: "Tue", event: "Holiday (Milad un Nabi)", type: "holiday" },
+    { date: "26 August", day: "Wed", event: "Regular Classes", type: "regular" },
+    { date: "27 August", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "28 August", day: "Fri", event: "Holiday (Raksha Bandhan)", type: "holiday" },
+    { date: "29 August", day: "Sat", event: "Drawing Competition (Std Pre-Nursery–VII)", type: "activity" },
+    { date: "30 August", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "31 August", day: "Mon", event: "Regular Classes", type: "regular" },
+];
+
 // --- 3. Actual Event Data (New Categories Added) ---
 const EVENTS: Event[] = [
     // --- INTER-HOUSE DEBATE COMPETITION & PRIZE DISTRIBUTION CEREMONY ---
@@ -1223,7 +1257,7 @@ const SCHEDULE_TYPE_STYLES: Record<ScheduleType, { label: string; className: str
     activity: { label: "Activity", className: "bg-orange-50 text-[#c84e10] ring-orange-200" },
 };
 
-const JulyActivitySchedule: React.FC = () => (
+const AugustActivitySchedule: React.FC = () => (
     <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
         <div className="relative overflow-hidden bg-gradient-to-br from-[#c84e10] via-[#df5b15] to-[#f07a27] px-5 py-8 text-white sm:px-8 md:px-10 md:py-10">
             <div className="absolute -right-12 -top-16 h-48 w-48 rounded-full bg-white/10" aria-hidden="true" />
@@ -1234,14 +1268,14 @@ const JulyActivitySchedule: React.FC = () => (
                         Monthly Planner
                     </div>
                     <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">
-                        Activity Schedule for July 2026
+                        Activity Schedule for August 2026
                     </h2>
                     <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50 sm:text-base">
                         Classes, unit tests, holidays, competitions, and student activities planned for the month.
                     </p>
                 </div>
                 <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl border border-white/25 bg-white/15 backdrop-blur-sm">
-                    <span className="text-xs font-bold uppercase tracking-widest text-orange-100">July</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-orange-100">August</span>
                     <span className="text-2xl font-extrabold">2026</span>
                 </div>
             </div>
@@ -1264,7 +1298,7 @@ const JulyActivitySchedule: React.FC = () => (
                     <span>Type</span>
                 </div>
                 <div className="divide-y divide-gray-100">
-                    {JULY_2026_SCHEDULE.map((item) => (
+                    {AUGUST_2026_SCHEDULE.map((item) => (
                         <div
                             key={item.date}
                             className={`grid grid-cols-[76px_1fr] items-center gap-x-3 gap-y-2 px-4 py-3 sm:grid-cols-[110px_80px_1fr_100px] sm:px-5 ${item.type === "holiday" ? "bg-gray-50/80" : "hover:bg-orange-50/50"}`}
@@ -1482,7 +1516,7 @@ const Events: React.FC = () => {
             {/* section-container implementation: max-w-6xl retained for the 3-column grid */}
             <div className="px-4 mx-auto max-w-7xl md:max-w-4xl lg:max-w-6xl">
 
-                <JulyActivitySchedule />
+                <AugustActivitySchedule />
 
                 <UnitTestIIRoutine />
 

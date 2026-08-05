@@ -35,6 +35,7 @@ import {
 } from "lucide-react";
 import LogoFinal from "@/assets/LogoFinal.webp";
 import LearningSuite from "@/components/ai-tutor/LearningSuite";
+import StudentIntelligenceSuite from "@/components/ai-tutor/StudentIntelligenceSuite";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 type SpeechRecognitionEventLike = { results?: { 0?: { 0?: { transcript?: string } } } };
@@ -90,10 +91,11 @@ function extractErrorMessage(value: unknown) {
   return value instanceof Error ? value.message : "Something went wrong. Please try again.";
 }
 
-function speakText(text: string, enabled = true) {
+function speakText(text: string, enabled = true, language = "English") {
   if (!enabled || !("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text.replace(/[*#_`]/g, ""));
+  utterance.lang = language === "Hindi" ? "hi-IN" : "en-IN";
   utterance.rate = 0.98;
   utterance.pitch = 1;
   window.speechSynthesis.speak(utterance);
@@ -110,6 +112,10 @@ const TutorAvatar = ({ tutor, src, size = "md" }: { tutor: Tutor; src?: string; 
 
 const AITutor = () => {
   const [grade, setGrade] = useState("8");
+  const [board, setBoard] = useState("CBSE");
+  const [language, setLanguage] = useState("English");
+  const [learningLevel, setLearningLevel] = useState("Easy");
+  const [pendingPrompt, setPendingPrompt] = useState("");
   const [subject, setSubject] = useState("All subjects");
   const [selectedTutor, setSelectedTutor] = useState<Tutor | null>(null);
   const [callTutor, setCallTutor] = useState<Tutor | null>(null);
@@ -127,6 +133,7 @@ const AITutor = () => {
   const [avatarError, setAvatarError] = useState("");
   const [callSeconds, setCallSeconds] = useState(0);
   const [callStatus, setCallStatus] = useState<"ready" | "connecting" | "connected">("ready");
+  const [activeSection, setActiveSection] = useState("home");
   const messageEndRef = useRef<HTMLDivElement>(null);
 
   const visibleTutors = useMemo(
@@ -134,7 +141,9 @@ const AITutor = () => {
     [subject],
   );
 
-  useEffect(() => messageEndRef.current?.scrollIntoView({ behavior: "smooth" }), [messages, isSending]);
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isSending]);
 
   useEffect(() => {
     if (callStatus !== "connected") return;
@@ -142,9 +151,13 @@ const AITutor = () => {
     return () => window.clearInterval(timer);
   }, [callStatus]);
 
-  useEffect(() => () => window.speechSynthesis?.cancel(), []);
+  useEffect(() => {
+    return () => {
+      window.speechSynthesis?.cancel();
+    };
+  }, []);
 
-  const startTutor = (tutor: Tutor, starter?: string) => {
+  const startTutor = (tutor: Tutor, starter?: string, sendImmediately = false) => {
     setSelectedTutor(tutor);
     setMessages([
       {
@@ -152,7 +165,8 @@ const AITutor = () => {
         content: `Namaste! I’m ${tutor.name}, your ${tutor.subject} learning companion for Class ${grade}. What would you like to understand today?`,
       },
     ]);
-    setInput(starter || "");
+    setInput(sendImmediately ? "" : starter || "");
+    setPendingPrompt(sendImmediately ? starter || "" : "");
   };
 
   const sendMessage = async (event?: FormEvent, override?: string) => {
@@ -168,19 +182,26 @@ const AITutor = () => {
       const response = await fetch("/api/tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: content, grade, subject: selectedTutor.subject, tutorName: selectedTutor.name, history: nextMessages.slice(-10) }),
+        body: JSON.stringify({ message: content, grade, board, language, learningLevel, subject: selectedTutor.subject, tutorName: selectedTutor.name, history: nextMessages.slice(-10) }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "The tutor could not respond.");
       const reply = data.reply as string;
       setMessages((current) => [...current, { role: "assistant", content: reply }]);
-      speakText(reply, voiceReplies || callStatus === "connected");
+      speakText(reply, voiceReplies || callStatus === "connected", language);
     } catch (error) {
       setMessages((current) => [...current, { role: "assistant", content: `I couldn’t connect just now. ${extractErrorMessage(error)}` }]);
     } finally {
       setIsSending(false);
     }
   };
+
+  useEffect(() => {
+    if (!pendingPrompt || !selectedTutor || isSending) return;
+    const prompt = pendingPrompt;
+    setPendingPrompt("");
+    void sendMessage(undefined, prompt);
+  }, [pendingPrompt, selectedTutor]);
 
   const startListening = (onResult?: (value: string) => void) => {
     const speechWindow = window as typeof window & {
@@ -193,7 +214,7 @@ const AITutor = () => {
       return;
     }
     const recognition = new SpeechRecognition();
-    recognition.lang = "en-IN";
+    recognition.lang = language === "Hindi" ? "hi-IN" : "en-IN";
     recognition.interimResults = false;
     recognition.continuous = false;
     recognition.onstart = () => setIsListening(true);
@@ -243,6 +264,11 @@ const AITutor = () => {
 
   const formatDuration = (seconds: number) => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 
+  const goToSection = (section: string) => {
+    setActiveSection(section);
+    document.getElementById(section)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="min-h-screen bg-[#f7f8fb] text-slate-900">
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
@@ -278,8 +304,14 @@ const AITutor = () => {
               <select id="grade" value={grade} onChange={(e) => setGrade(e.target.value)} className="mb-4 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-bold outline-none focus:border-orange-400">
                 {[6, 7, 8, 9, 10, 11, 12].map((value) => <option key={value} value={value}>Class {value}</option>)}
               </select>
+              <label className="mb-1.5 block text-xs font-bold text-slate-600" htmlFor="board">School board</label>
+              <select id="board" value={board} onChange={(e) => setBoard(e.target.value)} className="mb-4 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-bold outline-none focus:border-orange-400"><option>CBSE</option><option>ICSE</option><option>State Board</option></select>
+              <label className="mb-1.5 block text-xs font-bold text-slate-600" htmlFor="language">Tutor language</label>
+              <select id="language" value={language} onChange={(e) => setLanguage(e.target.value)} className="mb-4 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-bold outline-none focus:border-orange-400"><option>English</option><option>Hindi</option><option>Hinglish</option></select>
+              <label className="mb-1.5 block text-xs font-bold text-slate-600" htmlFor="level">Starting level</label>
+              <select id="level" value={learningLevel} onChange={(e) => setLearningLevel(e.target.value)} className="mb-4 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-bold outline-none focus:border-orange-400"><option>Foundation</option><option>Easy</option><option>Standard</option></select>
               <nav className="space-y-1" aria-label="Tutor sections">
-                {[{ label: "Tutor home", icon: Bot, active: true }, { label: "My learning", icon: BookOpen }, { label: "Practice", icon: BrainCircuit }, { label: "Achievements", icon: Trophy }].map((item) => <button key={item.label} className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-bold ${item.active ? "bg-[#d0510f] text-white" : "text-slate-600 hover:bg-slate-50"}`}><item.icon className="h-4 w-4" />{item.label}</button>)}
+                {[{ label: "Tutor home", icon: Bot, id: "home" }, { label: "My learning", icon: BookOpen, id: "my-learning" }, { label: "Practice", icon: BrainCircuit, id: "practice" }, { label: "Achievements", icon: Trophy, id: "achievements" }].map((item) => <button key={item.label} onClick={() => goToSection(item.id)} className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-bold ${activeSection === item.id ? "bg-[#d0510f] text-white" : "text-slate-600 hover:bg-slate-50"}`}><item.icon className="h-4 w-4" />{item.label}</button>)}
               </nav>
             </div>
             <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-[#004aad] to-[#052a62] p-5 text-white shadow-lg">
@@ -293,7 +325,7 @@ const AITutor = () => {
         </aside>
 
         <section className="min-w-0 space-y-7">
-          <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#fff5ed] via-white to-[#edf4ff] p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <div id="home" className="relative scroll-mt-28 overflow-hidden rounded-[28px] bg-gradient-to-br from-[#fff5ed] via-white to-[#edf4ff] p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
             <div className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-orange-200/40 blur-3xl" />
             <div className="absolute bottom-0 right-16 h-40 w-40 rounded-full bg-blue-200/30 blur-3xl" />
             <div className="relative max-w-2xl">
@@ -310,15 +342,17 @@ const AITutor = () => {
             </div>
           </div>
 
+          <StudentIntelligenceSuite grade={grade} board={board} language={language} level={learningLevel} onLanguageChange={setLanguage} />
+
           <div>
-            <div className="mb-4 flex items-end justify-between"><div><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#d0510f]">Explore</p><h2 className="mt-1 font-poppins text-xl font-extrabold sm:text-2xl">Choose your subject</h2></div><span className="text-xs font-semibold text-slate-400">Class {grade} · CBSE</span></div>
+            <div className="mb-4 flex items-end justify-between"><div><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#d0510f]">Explore</p><h2 className="mt-1 font-poppins text-xl font-extrabold sm:text-2xl">Choose your subject</h2></div><span className="text-xs font-semibold text-slate-400">Class {grade} · {board}</span></div>
             <div className="flex gap-3 overflow-x-auto pb-3 [scrollbar-width:none]">
               <button onClick={() => setSubject("All subjects")} className={`min-w-fit rounded-2xl border p-4 text-left transition ${subject === "All subjects" ? "border-[#d0510f] bg-orange-50 shadow-sm" : "border-slate-200 bg-white hover:border-orange-200"}`}><Sparkles className="mb-3 h-5 w-5 text-[#d0510f]" /><span className="block text-sm font-extrabold">All subjects</span></button>
               {SUBJECTS.map((item) => <button key={item.name} onClick={() => setSubject(item.name)} className={`min-w-[145px] rounded-2xl border p-4 text-left transition ${subject === item.name ? "border-[#d0510f] bg-orange-50 shadow-sm" : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-orange-200"}`}><span className={`mb-3 flex h-9 w-9 items-center justify-center rounded-xl ${item.color}`}><item.icon className="h-5 w-5" /></span><span className="block text-sm font-extrabold">{item.name}</span></button>)}
             </div>
           </div>
 
-          <LearningSuite grade={grade} currentSubject={subject} />
+          <LearningSuite grade={grade} currentSubject={subject} board={board} />
 
           <div>
             <div className="mb-4 flex items-end justify-between"><div><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#004aad]">Recommended for you</p><h2 className="mt-1 font-poppins text-xl font-extrabold sm:text-2xl">Meet your AI tutors</h2></div><button onClick={() => setSubject("All subjects")} className="text-xs font-bold text-[#d0510f]">View all</button></div>
@@ -351,12 +385,12 @@ const AITutor = () => {
         <div className="fixed inset-0 z-50 flex bg-slate-950/45 p-0 backdrop-blur-sm sm:p-4" role="dialog" aria-modal="true" aria-label={`Study with ${selectedTutor.name}`}>
           <div className="m-auto flex h-full w-full max-w-5xl flex-col overflow-hidden bg-white shadow-2xl sm:h-[92vh] sm:rounded-[28px]">
             <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 sm:px-6">
-              <div className="flex items-center gap-3"><TutorAvatar tutor={selectedTutor} src={avatarImages[selectedTutor.id]} size="sm" /><div><div className="flex items-center gap-2"><h2 className="text-sm font-extrabold sm:text-base">{selectedTutor.name}</h2><span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-emerald-700">ONLINE</span></div><p className="text-xs font-semibold text-slate-400">{selectedTutor.subject} · CBSE Class {grade}</p></div></div>
+              <div className="flex items-center gap-3"><TutorAvatar tutor={selectedTutor} src={avatarImages[selectedTutor.id]} size="sm" /><div><div className="flex items-center gap-2"><h2 className="text-sm font-extrabold sm:text-base">{selectedTutor.name}</h2><span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-emerald-700">ONLINE</span></div><p className="text-xs font-semibold text-slate-400">{selectedTutor.subject} · {board} Class {grade} · {language} · {learningLevel}</p></div></div>
               <div className="flex items-center gap-2"><button onClick={() => openCall(selectedTutor)} className="hidden items-center gap-2 rounded-xl bg-[#d0510f] px-4 py-2 text-xs font-extrabold text-white sm:flex"><Phone className="h-3.5 w-3.5" /> Call tutor</button><button onClick={() => { setSelectedTutor(null); window.speechSynthesis?.cancel(); }} className="rounded-xl border border-slate-200 p-2" aria-label="Close tutor"><X className="h-5 w-5" /></button></div>
             </div>
             <div className="flex-1 overflow-y-auto bg-[#f8f9fc] px-4 py-6 sm:px-8">
               <div className="mx-auto max-w-3xl space-y-5">
-                <div className="mb-8 text-center"><TutorAvatar tutor={selectedTutor} src={avatarImages[selectedTutor.id]} size="lg" /><h3 className="mt-5 font-poppins text-xl font-extrabold">Let’s make learning simple and clear</h3><p className="mt-2 text-sm text-slate-500">Ask anything from your Class {grade} CBSE {selectedTutor.subject} syllabus.</p><div className="mt-4 flex flex-wrap justify-center gap-2">{QUICK_PROMPTS.map((prompt) => <button key={prompt} onClick={() => setInput(prompt)} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 shadow-sm hover:border-orange-200 hover:text-[#d0510f]">{prompt}</button>)}</div></div>
+                <div className="mb-8 text-center"><TutorAvatar tutor={selectedTutor} src={avatarImages[selectedTutor.id]} size="lg" /><h3 className="mt-5 font-poppins text-xl font-extrabold">Let’s make learning simple and clear</h3><p className="mt-2 text-sm text-slate-500">Ask anything from your {board} Class {grade} {selectedTutor.subject} syllabus.</p><div className="mt-4 flex flex-wrap justify-center gap-2">{QUICK_PROMPTS.map((prompt) => <button key={prompt} disabled={isSending} onClick={() => sendMessage(undefined, prompt)} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 shadow-sm hover:border-orange-200 hover:text-[#d0510f] disabled:opacity-50">{prompt}</button>)}</div></div>
                 {messages.map((message, index) => <div key={`${message.role}-${index}`} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}><div className={`max-w-[88%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === "user" ? "rounded-br-md bg-[#004aad] text-white" : "rounded-bl-md border border-slate-200 bg-white text-slate-700 shadow-sm"}`}>{message.content}</div></div>)}
                 {isSending && <div className="flex justify-start"><div className="flex items-center gap-2 rounded-2xl rounded-bl-md border border-slate-200 bg-white px-4 py-3 text-sm text-slate-500"><Loader2 className="h-4 w-4 animate-spin text-[#d0510f]" /> Thinking through your question…</div></div>}
                 <div ref={messageEndRef} />

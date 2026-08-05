@@ -158,6 +158,12 @@ const Header = () => {
         </nav>
       </div>
 
+      {/* <div>
+        <h1>
+          <span>test section for Header</span>
+        </h1>
+      </div> */}
+
       {isMenuOpen && (
         <div
           onClick={() => setIsMenuOpen(false)}

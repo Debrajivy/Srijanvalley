@@ -1,5 +1,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import {
+  Award,
+  BarChart3,
   BookOpen,
   BrainCircuit,
   Check,
@@ -44,6 +46,7 @@ type ToolItem = {
 type ToolResult = { title: string; summary: string; items: ToolItem[]; script: string };
 type Book = { id: string; title: string; subject: string; classes: number[]; category: string; accent: string; icon: string };
 type Goal = { id: string; title: string; description: string; complete: boolean };
+type QuizAttempt = { id: string; topic: string; subject: string; score: number; total: number; percentage: number; date: string };
 
 const SUBJECT_NAMES = ["Mathematics", "Science", "Physics", "Chemistry", "Biology", "English", "Hindi", "Social Science", "Computer Science", "Accountancy", "Business Studies", "Economics"];
 
@@ -86,7 +89,7 @@ function getError(value: unknown) {
   return value instanceof Error ? value.message : "Could not generate this learning activity.";
 }
 
-export default function LearningSuite({ grade, currentSubject }: { grade: string; currentSubject: string }) {
+export default function LearningSuite({ grade, currentSubject, board = "CBSE" }: { grade: string; currentSubject: string; board?: string }) {
   const [activeTool, setActiveTool] = useState<ToolId | null>(null);
   const [topic, setTopic] = useState("");
   const [toolSubject, setToolSubject] = useState(currentSubject === "All subjects" ? "Science" : currentSubject);
@@ -112,11 +115,15 @@ export default function LearningSuite({ grade, currentSubject }: { grade: string
   const [bookQuestion, setBookQuestion] = useState("");
   const [bookChat, setBookChat] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
   const [bookChatLoading, setBookChatLoading] = useState(false);
+  const [quizHistory, setQuizHistory] = useState<QuizAttempt[]>([]);
+  const [savedQuizKey, setSavedQuizKey] = useState("");
 
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem("srijan-ai-goals");
       if (stored) setGoals(JSON.parse(stored));
+      const attempts = window.localStorage.getItem("srijan-ai-quiz-history");
+      if (attempts) setQuizHistory(JSON.parse(attempts));
     } catch { /* local storage can be unavailable in private contexts */ }
   }, []);
 
@@ -124,7 +131,15 @@ export default function LearningSuite({ grade, currentSubject }: { grade: string
     try { window.localStorage.setItem("srijan-ai-goals", JSON.stringify(goals)); } catch { /* no-op */ }
   }, [goals]);
 
-  useEffect(() => () => window.speechSynthesis?.cancel(), []);
+  useEffect(() => {
+    try { window.localStorage.setItem("srijan-ai-quiz-history", JSON.stringify(quizHistory)); } catch { /* no-op */ }
+  }, [quizHistory]);
+
+  useEffect(() => {
+    return () => {
+      window.speechSynthesis?.cancel();
+    };
+  }, []);
 
   const filteredBooks = useMemo(() => BOOKS.filter((book) =>
     book.category === bookCategory
@@ -141,6 +156,7 @@ export default function LearningSuite({ grade, currentSubject }: { grade: string
     setCardIndex(0);
     setFlipped(false);
     setQuizAnswers({});
+    setSavedQuizKey("");
   };
 
   const generate = async (event?: FormEvent, book?: Book) => {
@@ -156,7 +172,7 @@ export default function LearningSuite({ grade, currentSubject }: { grade: string
       const response = await fetch("/api/learning-tool", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode, topic: learningTopic, grade, subject: book?.subject || toolSubject, difficulty, count: Number(count), language, bookTitle: book?.title }),
+        body: JSON.stringify({ mode, topic: learningTopic, grade, board, subject: book?.subject || toolSubject, difficulty, count: Number(count), language, bookTitle: book?.title }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Generation failed.");
@@ -220,10 +236,26 @@ export default function LearningSuite({ grade, currentSubject }: { grade: string
   };
 
   const quizScore = result.items.reduce((score, item, index) => score + (quizAnswers[index] === item.answer ? 1 : 0), 0);
+  const quizComplete = activeTool === "quiz" && result.items.length > 0 && Object.keys(quizAnswers).length === result.items.length;
+  const quizKey = `${result.title}-${quizScore}-${result.items.length}`;
+
+  useEffect(() => {
+    if (!quizComplete || savedQuizKey === quizKey) return;
+    const attempt: QuizAttempt = { id: `${Date.now()}`, topic: result.title || topic, subject: toolSubject, score: quizScore, total: result.items.length, percentage: Math.round((quizScore / result.items.length) * 100), date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) };
+    setQuizHistory((current) => [attempt, ...current].slice(0, 20));
+    setSavedQuizKey(quizKey);
+  }, [quizComplete, quizKey, quizScore, result.items.length, result.title, savedQuizKey, toolSubject, topic]);
+
+  const averageMark = quizHistory.length ? Math.round(quizHistory.reduce((sum, attempt) => sum + attempt.percentage, 0) / quizHistory.length) : 0;
+  const bestMark = quizHistory.length ? Math.max(...quizHistory.map((attempt) => attempt.percentage)) : 0;
   const currentTool = TOOLS.find((tool) => tool.id === activeTool);
 
   return (
     <>
+      <section id="my-learning" className="scroll-mt-28 overflow-hidden rounded-[30px] bg-gradient-to-br from-[#061b3f] via-[#004aad] to-[#087ecb] p-6 text-white shadow-xl sm:p-8">
+        <div className="grid gap-7 lg:grid-cols-[1.15fr_.85fr]"><div><span className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-cyan-200">My learning command centre</span><h2 className="mt-4 font-poppins text-3xl font-extrabold sm:text-4xl">Know what to learn next—without guessing.</h2><p className="mt-3 max-w-2xl text-sm leading-7 text-blue-100">Your lessons, goals, practice activity and quiz evidence come together here. Complete a quiz and the dashboard automatically updates your marks, strongest areas and next revision priorities.</p><div className="mt-6 grid grid-cols-3 gap-3"><div className="rounded-2xl bg-white/10 p-4"><p className="text-2xl font-black">{goals.filter((goal) => !goal.complete).length}</p><p className="mt-1 text-xs text-blue-100">Active goals</p></div><div className="rounded-2xl bg-white/10 p-4"><p className="text-2xl font-black">{quizHistory.length}</p><p className="mt-1 text-xs text-blue-100">Quizzes taken</p></div><div className="rounded-2xl bg-white/10 p-4"><p className="text-2xl font-black">{averageMark}%</p><p className="mt-1 text-xs text-blue-100">Average mark</p></div></div></div><div className="rounded-[24px] border border-white/15 bg-white/10 p-5 backdrop-blur"><p className="text-xs font-extrabold uppercase tracking-widest text-cyan-200">Today’s learning route</p>{[{ n: "01", t: "Learn", d: "Understand one concept with your AI tutor" }, { n: "02", t: "Practise", d: "Attempt a targeted quiz or flashcard set" }, { n: "03", t: "Improve", d: "Review mistakes and add weak areas to revision" }].map((step) => <div key={step.n} className="mt-4 flex gap-3 rounded-xl bg-white/10 p-3"><span className="font-black text-amber-300">{step.n}</span><div><p className="text-sm font-extrabold">{step.t}</p><p className="mt-0.5 text-xs text-blue-100">{step.d}</p></div></div>)}</div></div>
+      </section>
+
       <section id="practice" className="scroll-mt-28 rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#d0510f]">Create & practise</p><h2 className="mt-1 font-poppins text-xl font-extrabold sm:text-2xl">AI learning tools</h2><p className="mt-1 text-sm text-slate-500">Build a personalised study resource in seconds.</p></div>
@@ -238,9 +270,15 @@ export default function LearningSuite({ grade, currentSubject }: { grade: string
         </div>
       </section>
 
+      <section id="achievements" className="scroll-mt-28 rounded-[30px] border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#d0510f]">Achievements & quiz marks</p><h2 className="mt-1 font-poppins text-2xl font-extrabold">Your progress, clearly measured</h2><p className="mt-2 text-sm text-slate-500">Every completed quiz is saved on this device and appears here automatically.</p></div><div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-600"><Trophy className="h-7 w-7" /></div></div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3"><div className="rounded-2xl bg-blue-50 p-5"><BarChart3 className="h-5 w-5 text-[#004aad]" /><p className="mt-4 text-3xl font-black text-[#004aad]">{averageMark}%</p><p className="mt-1 text-xs font-bold text-slate-500">Average quiz mark</p></div><div className="rounded-2xl bg-emerald-50 p-5"><Award className="h-5 w-5 text-emerald-600" /><p className="mt-4 text-3xl font-black text-emerald-700">{bestMark}%</p><p className="mt-1 text-xs font-bold text-slate-500">Personal best</p></div><div className="rounded-2xl bg-orange-50 p-5"><FileQuestion className="h-5 w-5 text-[#d0510f]" /><p className="mt-4 text-3xl font-black text-[#d0510f]">{quizHistory.length}</p><p className="mt-1 text-xs font-bold text-slate-500">Tests completed</p></div></div>
+        <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200"><div className="grid grid-cols-[1fr_76px] bg-slate-900 px-4 py-3 text-xs font-extrabold uppercase tracking-wider text-white sm:grid-cols-[1fr_120px_100px_90px]"><span>Quiz</span><span className="hidden sm:block">Date</span><span className="hidden sm:block">Score</span><span className="text-right">Mark</span></div>{quizHistory.length ? quizHistory.map((attempt) => <div key={attempt.id} className="grid grid-cols-[1fr_76px] items-center border-t border-slate-100 px-4 py-4 sm:grid-cols-[1fr_120px_100px_90px]"><div><p className="text-sm font-extrabold">{attempt.topic}</p><p className="mt-1 text-xs text-slate-500">{attempt.subject}</p></div><span className="hidden text-xs font-semibold text-slate-500 sm:block">{attempt.date}</span><span className="hidden text-sm font-extrabold sm:block">{attempt.score}/{attempt.total}</span><span className={`text-right text-lg font-black ${attempt.percentage >= 80 ? "text-emerald-600" : attempt.percentage >= 50 ? "text-amber-600" : "text-rose-600"}`}>{attempt.percentage}%</span></div>) : <div className="p-10 text-center"><FileQuestion className="mx-auto h-9 w-9 text-slate-300" /><p className="mt-3 font-extrabold">Your first mark will appear here</p><p className="mt-1 text-sm text-slate-500">Open Practice → Quiz Me, answer every question, and the result will be saved.</p></div>}</div>
+      </section>
+
       {activeTool && currentTool && <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/65 p-3 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={currentTool.title}>
         <div className="flex max-h-[94vh] w-full max-w-4xl flex-col overflow-hidden rounded-[26px] bg-white shadow-2xl">
-          <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 sm:px-6"><div className="flex items-center gap-3"><span className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${currentTool.colors} text-white`}><currentTool.icon className="h-5 w-5" /></span><div><h2 className="font-poppins text-lg font-extrabold">{currentTool.title}</h2><p className="text-xs text-slate-500">CBSE Class {grade} personalised learning</p></div></div><button onClick={() => { setActiveTool(null); window.speechSynthesis?.cancel(); }} className="rounded-xl border border-slate-200 p-2"><X className="h-5 w-5" /></button></div>
+              <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 sm:px-6"><div className="flex items-center gap-3"><span className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${currentTool.colors} text-white`}><currentTool.icon className="h-5 w-5" /></span><div><h2 className="font-poppins text-lg font-extrabold">{currentTool.title}</h2><p className="text-xs text-slate-500">{board} Class {grade} personalised learning</p></div></div><button onClick={() => { setActiveTool(null); window.speechSynthesis?.cancel(); }} className="rounded-xl border border-slate-200 p-2"><X className="h-5 w-5" /></button></div>
           <div className="overflow-y-auto p-5 sm:p-6">
             {!result.title ? <form onSubmit={generate} className="mx-auto max-w-3xl">
               <div className="mb-5 flex items-center justify-between rounded-xl bg-blue-50 px-4 py-3 text-xs text-blue-800"><span className="flex items-center gap-2 font-bold"><Lightbulb className="h-4 w-4" /> Pro tip</span><span className="hidden sm:inline">Be specific: “Light reflection and mirrors” works better than “Physics”.</span></div>
