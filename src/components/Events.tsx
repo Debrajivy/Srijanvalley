@@ -48,6 +48,8 @@ import indc4 from "../assets/indc4.jpeg";
 import indc5 from "../assets/indc5.jpeg";
 import indc6 from "../assets/indc6.jpeg";
 import indc7 from "../assets/indc7.jpeg";
+import simg1 from "../assets/simg1.jpeg";
+import simg2 from "../assets/simg2.jpeg";
 
 // --- NEW RANGOLI ASSETS (11 Images - Removed Rangoli2) ---
 import Rangoli1 from "../assets/Rangoli1.webp";
@@ -154,7 +156,7 @@ const UNIT_TEST_II_ROUTINE = [
     { date: "06/08", subjects: ["—", "—", "—", "—", "—", "Hindi", "SST"] },
 ];
 
-type ScheduleType = "regular" | "test" | "holiday" | "activity";
+type ScheduleType = "regular" | "test" | "exam" | "holiday" | "activity";
 
 const JULY_2026_SCHEDULE: Array<{ date: string; day: string; event: string; type: ScheduleType }> = [
     { date: "01 July", day: "Wed", event: "Regular Classes", type: "regular" },
@@ -224,8 +226,58 @@ const AUGUST_2026_SCHEDULE: Array<{ date: string; day: string; event: string; ty
     { date: "31 August", day: "Mon", event: "Regular Classes", type: "regular" },
 ];
 
+const SEPTEMBER_2026_SCHEDULE: Array<{ date: string; day: string; event: string; type: ScheduleType }> = [
+    { date: "01 September", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "02 September", day: "Wed", event: "Inter-House Debate Competition (Std IV & V)", type: "activity" },
+    { date: "03 September", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "04 September", day: "Fri", event: "Holiday (Janmashtami)", type: "holiday" },
+    { date: "05 September", day: "Sat", event: "Teachers' Day Celebration", type: "activity" },
+    { date: "06 September", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "07 September", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "08 September", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "09 September", day: "Wed", event: "Elocution Competition (Std I, II & III)", type: "activity" },
+    { date: "10 September", day: "Thu", event: "Regular Classes", type: "regular" },
+    { date: "11 September", day: "Fri", event: "Regular Classes", type: "regular" },
+    { date: "12 September", day: "Sat", event: "Holiday (2nd Saturday)", type: "holiday" },
+    { date: "13 September", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "14 September", day: "Mon", event: "Regular Classes & Celebration of Hindi Diwas", type: "activity" },
+    { date: "15 September", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "16 September", day: "Wed", event: "Mid-Term Exam", type: "exam" },
+    { date: "17 September", day: "Thu", event: "Holiday (Vishwakarma Puja)", type: "holiday" },
+    { date: "18 September", day: "Fri", event: "Mid-Term Exam", type: "exam" },
+    { date: "19 September", day: "Sat", event: "Mid-Term Exam", type: "exam" },
+    { date: "20 September", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "21 September", day: "Mon", event: "Mid-Term Exam", type: "exam" },
+    { date: "22 September", day: "Tue", event: "Mid-Term Exam", type: "exam" },
+    { date: "23 September", day: "Wed", event: "Holiday (Karma Puja Celebration)", type: "holiday" },
+    { date: "24 September", day: "Thu", event: "Regular Classes & Exam of Std VI & VII", type: "exam" },
+    { date: "25 September", day: "Fri", event: "Regular Classes & Exam of Std VI & VII", type: "exam" },
+    { date: "26 September", day: "Sat", event: "Regular Classes", type: "regular" },
+    { date: "27 September", day: "Sun", event: "Holiday", type: "holiday" },
+    { date: "28 September", day: "Mon", event: "Regular Classes", type: "regular" },
+    { date: "29 September", day: "Tue", event: "Regular Classes", type: "regular" },
+    { date: "30 September", day: "Wed", event: "Hindi Essay Writing Competition (Std IV–VII)", type: "activity" },
+];
+
 // --- 3. Actual Event Data (New Categories Added) ---
 const EVENTS: Event[] = [
+    {
+        id: 133,
+        category: "Inter-School Hindi Recitation Competition",
+        title: "Young Voices Shine at the Hindi Recitation Competition",
+        previewPhoto: simg1,
+        description: "Nayra Anam of Standard II and Jiya Kumari of Nursery represented Srijan Valley School with confidence, clarity and enthusiasm.",
+        dateLocation: "International Library and Cultural Centre, Ranchi",
+        details: [
+            "Srijan Valley School proudly participated in an Inter-School Hindi Recitation Competition organised by the International Library and Cultural Centre, Ranchi.",
+            "Nayra Anam of Standard II and Jiya Kumari of Nursery represented the school in the competition. Both young participants presented their poems with great confidence, clarity and enthusiasm. Their expressions, voice modulation and overall presentation were highly appreciated by the audience.",
+            "The school congratulates Nayra Anam and Jiya Kumari for their commendable performances and wishes them continued success in all their future endeavours.",
+        ],
+        photos: [
+            { id: 6501, url: simg1, description: "Nayra Anam and Jiya Kumari participating in the Inter-School Hindi Recitation Competition at the International Library and Cultural Centre, Ranchi." },
+            { id: 6502, url: simg2, description: "Nayra Anam and Jiya Kumari with their certificates after their commendable Hindi recitation performances." },
+        ],
+    },
     // --- INTER-HOUSE DEBATE COMPETITION & PRIZE DISTRIBUTION CEREMONY ---
     ...[indc1, indc2, indc3, indc4, indc5, indc6, indc7].map((photo, index): Event => ({
         id: 125 + index,
@@ -1253,11 +1305,18 @@ const SpellathonCompetitionResult: React.FC = () => (
 const SCHEDULE_TYPE_STYLES: Record<ScheduleType, { label: string; className: string }> = {
     regular: { label: "Classes", className: "bg-emerald-50 text-emerald-700 ring-emerald-200" },
     test: { label: "Unit Test", className: "bg-blue-50 text-blue-700 ring-blue-200" },
+    exam: { label: "Examination", className: "bg-violet-50 text-violet-700 ring-violet-200" },
     holiday: { label: "Holiday", className: "bg-gray-100 text-gray-600 ring-gray-200" },
     activity: { label: "Activity", className: "bg-orange-50 text-[#c84e10] ring-orange-200" },
 };
 
-const AugustActivitySchedule: React.FC = () => (
+interface MonthlyActivityScheduleProps {
+    month: string;
+    schedule: Array<{ date: string; day: string; event: string; type: ScheduleType }>;
+    note?: string;
+}
+
+const MonthlyActivitySchedule: React.FC<MonthlyActivityScheduleProps> = ({ month, schedule, note }) => (
     <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
         <div className="relative overflow-hidden bg-gradient-to-br from-[#c84e10] via-[#df5b15] to-[#f07a27] px-5 py-8 text-white sm:px-8 md:px-10 md:py-10">
             <div className="absolute -right-12 -top-16 h-48 w-48 rounded-full bg-white/10" aria-hidden="true" />
@@ -1268,14 +1327,14 @@ const AugustActivitySchedule: React.FC = () => (
                         Monthly Planner
                     </div>
                     <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">
-                        Activity Schedule for August 2026
+                        Activity Schedule for {month} 2026
                     </h2>
                     <p className="mt-3 max-w-2xl text-sm leading-6 text-orange-50 sm:text-base">
                         Classes, unit tests, holidays, competitions, and student activities planned for the month.
                     </p>
                 </div>
                 <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl border border-white/25 bg-white/15 backdrop-blur-sm">
-                    <span className="text-xs font-bold uppercase tracking-widest text-orange-100">August</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-orange-100">{month}</span>
                     <span className="text-2xl font-extrabold">2026</span>
                 </div>
             </div>
@@ -1298,7 +1357,7 @@ const AugustActivitySchedule: React.FC = () => (
                     <span>Type</span>
                 </div>
                 <div className="divide-y divide-gray-100">
-                    {AUGUST_2026_SCHEDULE.map((item) => (
+                    {schedule.map((item) => (
                         <div
                             key={item.date}
                             className={`grid grid-cols-[76px_1fr] items-center gap-x-3 gap-y-2 px-4 py-3 sm:grid-cols-[110px_80px_1fr_100px] sm:px-5 ${item.type === "holiday" ? "bg-gray-50/80" : "hover:bg-orange-50/50"}`}
@@ -1318,11 +1377,86 @@ const AugustActivitySchedule: React.FC = () => (
             </div>
 
             <p className="mt-4 text-center text-xs leading-5 text-gray-500">
-                Schedule updates, examinations, activities, and published results will be shared on the website as they become available.
+                {note || "Schedule updates, examinations, activities, and published results will be shared on the website as they become available."}
             </p>
         </div>
     </section>
 );
+
+const HindiRecitationCompetitionFeature: React.FC = () => {
+    const videoUrl = "https://drive.google.com/file/d/1EWuiuMdSfSLrhS_whvbaSjuiyfZMiEhT/preview";
+    const [expandedImage, setExpandedImage] = useState<{ src: string; alt: string } | null>(null);
+
+    return (
+        <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+            <div className="grid lg:grid-cols-[minmax(320px,0.9fr)_1.1fr]">
+                <div className="relative min-h-[500px] overflow-hidden bg-gray-950 sm:min-h-[620px] lg:min-h-[680px]">
+                    <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src={videoUrl}
+                        title="Hindi Recitation Competition at the International Library and Cultural Centre"
+                        allow="autoplay; fullscreen"
+                        allowFullScreen
+                    />
+                </div>
+
+                <div className="flex flex-col justify-center px-5 py-9 sm:px-8 md:px-10 lg:py-12">
+                    <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-orange-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#d0510f] ring-1 ring-inset ring-orange-100">
+                        <Award className="h-4 w-4" />
+                        Student Achievement
+                    </div>
+                    <h2 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl">
+                        Inter-School <span className="text-[#d0510f]">Hindi Recitation Competition</span>
+                    </h2>
+                    <p className="mt-3 text-sm font-semibold text-gray-500">International Library and Cultural Centre, Ranchi</p>
+
+                    <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600 sm:text-base">
+                        <p>Srijan Valley School proudly participated in an Inter-School Hindi Recitation Competition organised by the International Library and Cultural Centre, Ranchi.</p>
+                        <p><strong className="font-bold text-gray-900">Nayra Anam of Standard II</strong> and <strong className="font-bold text-gray-900">Jiya Kumari of Nursery</strong> represented the school. Both young participants presented their poems with great confidence, clarity and enthusiasm. Their expressions, voice modulation and overall presentation were highly appreciated by the audience.</p>
+                    </div>
+
+                    <div className="mt-7 grid grid-cols-2 gap-3">
+                        {[
+                            { src: simg1, alt: "Students at the Hindi Recitation Competition" },
+                            { src: simg2, alt: "Nayra Anam and Jiya Kumari holding their certificates" },
+                        ].map((image) => (
+                            <button
+                                key={image.src}
+                                type="button"
+                                onClick={() => setExpandedImage(image)}
+                                className="group relative flex h-32 items-center justify-center overflow-hidden rounded-xl border border-gray-200 bg-gray-100 shadow-sm sm:h-40 lg:h-44"
+                                aria-label={`Expand ${image.alt}`}
+                            >
+                                <img src={image.src} alt={image.alt} className="h-full w-full object-contain" />
+                                <span className="absolute right-2 top-2 rounded-full bg-black/65 p-2 text-white">
+                                    <Maximize className="h-4 w-4" />
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="mt-7 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4">
+                        <p className="font-semibold leading-6 text-gray-800">The school congratulates Nayra Anam and Jiya Kumari for their commendable performances and wishes them continued success in all their future endeavours.</p>
+                    </div>
+                </div>
+            </div>
+
+            {expandedImage && (
+                <div
+                    className="fixed inset-0 z-[120] flex items-center justify-center bg-black/95 p-2 sm:p-6"
+                    onClick={() => setExpandedImage(null)}
+                    role="dialog"
+                    aria-modal="true"
+                >
+                    <button type="button" onClick={() => setExpandedImage(null)} className="absolute right-3 top-3 z-10 rounded-full bg-white p-2.5 text-gray-900" aria-label="Close expanded image">
+                        <X className="h-6 w-6" />
+                    </button>
+                    <img src={expandedImage.src} alt={expandedImage.alt} className="max-h-[96vh] max-w-full object-contain" onClick={(event) => event.stopPropagation()} />
+                </div>
+            )}
+        </section>
+    );
+};
 
 const ReadingCompetitionFeature: React.FC = () => {
     const videoId = "s1EHo8zu7mk";
@@ -1516,7 +1650,15 @@ const Events: React.FC = () => {
             {/* section-container implementation: max-w-6xl retained for the 3-column grid */}
             <div className="px-4 mx-auto max-w-7xl md:max-w-4xl lg:max-w-6xl">
 
-                <AugustActivitySchedule />
+                <MonthlyActivitySchedule
+                    month="September"
+                    schedule={SEPTEMBER_2026_SCHEDULE}
+                    note="Pre-Nursery will have regular classes during the Mid-Term Examination from 16–22 September, from 8:30 a.m. to 12 noon."
+                />
+
+                <HindiRecitationCompetitionFeature />
+
+                <MonthlyActivitySchedule month="August" schedule={AUGUST_2026_SCHEDULE} />
 
                 <UnitTestIIRoutine />
 
