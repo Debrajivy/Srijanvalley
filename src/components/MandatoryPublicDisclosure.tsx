@@ -2,7 +2,6 @@ import React from 'react';
 
 const MandatoryPublicDisclosure = () => {
   // Data array based on your provided sequence and links
-  // UPDATED: Links reverted to /preview to open Google Drive's built-in viewer with download option
   const disclosures = [
     {
       id: 1,
@@ -53,6 +52,37 @@ const MandatoryPublicDisclosure = () => {
       id: 10,
       title: "Water Sample Test Report",
       link: "https://drive.google.com/file/d/1gRSy_Ec0wM_V2PXEcExeMZ2HGctzo83Q/preview"
+    },
+    // NEW ROWS ADDED BELOW
+    {
+      id: 11,
+      title: "Fee Structure",
+      link: "https://drive.google.com/file/d/1pKoCEEUO1foa_k5NxQnLxo0JQmVzKupV/preview"
+    },
+    {
+      id: 12,
+      title: "Annual Calendar",
+      link: "https://drive.google.com/file/d/11O_ABsfIfLwNu7-Z5IZ4xV9tmkrX2YVG/preview"
+    },
+    {
+      id: 13,
+      title: "School Managing Committee",
+      link: "https://drive.google.com/file/d/14WP0s8W59SSb5imAd3hFomNI2fZLqW23/preview"
+    },
+    {
+      id: 14,
+      title: "Parents Teachers Association",
+      link: "https://drive.google.com/file/d/1Pa0l2iyg3QyYPGb8LE71v_tUkBtqlaFd/preview"
+    },
+    {
+      id: 15,
+      title: "Board Result",
+      link: "#" // No download button, just a hash symbol
+    },
+    {
+      id: 16,
+      title: "Affiliation",
+      link: "#" // No download button, just a hash symbol
     }
   ];
 
@@ -102,14 +132,19 @@ const MandatoryPublicDisclosure = () => {
                       {item.title}
                     </td>
                     <td className="py-4 px-6 text-center">
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-[#d25411] hover:bg-[#d25411] text-white text-sm font-semibold py-2 px-6 rounded transition-colors duration-200 shadow-sm"
-                      >
-                        Download
-                      </a>
+                      {/* Conditional rendering: If link is '#', show just a hash. Otherwise show the Download button */}
+                      {item.link === '#' ? (
+                        <span className="text-gray-700 font-bold text-lg">#</span>
+                      ) : (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block bg-[#d25411] hover:bg-[#d25411] text-white text-sm font-semibold py-2 px-6 rounded transition-colors duration-200 shadow-sm"
+                        >
+                          Download
+                        </a>
+                      )}
                     </td>
                   </tr>
                 ))}
