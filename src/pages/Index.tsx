@@ -11,6 +11,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Events from '@/components/Events';
 import Media from '@/components/Media';
+import MandatoryPublicDisclosure from '@/components/MandatoryPublicDisclosure';
 // Assuming AdmissionTicker is located at '@/components/AdmissionTicker'
 import Results from '@/components/Results';
 
@@ -33,6 +34,7 @@ const Index = () => {
         <Media />
         <Team />
         <Gallery />
+        <MandatoryPublicDisclosure />
         <Contact />
         {/* <Results /> */}
         <Footer />

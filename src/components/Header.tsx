@@ -45,16 +45,20 @@ const Header = () => {
     { name: 'Events', href: '#events' },
     // { name: 'Events ', href: '#events' },
     { name: 'Gallery', href: '#gallery' },
-    { name: 'Media', href: '#media' },
+    { name: 'Mandatory Public Disclosure', href: '#mandatory-public-disclosure' },
     // { name: 'Contact Us', href: '#contact' },
   ];
 
   const handleNavClick = (href) => {
     setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    
+    // FIX 1: Added setTimeout to allow the mobile menu to close and body overflow to reset
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   return (
