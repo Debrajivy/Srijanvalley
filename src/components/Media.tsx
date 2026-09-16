@@ -23,6 +23,9 @@ import news4 from "../assets/news4.jpeg";
 import news5 from "../assets/news5.jpeg";
 import news6 from "../assets/news6.jpeg";
 import prabhatKhabar from "../assets/prabhatkhabar.jpeg";
+import hindusthanpatra from "../assets/hindusthanpatra.jpeg";
+import newimage from "../assets/new.jpeg";
+import prabhatnews from "../assets/prabhatnews.jpeg";
 
 const pressCoverage = [
     { image: pressImage, publication: "Dainik Bhaskar Feature" },
@@ -48,6 +51,9 @@ const pressCoverage = [
     { image: news5, publication: "Aaj" },
     { image: news6, publication: "Divya Dinkar News" },
     { image: prabhatKhabar, publication: "Prabhat Khabar" },
+    { image: prabhatnews, publication: "Prabhat Khabar" },
+    { image: hindusthanpatra, publication: "Hindusthan" },
+    { image: newimage, publication: "Dainik Bhaskar" },
 ];
 
 const Media = () => {

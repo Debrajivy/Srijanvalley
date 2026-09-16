@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 // Added ChevronLeft, ChevronRight for the new multiple-image lightbox
-import { Award, CalendarRange, Maximize, X, ChevronLeft, ChevronRight, BookOpenCheck, CalendarDays, Medal, Trophy } from "lucide-react";
+import { Award, CalendarRange, Maximize, X, ChevronLeft, ChevronRight, BookOpenCheck, CalendarDays, Medal, Trophy,Play  } from "lucide-react";
 
 // --- 1. Asset Imports (Existing and NEW) ---
 // Note: In a real Next.js/React project, you MUST ensure these files exist
@@ -105,7 +105,10 @@ import ifc7 from "../assets/ifc7.jpeg";
 import ifc8 from "../assets/ifc8.jpeg";
 import ifc9 from "../assets/ifc9.jpeg";
 import ifc10 from "../assets/ifc10.jpeg";
-
+import hindidiwas1 from "../assets/hindidiwas1.jpeg";
+import hindidiwas2 from "../assets/hindidiwas2.jpeg";
+import hindidiwas3 from "../assets/hindidiwas3.jpeg";
+import hindidiwas4 from "../assets/hindidiwas4.jpeg";
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -1071,8 +1074,48 @@ const EVENTS: Event[] = [
         photos: [{ id: 6105, url: ksc5, description: "Children and staff celebrating at the closing ceremony of the Kids Summer Camp." }],
     },
 
-
-
+    {
+        id: 116,
+        category: "Kids Summer Camp",
+        title: "Summer Camp Opening Day",
+        previewPhoto: ksc1,
+        description: "An exciting start to the Kids Summer Camp with enthusiastic young participants ready for a fun-filled experience.",
+        photos: [{ id: 6101, url: ksc1, description: "Students gathered on the opening day of the Kids Summer Camp." }],
+    },
+    // --- HINDI DIWAS CELEBRATION (1 Event) ---
+    // --- HINDI DIWAS CELEBRATION (4 Events) ---
+    {
+        id: 117,
+        category: "Hindi Diwas",
+        title: "Lamp Lighting & Saraswati Vandana",
+        previewPhoto: hindidiwas1,
+        description: "The Hindi Diwas celebration commenced with the ceremonial lighting of the lamp and Saraswati Vandana.",
+        photos: [{ id: 6106, url: hindidiwas1, description: "Ceremonial lighting of the lamp and Saraswati Vandana." }],
+    },
+    {
+        id: 118,
+        category: "Hindi Diwas",
+        title: "Director's Address on Hindi Heritage",
+        previewPhoto: hindidiwas2,
+        description: "School Director Dr. Renu Agarwal highlighted the importance of Hindi and its rich literary heritage.",
+        photos: [{ id: 6107, url: hindidiwas2, description: "School Director Dr. Renu Agarwal addressing the students." }],
+    },
+    {
+        id: 119,
+        category: "Hindi Diwas",
+        title: "Student Speeches & Recitations",
+        previewPhoto: hindidiwas3,
+        description: "Students presented engaging speeches, poem recitations, and Kabir's Dohas with confidence.",
+        photos: [{ id: 6108, url: hindidiwas3, description: "Students presenting speeches and reciting poems and Kabir's Dohas." }],
+    },
+    {
+        id: 120,
+        category: "Hindi Diwas",
+        title: "Cultural Performances & Conclusion",
+        previewPhoto: hindidiwas4,
+        description: "Colourful performances reflected the students' love for Hindi, concluding the celebration on an inspiring note.",
+        photos: [{ id: 6109, url: hindidiwas4, description: "Students giving colourful cultural performances on stage." }],
+    }
     // --- UNUSED ASSETS - You may want to categorize these separately ---
     // These imports haven't been used in your events array yet:
     // import Db from "../assets/Db.jpeg";
@@ -1511,7 +1554,138 @@ const ReadingCompetitionFeature: React.FC = () => {
         </section>
     );
 };
+const HindiDiwasFeature: React.FC = () => {
+    const videos = [
+        { id: "1bsLjBAng_Vh9bMoqS1yyZyJhhIGcSPJY", title: "Lamp Lighting & Saraswati Vandana" },
+        { id: "1gkmv6aKtiGaWzkCiRXuyFGnSdmS6AG0b", title: "Speeches & Poems by Students" },
+        { id: "1bsLjBAng_Vh9bMoqS1yyZyJhhIGcSPJY", title: "Kabir's Dohas Performance" },
+    ];
 
+    return (
+        <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+            <div className="grid lg:grid-cols-[minmax(300px,0.72fr)_1.28fr]">
+                {/* Left Column: 3 Short Videos in Horizontal Grid */}
+                <div className="relative flex flex-col items-center justify-center gap-3 overflow-hidden bg-gray-950 p-4 sm:min-h-[650px] lg:min-h-[620px]">
+                    {videos.map((video, index) => (
+                        <div
+                            key={`${video.id}-${index}`}
+                            className="group relative w-full overflow-hidden rounded-xl bg-black shadow-lg ring-1 ring-white/10"
+                        >
+                            <div className="relative aspect-video w-full">
+                                <iframe
+                                    className="absolute inset-0 h-full w-full"
+                                    src={`https://drive.google.com/file/d/${video.id}/preview`}
+                                    title={video.title}
+                                    allow="autoplay; encrypted-media; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
+                            <div className="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2">
+                                <p className="flex items-center gap-1.5 text-[11px] font-semibold text-white/90">
+                                    <Play className="h-3 w-3 fill-white" />
+                                    {video.title}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Right Column: Content */}
+                <div className="relative flex flex-col justify-center overflow-hidden px-5 py-9 sm:px-8 md:px-10 lg:py-12">
+                    <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-orange-50" aria-hidden="true" />
+                    <div className="relative">
+                        <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#d0510f] ring-1 ring-inset ring-orange-100">
+                            <Award className="h-4 w-4" />
+                            School Event
+                        </div>
+                        <h2 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl">
+                            Hindi Diwas Celebrated with <span className="text-[#d0510f]">Enthusiasm</span> at Srijan Valley School
+                        </h2>
+
+                        <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gray-600">
+                            <CalendarDays className="h-4 w-4 text-[#d0510f]" />
+                            14 September 2026
+                        </div>
+
+                        <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600 sm:text-base">
+                            <p>
+                                Srijan Valley School celebrated Hindi Diwas with great enthusiasm and fervour. The programme began with the ceremonial lighting of the lamp and Saraswati Vandana.
+                            </p>
+                            <p>
+                                School Director <strong className="font-bold text-gray-900">Dr. Renu Agarwal</strong> highlighted the importance of Hindi and its rich literary heritage.
+                            </p>
+                            <p>
+                                Students presented an engaging programme featuring speeches, poems, and Kabir's Dohas. Their confident and colourful performances reflected their love and respect for the Hindi language.
+                            </p>
+                        </div>
+
+                        <div className="mt-7 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4">
+                            <p className="font-semibold leading-6 text-gray-800">
+                                The celebration concluded on an inspiring note, fostering pride in Hindi among the students.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const SmartClassesFeature: React.FC = () => {
+    const videoId = "1epvo5n4IWw6kKDCjU7gZlwshDCsaltNH";
+    const videoSrc = `https://drive.google.com/file/d/${videoId}/preview`;
+
+    return (
+        <section className="mb-14 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-[0_16px_45px_rgba(208,81,15,0.10)] md:mb-20">
+            <div className="grid lg:grid-cols-[minmax(300px,0.72fr)_1.28fr]">
+                {/* Left Column: Video Embed */}
+                <div className="relative flex min-h-[560px] items-center justify-center overflow-hidden bg-gray-950 sm:min-h-[650px] lg:min-h-[620px]">
+                    <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src={videoSrc}
+                        title="Smart Classes at Srijan Valley School"
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                        allowFullScreen
+                    />
+                </div>
+
+                {/* Right Column: Content */}
+                <div className="relative flex flex-col justify-center overflow-hidden px-5 py-9 sm:px-8 md:px-10 lg:py-12">
+                    <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-orange-50" aria-hidden="true" />
+                    <div className="relative">
+                        <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#d0510f] ring-1 ring-inset ring-orange-100">
+                            <Award className="h-4 w-4" />
+                            School Initiative
+                        </div>
+                        <h2 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl">
+                            Smart Classes Introduced at <span className="text-[#d0510f]">Srijan Valley School</span>
+                        </h2>
+
+                        <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gray-600">
+                            <CalendarDays className="h-4 w-4 text-[#d0510f]" />
+                            14 September 2026
+                        </div>
+
+                        <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600 sm:text-base">
+                            <p>
+                                प्रिय अभिभावकगण, हमें यह बताते हुए हर्ष हो रहा है कि <strong className="font-bold text-gray-900">Srijan Valley School</strong> में विद्यार्थियों के लिए स्मार्ट क्लासेस की शुरुआत की गई है।
+                            </p>
+                            <p>
+                                आधुनिक तकनीक और डिजिटल माध्यमों के सहयोग से बच्चों को विषयों को अधिक रोचक, सरल एवं प्रभावी ढंग से समझने का अवसर मिलेगा। हमारा उद्देश्य शिक्षा को ज्ञानवर्धक होने के साथ-साथ आनंददायक और अनुभवात्मक बनाना है।
+                            </p>
+                        </div>
+
+                        <div className="mt-7 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-5 py-4">
+                            <p className="font-semibold leading-6 text-gray-800">
+                                हमें विश्वास है कि यह पहल विद्यार्थियों के सीखने के अनुभव को और समृद्ध करेगी।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
 // --- 4. Lightbox (Modal) Component (UPDATED for multiple photos) ---
 
 interface LightboxProps {
@@ -1663,7 +1837,8 @@ const Events: React.FC = () => {
                 <UnitTestIIRoutine />
 
                 <ReadingCompetitionFeature />
-
+                <HindiDiwasFeature />
+                <SmartClassesFeature/>
                 <HandwritingCompetitionResult />
 
                 <SpellathonCompetitionResult />
