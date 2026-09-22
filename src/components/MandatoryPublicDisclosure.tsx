@@ -11,7 +11,7 @@ const MandatoryPublicDisclosure = () => {
     {
       id: 2,
       title: "Recognition Certificate",
-      link: "https://drive.google.com/file/d/1Wdus5Kca5u8ocpX7J7czuYkpY_JYXg11/preview"
+      link: "https://drive.google.com/file/d/1Cy044WMZGpoRns_AkgtJEA-f00uT1XFa/preview"
     },
     {
       id: 3,
