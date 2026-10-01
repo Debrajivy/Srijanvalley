@@ -109,6 +109,7 @@ import hindidiwas1 from "../assets/hindidiwas1.jpeg";
 import hindidiwas2 from "../assets/hindidiwas2.jpeg";
 import hindidiwas3 from "../assets/hindidiwas3.jpeg";
 import hindidiwas4 from "../assets/hindidiwas4.jpeg";
+import gandhi from "../assets/gandhi.jpeg";
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -264,6 +265,25 @@ const SEPTEMBER_2026_SCHEDULE: Array<{ date: string; day: string; event: string;
 
 // --- 3. Actual Event Data (New Categories Added) ---
 const EVENTS: Event[] = [
+    {
+        id: 134,
+        category: "Gandhi Jayanti",
+        title: "Gandhi Jayanti Celebration",
+        previewPhoto: gandhi,
+        description: "Students celebrated Mahatma Gandhi's life and teachings through activities, inspiring thoughts, and messages on his timeless ideals.",
+        details: [
+            "Srijan Valley School celebrated Gandhi Jayanti with great enthusiasm and reverence. The programme highlighted the life and teachings of Mahatma Gandhi, especially his principles of truth, non-violence, cleanliness, and simplicity.",
+            "Students participated in various activities and shared inspiring thoughts and messages on Gandhiji's ideals. The celebration encouraged students to understand the importance of peace, discipline, and responsible citizenship.",
+            "The programme concluded with a pledge to follow the values of truth, kindness, and non-violence in our daily lives.",
+        ],
+        photos: [
+            {
+                id: 6601,
+                url: gandhi,
+                description: "Students of Srijan Valley School celebrating Gandhi Jayanti and reflecting on Gandhiji's values of truth and non-violence.",
+            },
+        ],
+    },
     {
         id: 133,
         category: "Inter-School Hindi Recitation Competition",
