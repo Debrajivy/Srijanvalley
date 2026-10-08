@@ -12,7 +12,7 @@ import Footer from '@/components/Footer';
 import Events from '@/components/Events';
 import Media from '@/components/Media';
 import MandatoryPublicDisclosure from '@/components/MandatoryPublicDisclosure';
-// Assuming AdmissionTicker is located at '@/components/AdmissionTicker'
+import AdmissionTicker from '@/components/AdmissionTicker';
 import Results from '@/components/Results';
 
 const Index = () => {
@@ -25,6 +25,7 @@ const Index = () => {
       <main className="relative z-10">
         <Header />
         <Hero />
+        <AdmissionTicker />
         <WhyChooseUs />
         <MissionVision />
         <WhoItsFor />

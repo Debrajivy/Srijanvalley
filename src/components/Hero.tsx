@@ -14,7 +14,7 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzdihIB3IfKSr5SQg11
 const AdmissionHeaderImage: React.FC = () => (
   <div className="bg-orange-600 text-white p-3 text-center rounded-t-xl">
     <h2 className="text-xl sm:text-xl md:text-xl font-bold mb-1 leading-tight">
-      <span className="block">Admissions are open for the session 2026–27 :</span>
+      <span className="block">Admissions are open for the session 2027–28</span>
     </h2>
     <p className="text-sm sm:text-base font-medium mt-2">For classes - pre-nursery, nursery, KG and Standard 1-7</p>
   </div>
@@ -237,6 +237,13 @@ const AdmissionPopup: React.FC<AdmissionPopupProps> = ({ isOpen, onClose }) => {
 
 const Hero: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const openAdmissionForm = () => setIsPopupOpen(true);
+    window.addEventListener('open-admission-form', openAdmissionForm);
+
+    return () => window.removeEventListener('open-admission-form', openAdmissionForm);
+  }, []);
 
   const handleApplyClick = () => {
     setIsPopupOpen(true);

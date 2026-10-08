@@ -1,8 +1,7 @@
-import { BookOpen, Users, Building2, Star } from 'lucide-react';
+import { BookOpen, Users, Building2 } from 'lucide-react';
 import FocusEducation from "../assets/FocusedEducation.webp";
 import PersonalAttention from "../assets/PersonalAttention.webp";
 import ModernInfrastructure from "../assets/ModernInfrastructure.webp";
-import AdmissionTicker from './AdmissionTicker';
 // Define the type for feature items to make mapping clearer
 const featuresData = [
   {
@@ -107,7 +106,6 @@ const WhyChooseUs = () => {
         </div>
 
         <hr className="my-16 border-gray-200" />
-        <AdmissionTicker />
         {/* Leadership Callout - Uncommented for a stronger closing statement, referencing the header text */}
         {/* <div className="text-center py-10 bg-orange-600 rounded-3xl shadow-2xl">
           <p className="text-2xl md:text-3xl font-semibold text-white max-w-4xl mx-auto">
