@@ -35,7 +35,7 @@ const Index = () => {
         <Media />
         <Team />
         <Gallery />
-        <MandatoryPublicDisclosure />
+        {/* <MandatoryPublicDisclosure /> */}
         <Contact />
         {/* <Results /> */}
         <Footer />

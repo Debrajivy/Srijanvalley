@@ -45,7 +45,7 @@ const Header = () => {
     { name: 'Events', href: '#events' },
     // { name: 'Events ', href: '#events' },
     { name: 'Gallery', href: '#gallery' },
-    { name: 'Mandatory Public Disclosure', href: '#mandatory-public-disclosure' },
+    // { name: 'Mandatory Public Disclosure', href: '#mandatory-public-disclosure' },
     // { name: 'Contact Us', href: '#contact' },
   ];
 
