@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 // Added ChevronLeft, ChevronRight for the new multiple-image lightbox
-import { Award, CalendarRange, Maximize, X, ChevronLeft, ChevronRight, BookOpenCheck, CalendarDays, Medal, Trophy,Play  } from "lucide-react";
+import { Award, CalendarRange, Maximize, X, ChevronLeft, ChevronRight, BookOpenCheck, CalendarDays, Medal, Trophy, Play, Square } from "lucide-react";
 
 // --- 1. Asset Imports (Existing and NEW) ---
 // Note: In a real Next.js/React project, you MUST ensure these files exist
@@ -110,6 +110,11 @@ import hindidiwas2 from "../assets/hindidiwas2.jpeg";
 import hindidiwas3 from "../assets/hindidiwas3.jpeg";
 import hindidiwas4 from "../assets/hindidiwas4.jpeg";
 import gandhi from "../assets/gandhi.jpeg";
+import UnitedNationsDay1 from "../assets/united-nations-day-1.jpg";
+import UnitedNationsDay2 from "../assets/united-nations-day-2.jpg";
+import UnitedNationsDay3 from "../assets/united-nations-day-3.jpg";
+import TimesOfIndiaAward1 from "../assets/times-of-india-award-1.jpg";
+import TimesOfIndiaAward2 from "../assets/times-of-india-award-2.jpg";
 
 // --- Configuration (Existing) ---
 const COLOR_PRIMARY = "#ea590e";
@@ -1521,6 +1526,265 @@ const HindiRecitationCompetitionFeature: React.FC = () => {
     );
 };
 
+const UnitedNationsDayFeature: React.FC = () => {
+    const videoId = "1dhSvUy5eMtOJY8W8ipO1bIyfoeprk9r7";
+    const videoUrl = `https://drive.google.com/file/d/${videoId}/preview?autoplay=1`;
+    const photos = [
+        {
+            id: "1gS2-O97LTKGKW6KrPql4ThraKyQJ-6s9",
+            src: UnitedNationsDay1,
+            alt: "Students celebrating United Nations Day at Srijan Valley School",
+        },
+        {
+            id: "1QxC6Qqq9lDjexd3MIYMOT8_ndTKh_X_k",
+            src: UnitedNationsDay2,
+            alt: "United Nations Day programme at Srijan Valley School",
+        },
+        {
+            id: "1VpsBFbZXpJU_Hb9zIiAYCQcOPNzdXtlX",
+            src: UnitedNationsDay3,
+            alt: "Students promoting peace, unity and international harmony",
+        },
+    ];
+
+    const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+    const [expandedImage, setExpandedImage] = useState<{ src: string; alt: string } | null>(null);
+
+    return (
+        <section className="mb-14 overflow-hidden rounded-2xl border border-sky-100 bg-white shadow-[0_16px_45px_rgba(15,92,141,0.12)] md:mb-20">
+            <div className="grid lg:grid-cols-[minmax(340px,1fr)_1fr]">
+                <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-slate-950 sm:min-h-[430px] lg:min-h-[610px]">
+                    {isVideoPlaying ? (
+                        <iframe
+                            className="absolute inset-0 h-full w-full"
+                            src={videoUrl}
+                            title="Srijan Valley School United Nations Day celebration"
+                            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                            allowFullScreen
+                        />
+                    ) : (
+                        <div className="absolute inset-0">
+                            <img
+                                src={photos[0].src}
+                                alt={photos[0].alt}
+                                className="h-full w-full object-cover opacity-45"
+                            />
+                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-slate-950/55 p-6 text-center text-white">
+                                <p className="text-lg font-bold">Video stopped</p>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsVideoPlaying(true)}
+                                    className="inline-flex items-center gap-2 rounded-full bg-[#ea590e] px-5 py-3 text-sm font-bold text-white shadow-lg transition-colors hover:bg-[#cf4d08] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950"
+                                >
+                                    <Play className="h-4 w-4 fill-current" />
+                                    Play Video
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {isVideoPlaying && (
+                        <button
+                            type="button"
+                            onClick={() => setIsVideoPlaying(false)}
+                            className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-gray-900 shadow-xl ring-1 ring-black/10 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#ea590e]"
+                            aria-label="Stop United Nations Day video"
+                        >
+                            <Square className="h-4 w-4 fill-current" />
+                            Stop Video
+                        </button>
+                    )}
+                </div>
+
+                <div className="relative flex flex-col justify-center overflow-hidden px-5 py-9 sm:px-8 md:px-10 lg:py-12">
+                    <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-sky-50" aria-hidden="true" />
+                    <div className="relative">
+                        <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-sky-800 ring-1 ring-inset ring-sky-100">
+                            <Award className="h-4 w-4" />
+                            United Nations Day
+                        </div>
+
+                        <h2 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl">
+                            Srijan Valley School Celebrates <span className="text-[#ea590e]">United Nations Day</span>
+                        </h2>
+
+                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-gray-600">
+                            <span className="inline-flex items-center gap-2">
+                                <CalendarDays className="h-4 w-4 text-[#ea590e]" />
+                                24 October
+                            </span>
+                            <span>Pithoria, Ranchi</span>
+                        </div>
+
+                        <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600 sm:text-base">
+                            <p>
+                                Srijan Valley School, Pithoria, Ranchi, celebrated United Nations Day on 24th October to promote awareness of global peace, unity, cooperation, and international harmony among students.
+                            </p>
+                            <p>
+                                The celebration aimed to encourage young learners to value humanity, respect diversity, and understand the importance of working together for a peaceful world.
+                            </p>
+                            <p>
+                                The event reflected the school&rsquo;s commitment to nurturing responsible, compassionate, and globally aware citizens.
+                            </p>
+                        </div>
+
+                        <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
+                            {photos.map((photo, index) => (
+                                <button
+                                    key={photo.id}
+                                    type="button"
+                                    onClick={() => setExpandedImage(photo)}
+                                    className="group relative h-24 overflow-hidden rounded-xl border border-gray-200 bg-gray-100 shadow-sm sm:h-32 lg:h-36"
+                                    aria-label={`Expand United Nations Day photo ${index + 1}`}
+                                >
+                                    <img
+                                        src={photo.src}
+                                        alt={photo.alt}
+                                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                        loading="lazy"
+                                    />
+                                    <span className="absolute right-2 top-2 rounded-full bg-black/65 p-1.5 text-white opacity-90">
+                                        <Maximize className="h-3.5 w-3.5" />
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {expandedImage && (
+                <div
+                    className="fixed inset-0 z-[120] flex items-center justify-center bg-black/95 p-2 sm:p-6"
+                    onClick={() => setExpandedImage(null)}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Expanded United Nations Day photograph"
+                >
+                    <button
+                        type="button"
+                        onClick={() => setExpandedImage(null)}
+                        className="absolute right-3 top-3 z-10 rounded-full bg-white p-2.5 text-gray-900"
+                        aria-label="Close expanded image"
+                    >
+                        <X className="h-6 w-6" />
+                    </button>
+                    <img
+                        src={expandedImage.src}
+                        alt={expandedImage.alt}
+                        className="max-h-[96vh] max-w-full object-contain"
+                        onClick={(event) => event.stopPropagation()}
+                    />
+                </div>
+            )}
+        </section>
+    );
+};
+
+const TimesOfIndiaRecognitionFeature: React.FC = () => {
+    const photos = [
+        {
+            id: 1,
+            src: TimesOfIndiaAward1,
+            alt: "Srijan Valley School receiving a Certificate of Excellence at Leaders of Learning 2026",
+        },
+        {
+            id: 2,
+            src: TimesOfIndiaAward2,
+            alt: "Honourees at The Times of India Leaders of Learning 2026 event in Ranchi",
+        },
+    ];
+
+    const [expandedImage, setExpandedImage] = useState<{ src: string; alt: string } | null>(null);
+
+    return (
+        <section className="mb-14 overflow-hidden rounded-2xl border border-amber-100 bg-white shadow-[0_16px_45px_rgba(146,92,12,0.12)] md:mb-20">
+            <div className="grid lg:grid-cols-[minmax(340px,1fr)_1fr]">
+                <div className="grid min-h-[420px] grid-cols-2 gap-2 bg-slate-950 p-2 sm:min-h-[540px] sm:gap-3 sm:p-3 lg:min-h-[610px]">
+                    {photos.map((photo, index) => (
+                        <button
+                            key={photo.id}
+                            type="button"
+                            onClick={() => setExpandedImage(photo)}
+                            className="group relative overflow-hidden rounded-xl bg-black shadow-lg ring-1 ring-white/10"
+                            aria-label={`Expand Times of India recognition photo ${index + 1}`}
+                        >
+                            <img
+                                src={photo.src}
+                                alt={photo.alt}
+                                className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                                loading="lazy"
+                            />
+                            <span className="absolute right-3 top-3 rounded-full bg-black/70 p-2 text-white shadow-md">
+                                <Maximize className="h-4 w-4" />
+                            </span>
+                        </button>
+                    ))}
+                </div>
+
+                <div className="relative flex flex-col justify-center overflow-hidden px-5 py-9 sm:px-8 md:px-10 lg:py-12">
+                    <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-amber-50" aria-hidden="true" />
+                    <div className="relative">
+                        <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-amber-800 ring-1 ring-inset ring-amber-200">
+                            <Award className="h-4 w-4" />
+                            Certificate of Excellence
+                        </div>
+
+                        <h2 className="text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl md:text-4xl">
+                            Srijan Valley School Honoured by <span className="text-[#ea590e]">The Times of India</span>
+                        </h2>
+
+                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-gray-600">
+                            <span>Leaders of Learning 2026</span>
+                            <span>Ranchi</span>
+                        </div>
+
+                        <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600 sm:text-base">
+                            <p>
+                                Srijan Valley School, Pithoria, Ranchi, received a Certificate of Excellence from The Times of India at Leaders of Learning 2026, held in Ranchi, for its outstanding contribution to the education sector of Jharkhand.
+                            </p>
+                            <p>
+                                This recognition marks a proud milestone for the school and reflects its commitment to quality education and the holistic development of students.
+                            </p>
+                        </div>
+
+                        <div className="mt-7 rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 px-5 py-4">
+                            <p className="font-semibold leading-6 text-gray-800">
+                                A proud achievement celebrating the school&rsquo;s dedication to educational excellence in Jharkhand.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {expandedImage && (
+                <div
+                    className="fixed inset-0 z-[120] flex items-center justify-center bg-black/95 p-2 sm:p-6"
+                    onClick={() => setExpandedImage(null)}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Expanded Times of India recognition photograph"
+                >
+                    <button
+                        type="button"
+                        onClick={() => setExpandedImage(null)}
+                        className="absolute right-3 top-3 z-10 rounded-full bg-white p-2.5 text-gray-900"
+                        aria-label="Close expanded image"
+                    >
+                        <X className="h-6 w-6" />
+                    </button>
+                    <img
+                        src={expandedImage.src}
+                        alt={expandedImage.alt}
+                        className="max-h-[96vh] max-w-full object-contain"
+                        onClick={(event) => event.stopPropagation()}
+                    />
+                </div>
+            )}
+        </section>
+    );
+};
+
 const ReadingCompetitionFeature: React.FC = () => {
     const videoId = "s1EHo8zu7mk";
 
@@ -1843,6 +2107,10 @@ const Events: React.FC = () => {
 
             {/* section-container implementation: max-w-6xl retained for the 3-column grid */}
             <div className="px-4 mx-auto max-w-7xl md:max-w-4xl lg:max-w-6xl">
+
+                <TimesOfIndiaRecognitionFeature />
+
+                <UnitedNationsDayFeature />
 
                 <MonthlyActivitySchedule
                     month="September"
